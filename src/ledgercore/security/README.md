@@ -1,1 +1,15 @@
-Users and roles are schema preparation only. There is no authentication or authorization middleware in Phase 1. Run on loopback in development. No default users, password storage, header-based identity, or fake tokens are provided. Phase 2 must define demo authentication and enforce role permissions before exposing financial mutations.
+# Local demo authentication only
+
+`DEMO_AUTH_ENABLED=true` enables database-backed `X-Demo-User` subjects:
+`demo-officer`, `demo-manager`, `demo-auditor`. Roles come from active database users,
+never from headers. Missing/unknown/inactive subjects and unauthorized actions return 403.
+Disabled demo authentication returns 503 on protected endpoints. Public endpoints are
+health, Swagger and OpenAPI. There are no real credentials or authentication tokens.
+
+This is impersonation for local development, not proof of identity. Never expose it to
+untrusted clients. Production identity verification and tenant/borrower scoping remain
+unimplemented. All three roles can read all loans in this demo. Managers and auditors can
+read audit history; only officers/managers can originate and receive repayments; only
+managers can disburse or reverse supported repayment journals. Denials are recorded in a
+separate small authorization transaction without request payloads or unrecognized subject
+values. Successful mutations carry the actor and correlation in the financial transaction.

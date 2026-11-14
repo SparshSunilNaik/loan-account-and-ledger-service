@@ -148,6 +148,8 @@ class Repayment(Record, Base):
     idempotency_request_id: Mapped[uuid.UUID | None] = mapped_column(
         ForeignKey("idempotency_requests.id"), unique=True
     )
+    business_date: Mapped[date] = mapped_column(server_default=func.current_date())
+    request_hash: Mapped[str | None] = mapped_column(String(64))
     amount_paise: Mapped[int] = mapped_column(BigInteger)
     occurred_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
     received_at: Mapped[datetime] = mapped_column(
@@ -220,12 +222,13 @@ class LedgerJournal(Record, Base):
     reversal_of_id: Mapped[uuid.UUID | None] = mapped_column(
         ForeignKey("ledger_journals.id"), unique=True
     )
+    business_date: Mapped[date] = mapped_column(server_default=func.current_date())
     effective_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
     posted_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     description: Mapped[str] = mapped_column(String(500))
     __table_args__ = (
         CheckConstraint(
-            "kind IN ('disbursement','repayment','scheduled_interest','overdue_interest','reversal')",
+            "kind IN ('disbursement','repayment','scheduled_interest','overdue_interest','penalty','reversal')",
             name="journal_kind",
         ),
         CheckConstraint("status IN ('draft','posted')", name="journal_status"),
@@ -251,6 +254,12 @@ class LedgerJournal(Record, Base):
 
 class LedgerEntry(Record, Base):
     __tablename__ = "ledger_entries"
+    schedule_id: Mapped[uuid.UUID | None] = mapped_column(
+        ForeignKey("repayment_schedules.id", name="fk_entry_schedule"), index=True
+    )
+    receivable_origin_id: Mapped[uuid.UUID | None] = mapped_column(
+        ForeignKey("ledger_entries.id", name="fk_entry_origin"), index=True
+    )
     journal_id: Mapped[uuid.UUID] = mapped_column(
         ForeignKey("ledger_journals.id"), index=True
     )

@@ -25,6 +25,7 @@ services:
   api:
     build: .
     environment:
+      DEMO_AUTH_ENABLED: "true"
       DATABASE_URL: postgresql+psycopg://ledgercore:ledgercore_local@db:5432/ledgercore
     ports:
       - "127.0.0.1:8000:8000"

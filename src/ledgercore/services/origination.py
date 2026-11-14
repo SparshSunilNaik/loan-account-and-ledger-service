@@ -17,7 +17,9 @@ class OriginationError(ValueError):
     pass
 
 
-def originate(session: Session, request: LoanCreate) -> Loan:
+def originate(
+    session: Session, request: LoanCreate, actor_id=None, correlation_id=None
+) -> Loan:
     """Caller owns the transaction; the loan and full schedule are one unit."""
     if session.get(Borrower, request.borrower_id) is None:
         raise OriginationError("Borrower not found")
@@ -47,10 +49,16 @@ def originate(session: Session, request: LoanCreate) -> Loan:
     session.add_all([RepaymentSchedule(loan_id=loan.id, **asdict(row)) for row in rows])
     session.add(
         AuditEvent(
+            actor_user_id=actor_id,
+            correlation_id=correlation_id,
             action="loan.originated",
             entity_type="loan",
             entity_id=loan.id,
-            details={"schedule_version": "v1"},
+            details={
+                "before": None,
+                "after": {"status": "originated"},
+                "schedule_version": "v1",
+            },
         )
     )
     return loan

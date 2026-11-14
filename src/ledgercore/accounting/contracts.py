@@ -1,39 +1,19 @@
-"""Future posting boundary. No posting implementation exists in Phase 1."""
+"""Implemented financial operation contracts; each needs a caller-owned transaction.
 
-from datetime import date, datetime
-from typing import Protocol
-from uuid import UUID
+API authorization precedes these operations. Each service locks the loan; none commits.
+Only repayment reversal is supported. Scheduled recognition is callable without a job.
+"""
 
-from sqlalchemy.orm import Session
+from ledgercore.accounting.posting import (
+    disburse,
+    receive_repayment,
+    recognize_scheduled_interest,
+    reverse_repayment,
+)
 
-
-class PostingService(Protocol):
-    """Future implementations use the caller's atomic transaction and loan lock.
-
-    They must validate authorization, idempotency, receivables and balanced entries.
-    No method may commit independently or mutate a posted journal.
-    """
-
-    def disburse(self, session: Session, loan_id: UUID, event_key: str) -> UUID: ...
-
-    def receive_repayment(
-        self,
-        session: Session,
-        loan_id: UUID,
-        amount_paise: int,
-        occurred_at: datetime,
-        source: str,
-        event_id: str,
-    ) -> UUID: ...
-
-    def reverse(self, session: Session, journal_id: UUID, event_key: str) -> UUID: ...
-
-    def recognize_interest(
-        self,
-        session: Session,
-        loan_id: UUID,
-        schedule_id: UUID,
-        period_start: date,
-        period_end: date,
-        kind: str,
-    ) -> UUID: ...
+__all__ = [
+    "disburse",
+    "receive_repayment",
+    "recognize_scheduled_interest",
+    "reverse_repayment",
+]

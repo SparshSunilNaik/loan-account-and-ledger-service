@@ -9,16 +9,26 @@
 5. Validate mathematical examples, boundary invariants and real PostgreSQL integration.
 6. Review financial semantics, document assumptions, lint/format, commit and push.
 
-No repayment or disbursement posting, concurrency control, synthetic replay or accrual
-job execution is included. Prepared tables and protocols are contracts for later work.
+Phase 1 excluded repayment/disbursement posting, concurrency control, synthetic replay
+and accrual job execution. Its prepared tables/contracts are extended in Phase 2 below.
 
-## Phase 2 — proposed, requires policy review
+## Phase 2 — delivered
 
-Introduce explicit demo authentication and role checks (loan_officer, manager, auditor).
-Define account chart and posted receivable queries. Implement atomic, serialized one-time
-disbursement, repayment validation/allocation, idempotent event handling, immutable journals
-and exact reversals. Test rollback, concurrent mutation, overpayment and authorization
-failures on PostgreSQL. Decide collectibility and allocation precedence first.
+Phase 2 implements database-backed development identity and RBAC, six ledger accounts,
+one-time manager disbursement, independently callable due scheduled interest recognition,
+atomic repayments, source/scoped-key idempotency, loan-row serialization, ledger-derived
+balances and operationally consistent repayment reversals. The Phase 2 request supersedes
+the earlier policy questions: future principal is collectible, future interest is not,
+and early payment retains original contractual interest without rebate/re-amortization.
+
+Tests cover live PostgreSQL migrations and Phase 1 data preservation, 20 simultaneous
+repayment deliveries, shared-source/key races across loans, real row-lock waits, injected
+rollback failures, authorization/audit identity and exact reversal invariants. Original
+schedule tests are retained. The local header mechanism is explicitly development-only.
+
+No disbursement/recognition reversal, automatic closure, scheduled overdue job or synthetic
+replay is delivered. Subsequent phases must preserve posted history and existing retry
+contracts, define any overdue-charge policy, and replace demo identity before deployment.
 
 ## Later — accrual and replay
 

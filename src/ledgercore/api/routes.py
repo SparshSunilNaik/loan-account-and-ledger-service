@@ -1,7 +1,7 @@
 from typing import Annotated
 from uuid import UUID
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Request
 from sqlalchemy import select, text
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 from sqlalchemy.orm import Session
@@ -22,6 +22,7 @@ from ledgercore.schemas.api import (
     ProductRead,
     ScheduleRead,
 )
+from ledgercore.security.demo import Officer, Reader
 from ledgercore.services.origination import OriginationError, originate
 
 router = APIRouter()
@@ -43,7 +44,9 @@ def conflict(exc: IntegrityError):
 
 
 @router.post("/borrowers", response_model=BorrowerRead, status_code=201)
-def create_borrower(body: BorrowerCreate, session: DB):
+def create_borrower(
+    body: BorrowerCreate, actor: Officer, session: DB, request: Request
+):
     try:
         with session.begin():
             borrower = Borrower(**body.model_dump())
@@ -54,7 +57,12 @@ def create_borrower(body: BorrowerCreate, session: DB):
                     action="borrower.created",
                     entity_type="borrower",
                     entity_id=borrower.id,
-                    details={},
+                    actor_user_id=actor.id,
+                    correlation_id=request.state.correlation_id,
+                    details={
+                        "before": None,
+                        "after": {"external_reference": borrower.external_reference},
+                    },
                 )
             )
     except IntegrityError as exc:
@@ -63,20 +71,20 @@ def create_borrower(body: BorrowerCreate, session: DB):
 
 
 @router.get("/borrowers/{borrower_id}", response_model=BorrowerRead)
-def get_borrower(borrower_id: UUID, session: DB):
+def get_borrower(borrower_id: UUID, actor: Reader, session: DB):
     return require(session, Borrower, borrower_id)
 
 
 @router.get("/loan-products", response_model=list[ProductRead])
-def products(session: DB):
+def products(actor: Reader, session: DB):
     return session.scalars(select(LoanProduct).order_by(LoanProduct.code)).all()
 
 
 @router.post("/loans", response_model=LoanRead, status_code=201)
-def create_loan(body: LoanCreate, session: DB):
+def create_loan(body: LoanCreate, actor: Officer, session: DB, request: Request):
     try:
         with session.begin():
-            loan = originate(session, body)
+            loan = originate(session, body, actor.id, request.state.correlation_id)
     except OriginationError as exc:
         raise HTTPException(422, str(exc)) from exc
     except IntegrityError as exc:
@@ -85,12 +93,12 @@ def create_loan(body: LoanCreate, session: DB):
 
 
 @router.get("/loans/{loan_id}", response_model=LoanRead)
-def get_loan(loan_id: UUID, session: DB):
+def get_loan(loan_id: UUID, actor: Reader, session: DB):
     return require(session, Loan, loan_id)
 
 
 @router.get("/loans/{loan_id}/schedule", response_model=list[ScheduleRead])
-def schedule(loan_id: UUID, session: DB):
+def schedule(loan_id: UUID, actor: Reader, session: DB):
     require(session, Loan, loan_id)
     return session.scalars(
         select(RepaymentSchedule)

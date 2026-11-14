@@ -63,13 +63,9 @@ def journal(db, loan, key="J-1", kind="disbursement", **kwargs):
 def balanced(db, loan):
     j = journal(db, loan)
     accounts = [
-        LedgerAccount(code="CASH", name="Cash", account_type="asset"),
-        LedgerAccount(
-            code="PRINCIPAL", name="Principal receivable", account_type="asset"
-        ),
+        db.scalar(select(LedgerAccount).where(LedgerAccount.code == code))
+        for code in ["CASH", "LOAN_PRINCIPAL_RECEIVABLE"]
     ]
-    db.add_all(accounts)
-    db.flush()
     entries = [
         LedgerEntry(journal_id=j.id, account_id=a.id, amount_paise=10000, direction=d)
         for a, d in zip(accounts, ["debit", "credit"], strict=True)

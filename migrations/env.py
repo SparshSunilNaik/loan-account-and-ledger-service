@@ -15,7 +15,9 @@ def run():
         with context.begin_transaction():
             context.run_migrations()
     else:
-        engine = create_engine(url, poolclass=pool.NullPool)
+        engine = create_engine(
+            url, poolclass=pool.NullPool, connect_args={"options": "-c timezone=UTC"}
+        )
         with engine.connect() as connection:
             context.configure(
                 connection=connection,

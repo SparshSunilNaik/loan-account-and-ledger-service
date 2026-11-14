@@ -98,42 +98,135 @@ recomputed on GET and is not altered by payments or product changes.
 
 ## Scheduled amounts, receivables and receipts
 
-A schedule records contractual future principal/interest, not recognized income, a
-posted asset balance, money already disbursed, or money received. Financial receivables
-will be derived from posted balanced journal entries. Payment receipts will record actual
-accepted money, its economic `occurred_at` and server `received_at`. Repayment deliveries
-can repeat or fail; deliveries and successful receipts are different populations.
-No financial receivable or collectible outstanding field is exposed in Phase 1.
+Schedules are immutable contractual expectations. Principal becomes a financial receivable
+only when disbursement posts. Contractual interest becomes a receivable and income only
+when recognized on or after its due date under an explicit processing business date.
+Accepted receipts represent actual money and have separate economic occurred_at and
+server received_at timestamps. Failed or duplicate deliveries are not new receipts.
 
-## Proposed posting policies — deferred implementation
+All current balances are calculated from posted ledger entries, including reversals.
+There is no authoritative balance column. GET balance never performs recognition and is
+not a future payoff quote. Repayment recognizes eligible due interest before validating
+collectibility. A repayment larger than principal + recognized interest + recognized
+penalties is rejected atomically; unrecognized future interest is excluded.
 
-1. Allocate to penalties, then interest, then principal. Within each component class,
-   process oldest due instalments first (due date, then instalment number). Confirm this
-   precedence before Phase 2; instalment-first priority would produce different results.
-2. Reject any overpayment beyond collectible outstanding amounts. What future principal
-   is collectible before maturity and any prepayment/rebate rules need approval before
-   implementing this comparison. Do not substitute scheduled lifetime interest for an
-   immediately payable receivable.
-3. Posted journals and their entries cannot be silently edited. Use a new balanced
-   reversal journal referencing the original and preserving the audit trail. Phase 2
-   must enforce exact opposite entries, posted target and same-loan linkage.
-4. A loan can be disbursed only once. A unique loan disbursement index is already present;
-   a reversal does not permit a second disbursement under this proposed policy.
-5. Serialize concurrent financial mutations for one loan (e.g. transaction-scoped row
-   locking). Define lock ordering and concurrency tests in Phase 2. Phase 1 has no locks.
-6. Recognize scheduled interest once per schedule row. An overdue job must not accrue the
-   same scheduled interest again. Any distinct overdue charge requires an approved basis,
-   rate, period boundaries and income/receivable accounts; none is calculated yet.
-7. Overdue records use schedule/kind/start/end identity, with half-open periods [start,end).
-   Exact repeats are constrained now; overlapping periods need later validation. A late
-   arrival must not silently change already recognized interest.
-8. All financial transactions are atomic: event, allocation, journal, entries, idempotency
-   result and audit must commit or roll back together. Phase 1 origination is atomic.
-9. Idempotency keys are scoped to authenticated principal/operation; store a canonical
-   request hash. Same key/same request reuses the outcome; same key/different request
-   conflicts. Source event IDs provide a separate duplicate check. Phase 1 only prepares
-   these records and unique constraints.
+## Phase 2 accounting
 
-Confirm penalties, prepayment, recognition timing, journal chart of accounts, late-arrival
-corrections and role permissions before implementing subsequent phases. No policy here
-claims production accounting or regulatory compliance.
+The immutable chart contains CASH, LOAN_PRINCIPAL_RECEIVABLE, INTEREST_RECEIVABLE,
+INTEREST_INCOME, PENALTY_RECEIVABLE and PENALTY_INCOME. Receivables/cash are asset
+accounts; the two income accounts are income. All entries use positive integer paise
+with an explicit direction. Every posted journal contains at least two entries and
+matching debit/credit totals. Cash is a demo settlement account, not a bank integration.
+Per-loan cash can be credit-net following disbursement; no cash funding check is modeled.
+
+| Operation | Debit | Credit |
+| --- | --- | --- |
+| Disbursement | Loan principal receivable | Cash |
+| Due scheduled interest recognition | Interest receivable | Interest income |
+| Repayment | Cash | Allocated principal, interest and penalty receivables |
+| Supported repayment reversal | Exact opposite original entries | Exact opposite original entries |
+
+Example: principal 10000 paise, monthly 12%, two instalments (principal 4975/5025,
+interest 100/50). Disbursement debits principal receivable 10000 and credits cash 10000.
+On January 31, recognition debits interest receivable 100 and credits interest income 100.
+A 1000-paise receipt debits cash 1000, credits interest receivable 100, and credits principal
+receivable 900. Remaining posted principal is 9100 and interest 0. Reversal credits cash
+1000 and debits interest 100 and principal 900; original journals remain unchanged.
+
+## UTC processing dates and recognition
+
+Financial requests explicitly provide business_date as a calendar date interpreted in
+UTC. It is never inferred from a local timezone or occurred_at. Database connections
+return timestamps in UTC. occurred_at requires a timezone and is normalized to UTC before
+hashing; its UTC date must be on or before business_date. Out-of-order economic arrivals
+are allowed at the current processing date, without retroactive allocation recalculation.
+Future simulation dates are allowed in this development assignment, relative to which
+due eligibility is evaluated; this is not a wall-clock scheduling service.
+
+New financial operations cannot move backward before an existing posted journal's
+business_date. Exact key/event retries and reversal-target retries return their original
+result before that check, so a lost HTTP response remains retryable after later activity.
+This policy avoids using later recognized receivables in an earlier processing day.
+
+recognize_scheduled_interest(session, loan_id, business_date, actor_id, correlation_id)
+is independently callable by an authorized caller inside one Session.begin() transaction.
+It obtains the loan lock and recognizes every positive scheduled interest row with
+due_date <= business_date that has not already been recorded. The accrual identity is
+schedule/kind with half-open period [due_date,due_date+1 day); that day is a recognition
+identity, not a day-count computation. A unique schedule recognition index prevents
+repeats. Economic effective_at is the due date at UTC midnight; business_date records
+when processing happened. No future row is recognized and zero interest is a no-op,
+without an empty journal or zero entries. There is no overdue accrual or penalty generator.
+
+Prepaid principal does not change original contractual interest. Even after all principal
+is paid, later scheduled interest still becomes due and collectible in this assignment.
+A loan remains operationally disbursed; automatic closure is not implemented.
+
+## Repayment allocation and prepayment
+
+1. Pay oldest recognized penalty receivable lots first.
+2. Pay oldest recognized interest receivable lots next.
+3. Pay oldest due unpaid principal (due date, then instalment number).
+4. Apply the remainder to future principal in the same contractual order.
+
+Recognized lots are ordered by original economic effective timestamp, creation timestamp,
+and entry UUID. Credits reference the original debit so later collections/reversals keep
+lot identity. Multiple lots for one schedule are aggregated into one operational allocation
+per receipt/schedule/component while preserving distinct journal credits.
+
+Principal capacity is original scheduled principal minus active, unreversed receipt
+allocations for that schedule. Each capacity and the aggregate are checked against the
+ledger under the loan lock. A prepayment settling future principal therefore reduces later
+collection capacity, without mutating schedule rows. Reject zero/negative/excessive amounts;
+never collect future interest. No automatic interest rebate or re-amortization applies.
+
+## Idempotency and atomicity
+
+Repayment POST requires Idempotency-Key (1..200 identifier characters). The unique scope
+is database actor UUID + repayment operation; the key is global across that actor's loans.
+A canonical SHA-256 hash includes loan UUID, integer amount, normalized source/event,
+normalized UTC occurred_at and business_date. Correlation and key are excluded.
+
+Same key/hash returns the original successful 201 and body. Different hash returns 409.
+Source + external_event_id is globally unique: the identical canonical request under a
+new key returns the same original result, stores that key as an alias and never posts
+again. A mismatched source payload or different loan returns 409. Equivalent timezone
+offsets normalize to the same instant. Only successful results are retained; rejected
+requests roll back their pending key and can be corrected/resubmitted.
+
+Receipt, allocations, auto-recognition, journal, entries, idempotency result and successful
+audit commit together. Posting services never commit. Authorization precedes the financial
+transaction, then SELECT FOR UPDATE locks the loan, then identity/deduplication is resolved.
+Uniqueness/deadlock/serialization conflicts retry the whole transaction at most three
+times before a sanitized 409. Different loans can run in parallel while DB uniqueness
+handles shared key/source races. There is no Python lock for financial safety.
+
+## Controlled reversal
+
+Managers may reverse only posted repayment journals. Disbursement, recognition and reversal
+journals are unsupported targets (409); a journal on another loan is absent (404). A new
+balanced journal must contain exactly opposite entries, with identical account/amount/
+schedule/receivable origin, and reference the original exactly once. Database checks
+also enforce this at posting. Reversing a reversal is unsupported.
+
+Reversal is idempotent by original journal UUID: subsequent valid requests return the
+existing reversal, with the first committed reason and business date retained. Receipt
+and allocation rows remain immutable. GET receipts derives current reversed status;
+active collection capacity excludes reversed receipts. Other payments stay effective.
+Original successful idempotency responses are historical facts and remain unchanged;
+retrying a reversed event returns that response and never reinstates the receipt.
+
+A loan can be disbursed only once, enforced by both the service and partial unique index.
+No disbursement reversal is exposed and reversing any journal cannot authorize a second
+disbursement. Financial mutations are audited with actor, UTC time, correlation,
+before/after state and journal references. Denied role attempts commit minimized audit
+metadata separately; they do not mutate financial state.
+
+## Deferred policies
+
+No overdue penalty/interest execution, scheduled worker, synthetic replay, prepayment
+rebate, re-amortization, real bank settlement, multi-currency support, backdated ledger
+restatement or general journal adjustment is implemented. Future overdue charges require
+an approved rate/basis and unique nonoverlapping period identity without recognizing
+scheduled interest again. Production identity, ownership scoping and database permissions
+need a separate design. These policies are assignment semantics, not regulatory guidance.

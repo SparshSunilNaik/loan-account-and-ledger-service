@@ -27,9 +27,11 @@ def pg_engine():
     with admin.connect() as conn:
         conn.execute(text(f'CREATE DATABASE "{name}"'))
     test_url = admin_url.set(database=name).render_as_string(hide_password=False)
+    old_demo = os.environ.get("DEMO_AUTH_ENABLED")
+    os.environ["DEMO_AUTH_ENABLED"] = "true"
     old = os.environ.get("DATABASE_URL")
     os.environ["DATABASE_URL"] = test_url
-    engine = create_engine(test_url)
+    engine = create_engine(test_url, connect_args={"options": "-c timezone=UTC"})
     try:
         cfg = Config("alembic.ini")
         command.upgrade(cfg, "head")
@@ -48,6 +50,10 @@ def pg_engine():
         yield engine
     finally:
         engine.dispose()
+        if old_demo is None:
+            os.environ.pop("DEMO_AUTH_ENABLED", None)
+        else:
+            os.environ["DEMO_AUTH_ENABLED"] = old_demo
         if old is None:
             os.environ.pop("DATABASE_URL", None)
         else:
@@ -77,6 +83,6 @@ def client(db):
             yield request_session
 
     app.dependency_overrides[get_session] = override
-    with TestClient(app) as test_client:
+    with TestClient(app, headers={"X-Demo-User": "demo-officer"}) as test_client:
         yield test_client
     app.dependency_overrides.clear()
