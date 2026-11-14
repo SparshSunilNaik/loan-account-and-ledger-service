@@ -1,0 +1,12 @@
+{
+  "injection": "Real loopback HTTP upstream response consumed, then client ReadTimeout raised",
+  "interest_receivable_paise": 0,
+  "journal_id": "1e91ddcc-281f-412d-bfa4-52dc401e6aa8",
+  "loan_id": "8690cd11-0d38-43ab-bcb3-ddce36969214",
+  "passed": true,
+  "principal_receivable_paise": 9100,
+  "receipt_count": 1,
+  "receipt_id": "e20fe3b4-6074-483a-9f84-442704a4bb4f",
+  "repayment_journal_count": 1,
+  "retry_status": 201
+}

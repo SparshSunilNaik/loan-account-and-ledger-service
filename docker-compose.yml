@@ -2,22 +2,22 @@ services:
   db:
     image: postgres:16.13
     environment:
-      POSTGRES_USER: ledgercore
-      POSTGRES_PASSWORD: ledgercore_local
-      POSTGRES_DB: ledgercore
+      POSTGRES_USER: ${POSTGRES_USER:-ledgercore}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Run scripts/init_local_env.py first}
+      POSTGRES_DB: ${POSTGRES_DB:-ledgercore}
     ports:
       - "127.0.0.1:5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ledgercore -d ledgercore"]
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
       interval: 2s
       timeout: 3s
       retries: 20
   migrate:
     build: .
     environment:
-      DATABASE_URL: postgresql+psycopg://ledgercore:ledgercore_local@db:5432/ledgercore
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-ledgercore}:${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-ledgercore}
     depends_on:
       db:
         condition: service_healthy
@@ -26,7 +26,7 @@ services:
     build: .
     environment:
       DEMO_AUTH_ENABLED: "true"
-      DATABASE_URL: postgresql+psycopg://ledgercore:ledgercore_local@db:5432/ledgercore
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-ledgercore}:${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-ledgercore}
     ports:
       - "127.0.0.1:8000:8000"
     depends_on:

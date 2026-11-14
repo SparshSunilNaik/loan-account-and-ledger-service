@@ -1,0 +1,13 @@
+{
+  "documented_operations": 14,
+  "financial_source_unchanged": true,
+  "fresh_replay_financial_hash_matches": true,
+  "live_openapi_equal": true,
+  "metadata_only_exception": "Replay revision becomes null when Git metadata is absent; checked by AST comparison in the repository",
+  "openapi_version": "3.1.0",
+  "passed": true,
+  "phase3_commit_source_digest_verified": true,
+  "postman_official_schema_valid": true,
+  "postman_requests": 33,
+  "retained_5000_outcomes_recounted": true
+}

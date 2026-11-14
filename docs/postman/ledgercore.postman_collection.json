@@ -1,0 +1,1092 @@
+{
+  "auth": {
+    "type": "noauth"
+  },
+  "info": {
+    "_postman_id": "74dd4d99-f235-48bc-aab4-50967571875e",
+    "description": "Run all requests in order on a fresh/disposable local demo database. Header identities are NOT production authentication. Expected 400/403/409/422 responses are deliberate tests. First request resets run IDs. Audit page defaults to first 500 events; use a fresh demo DB or adjust auditOffset. No accrual job is run inside this API collection.",
+    "name": "LedgerCore final submission \u2014 local demo only",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "const run = pm.variables.replaceIn(\"{{$guid}}\");",
+              "pm.environment.set(\"runId\", run);",
+              "pm.environment.set(\"externalEventId\", \"postman-event-\" + run);",
+              "pm.environment.set(\"idempotencyKey\", \"postman-pay-\" + run);",
+              "pm.environment.set(\"sourceDuplicateKey\", \"postman-alias-\" + run);",
+              "pm.environment.set(\"rejectedKey\", \"postman-rejected-\" + run);",
+              "[\"borrowerId\", \"loanId\", \"journalId\", \"repaymentId\", \"reversalJournalId\", \"originalResponse\", \"originalSchedule\"].forEach(k => pm.environment.unset(k));"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "pm.test(\"Database reachable\", () => pm.expect(pm.response.json().database).to.eql(\"ok\"));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "name": "01 Health and new demo run",
+      "request": {
+        "description": "Local demo identity only. Run this collection in order against a disposable demo database.",
+        "header": [],
+        "method": "GET",
+        "url": "{{baseUrl}}/health"
+      }
+    },
+    {
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "",
+              "const product = pm.response.json().find(p => p.code === \"PERSONAL_EMI\");",
+              "pm.test(\"Three configured products\", () => pm.expect(pm.response.json()).to.have.lengthOf(3));",
+              "pm.environment.set(\"productId\", product.id);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "name": "02 List products",
+      "request": {
+        "description": "Local demo identity only. Run this collection in order against a disposable demo database.",
+        "header": [
+          {
+            "key": "X-Demo-User",
+            "value": "{{demoOfficer}}"
+          }
+        ],
+        "method": "GET",
+        "url": "{{baseUrl}}/loan-products"
+      }
+    },
+    {
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"HTTP 201\", () => pm.response.to.have.status(201));",
+              "pm.environment.set(\"borrowerId\", pm.response.json().id);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "name": "03 Create invented borrower",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          },
+          "raw": "{\n  \"external_reference\": \"POSTMAN-B-{{runId}}\",\n  \"full_name\": \"Invented Postman Borrower\"\n}"
+        },
+        "description": "Local demo identity only. Run this collection in order against a disposable demo database.",
+        "header": [
+          {
+            "key": "X-Demo-User",
+            "value": "{{demoOfficer}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "url": "{{baseUrl}}/borrowers"
+      }
+    },
+    {
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "pm.test(\"Borrower captured\", () => pm.expect(pm.response.json().id).to.eql(pm.environment.get(\"borrowerId\")));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "name": "04 Read borrower",
+      "request": {
+        "description": "Local demo identity only. Run this collection in order against a disposable demo database.",
+        "header": [
+          {
+            "key": "X-Demo-User",
+            "value": "{{demoOfficer}}"
+          }
+        ],
+        "method": "GET",
+        "url": "{{baseUrl}}/borrowers/{{borrowerId}}"
+      }
+    },
+    {
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"HTTP 201\", () => pm.response.to.have.status(201));",
+              "pm.environment.set(\"loanId\", pm.response.json().id);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "name": "05 Originate loan",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          },
+          "raw": "{\n  \"external_reference\": \"POSTMAN-L-{{runId}}\",\n  \"borrower_id\": \"{{borrowerId}}\",\n  \"product_id\": \"{{productId}}\",\n  \"principal_paise\": 10000,\n  \"tenure_periods\": 2,\n  \"first_due_date\": \"{{firstDueDate}}\"\n}"
+        },
+        "description": "Local demo identity only. Run this collection in order against a disposable demo database.",
+        "header": [
+          {
+            "key": "X-Demo-User",
+            "value": "{{demoOfficer}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "url": "{{baseUrl}}/loans"
+      }
+    },
+    {
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "pm.test(\"Originated, not disbursed\", () => pm.expect(pm.response.json().status).to.eql(\"originated\"));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "name": "06 Read loan snapshot",
+      "request": {
+        "description": "Local demo identity only. Run this collection in order against a disposable demo database.",
+        "header": [
+          {
+            "key": "X-Demo-User",
+            "value": "{{demoOfficer}}"
+          }
+        ],
+        "method": "GET",
+        "url": "{{baseUrl}}/loans/{{loanId}}"
+      }
+    },
+    {
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "",
+              "const rows = pm.response.json();",
+              "pm.environment.set(\"originalSchedule\", JSON.stringify(rows));",
+              "pm.test(\"Independent two-period example\", () => pm.expect(rows.map(r => [r.principal_due_paise, r.interest_due_paise])).to.eql([[4975,100],[5025,50]]));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "name": "07 View contractual schedule",
+      "request": {
+        "description": "Local demo identity only. Run this collection in order against a disposable demo database.",
+        "header": [
+          {
+            "key": "X-Demo-User",
+            "value": "{{demoOfficer}}"
+          }
+        ],
+        "method": "GET",
+        "url": "{{baseUrl}}/loans/{{loanId}}/schedule"
+      }
+    },
+    {
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"HTTP 403\", () => pm.response.to.have.status(403));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "name": "08 Auditor cannot disburse",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          },
+          "raw": "{\n  \"business_date\": \"{{disbursementDate}}\"\n}"
+        },
+        "description": "Local demo identity only. Run this collection in order against a disposable demo database.",
+        "header": [
+          {
+            "key": "X-Demo-User",
+            "value": "{{demoAuditor}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "url": "{{baseUrl}}/loans/{{loanId}}/disburse"
+      }
+    },
+    {
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"HTTP 201\", () => pm.response.to.have.status(201));",
+              "pm.environment.set(\"disbursementJournalId\", pm.response.json().journal_id);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "name": "09 Manager disburses once",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          },
+          "raw": "{\n  \"business_date\": \"{{disbursementDate}}\"\n}"
+        },
+        "description": "Local demo identity only. Run this collection in order against a disposable demo database.",
+        "header": [
+          {
+            "key": "X-Demo-User",
+            "value": "{{demoManager}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "url": "{{baseUrl}}/loans/{{loanId}}/disburse"
+      }
+    },
+    {
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"HTTP 409\", () => pm.response.to.have.status(409));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "name": "10 Duplicate disbursement conflicts",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          },
+          "raw": "{\n  \"business_date\": \"{{disbursementDate}}\"\n}"
+        },
+        "description": "Local demo identity only. Run this collection in order against a disposable demo database.",
+        "header": [
+          {
+            "key": "X-Demo-User",
+            "value": "{{demoManager}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "url": "{{baseUrl}}/loans/{{loanId}}/disburse"
+      }
+    },
+    {
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"HTTP 201\", () => pm.response.to.have.status(201));",
+              "",
+              "const result = pm.response.json();",
+              "pm.environment.set(\"journalId\", result.journal_id);",
+              "pm.environment.set(\"repaymentId\", result.id);",
+              "pm.environment.set(\"originalResponse\", JSON.stringify(result));",
+              "pm.test(\"Interest then principal\", () => pm.expect(result.allocations.map(a => [a.component,a.amount_paise])).to.eql([[\"interest\",100],[\"principal\",900]]));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "name": "11 Receive repayment",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          },
+          "raw": "{\n  \"amount_paise\": 1000,\n  \"source\": \"postman-demo\",\n  \"external_event_id\": \"{{externalEventId}}\",\n  \"occurred_at\": \"{{occurredAt}}\",\n  \"business_date\": \"{{businessDate}}\"\n}"
+        },
+        "description": "Local demo identity only. Run this collection in order against a disposable demo database.",
+        "header": [
+          {
+            "key": "X-Demo-User",
+            "value": "{{demoOfficer}}"
+          },
+          {
+            "key": "Idempotency-Key",
+            "value": "{{idempotencyKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "url": "{{baseUrl}}/loans/{{loanId}}/repayments"
+      }
+    },
+    {
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"HTTP 201\", () => pm.response.to.have.status(201));",
+              "pm.test(\"Exact original successful response\", () => pm.expect(pm.response.json()).to.deep.eql(JSON.parse(pm.environment.get(\"originalResponse\"))));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "name": "12 Retry identical repayment",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          },
+          "raw": "{\n  \"amount_paise\": 1000,\n  \"source\": \"postman-demo\",\n  \"external_event_id\": \"{{externalEventId}}\",\n  \"occurred_at\": \"{{occurredAt}}\",\n  \"business_date\": \"{{businessDate}}\"\n}"
+        },
+        "description": "Local demo identity only. Run this collection in order against a disposable demo database.",
+        "header": [
+          {
+            "key": "X-Demo-User",
+            "value": "{{demoOfficer}}"
+          },
+          {
+            "key": "Idempotency-Key",
+            "value": "{{idempotencyKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "url": "{{baseUrl}}/loans/{{loanId}}/repayments"
+      }
+    },
+    {
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"HTTP 201\", () => pm.response.to.have.status(201));",
+              "pm.test(\"Exact original successful response\", () => pm.expect(pm.response.json()).to.deep.eql(JSON.parse(pm.environment.get(\"originalResponse\"))));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "name": "13 Source duplicate under another key",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          },
+          "raw": "{\n  \"amount_paise\": 1000,\n  \"source\": \"postman-demo\",\n  \"external_event_id\": \"{{externalEventId}}\",\n  \"occurred_at\": \"{{occurredAt}}\",\n  \"business_date\": \"{{businessDate}}\"\n}"
+        },
+        "description": "Local demo identity only. Run this collection in order against a disposable demo database.",
+        "header": [
+          {
+            "key": "X-Demo-User",
+            "value": "{{demoOfficer}}"
+          },
+          {
+            "key": "Idempotency-Key",
+            "value": "{{sourceDuplicateKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "url": "{{baseUrl}}/loans/{{loanId}}/repayments"
+      }
+    },
+    {
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"HTTP 409\", () => pm.response.to.have.status(409));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "name": "14 Same key different payload conflicts",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          },
+          "raw": "{\n  \"amount_paise\": 1001,\n  \"source\": \"postman-demo\",\n  \"external_event_id\": \"{{externalEventId}}\",\n  \"occurred_at\": \"{{occurredAt}}\",\n  \"business_date\": \"{{businessDate}}\"\n}"
+        },
+        "description": "Local demo identity only. Run this collection in order against a disposable demo database.",
+        "header": [
+          {
+            "key": "X-Demo-User",
+            "value": "{{demoOfficer}}"
+          },
+          {
+            "key": "Idempotency-Key",
+            "value": "{{idempotencyKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "url": "{{baseUrl}}/loans/{{loanId}}/repayments"
+      }
+    },
+    {
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"HTTP 403\", () => pm.response.to.have.status(403));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "name": "15 Auditor cannot receive money",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          },
+          "raw": "{\n  \"amount_paise\": 1000,\n  \"source\": \"postman-demo\",\n  \"external_event_id\": \"{{externalEventId}}\",\n  \"occurred_at\": \"{{occurredAt}}\",\n  \"business_date\": \"{{businessDate}}\"\n}"
+        },
+        "description": "Local demo identity only. Run this collection in order against a disposable demo database.",
+        "header": [
+          {
+            "key": "X-Demo-User",
+            "value": "{{demoAuditor}}"
+          },
+          {
+            "key": "Idempotency-Key",
+            "value": "{{rejectedKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "url": "{{baseUrl}}/loans/{{loanId}}/repayments"
+      }
+    },
+    {
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "pm.test(\"Duplicates did not add receipts\", () => pm.expect(pm.response.json()).to.have.lengthOf(1));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "name": "16 Read receipts - one financial receipt",
+      "request": {
+        "description": "Local demo identity only. Run this collection in order against a disposable demo database.",
+        "header": [
+          {
+            "key": "X-Demo-User",
+            "value": "{{demoOfficer}}"
+          }
+        ],
+        "method": "GET",
+        "url": "{{baseUrl}}/loans/{{loanId}}/repayments"
+      }
+    },
+    {
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "",
+              "pm.test(\"Every journal balances in integer paise\", () => {",
+              "  pm.response.json().forEach(j => {",
+              "    pm.expect(j.entries.length).to.be.at.least(2);",
+              "    j.entries.forEach(e => pm.expect(Number.isSafeInteger(e.amount_paise)).to.eql(true));",
+              "    const net = j.entries.reduce((sum,e) => sum + (e.direction === \"debit\" ? 1n : -1n) * BigInt(e.amount_paise), 0n);",
+              "    pm.expect(net.toString()).to.eql(\"0\");",
+              "  });",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "name": "17 Inspect posted ledger",
+      "request": {
+        "description": "Local demo identity only. Run this collection in order against a disposable demo database.",
+        "header": [
+          {
+            "key": "X-Demo-User",
+            "value": "{{demoAuditor}}"
+          }
+        ],
+        "method": "GET",
+        "url": "{{baseUrl}}/loans/{{loanId}}/ledger"
+      }
+    },
+    {
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "",
+              "const b = pm.response.json();",
+              "pm.test(\"9100 principal, no recognized interest or penalties\", () => {",
+              "  pm.expect([b.principal_receivable_paise,b.interest_receivable_paise,b.penalty_receivable_paise]).to.eql([9100,0,0]);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "name": "18 Inspect ledger-derived balance",
+      "request": {
+        "description": "Local demo identity only. Run this collection in order against a disposable demo database.",
+        "header": [
+          {
+            "key": "X-Demo-User",
+            "value": "{{demoAuditor}}"
+          }
+        ],
+        "method": "GET",
+        "url": "{{baseUrl}}/loans/{{loanId}}/balance"
+      }
+    },
+    {
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "",
+              "pm.test(\"Receipt has actor, correlation and journal audit\", () => pm.expect(pm.response.json().some(e =>",
+              " e.action === \"repayment.posted\" && e.details.journal_id === pm.environment.get(\"journalId\") && e.actor_user_id && e.correlation_id)).to.eql(true));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "name": "19 Verify actor audit trail",
+      "request": {
+        "description": "Local demo identity only. Run this collection in order against a disposable demo database.",
+        "header": [
+          {
+            "key": "X-Demo-User",
+            "value": "{{demoAuditor}}"
+          }
+        ],
+        "method": "GET",
+        "url": "{{baseUrl}}/audit-events?limit=500&offset={{auditOffset}}"
+      }
+    },
+    {
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "pm.test(\"Schedule immutable\", () => pm.expect(pm.response.json()).to.deep.eql(JSON.parse(pm.environment.get(\"originalSchedule\"))));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "name": "20 Verify unchanged original schedule",
+      "request": {
+        "description": "Local demo identity only. Run this collection in order against a disposable demo database.",
+        "header": [
+          {
+            "key": "X-Demo-User",
+            "value": "{{demoOfficer}}"
+          }
+        ],
+        "method": "GET",
+        "url": "{{baseUrl}}/loans/{{loanId}}/schedule"
+      }
+    },
+    {
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "pm.environment.set(\"reversalJournalId\", pm.response.json().journal_id);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "name": "21 Manager reverses repayment",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          },
+          "raw": "{\n  \"business_date\": \"{{businessDate}}\",\n  \"reason\": \"Submission demo bank settlement reversal\"\n}"
+        },
+        "description": "Local demo identity only. Run this collection in order against a disposable demo database.",
+        "header": [
+          {
+            "key": "X-Demo-User",
+            "value": "{{demoManager}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "url": "{{baseUrl}}/loans/{{loanId}}/journals/{{journalId}}/reverse"
+      }
+    },
+    {
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "pm.test(\"Same reversal\", () => pm.expect(pm.response.json().journal_id).to.eql(pm.environment.get(\"reversalJournalId\")));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "name": "22 Retry reversal",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          },
+          "raw": "{\n  \"business_date\": \"{{businessDate}}\",\n  \"reason\": \"Submission demo bank settlement reversal\"\n}"
+        },
+        "description": "Local demo identity only. Run this collection in order against a disposable demo database.",
+        "header": [
+          {
+            "key": "X-Demo-User",
+            "value": "{{demoManager}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "url": "{{baseUrl}}/loans/{{loanId}}/journals/{{journalId}}/reverse"
+      }
+    },
+    {
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "pm.test(\"Receivables restored\", () => { const b=pm.response.json(); pm.expect([b.principal_receivable_paise,b.interest_receivable_paise]).to.eql([10000,100]); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "name": "23 Balance after reversal",
+      "request": {
+        "description": "Local demo identity only. Run this collection in order against a disposable demo database.",
+        "header": [
+          {
+            "key": "X-Demo-User",
+            "value": "{{demoAuditor}}"
+          }
+        ],
+        "method": "GET",
+        "url": "{{baseUrl}}/loans/{{loanId}}/balance"
+      }
+    },
+    {
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "pm.test(\"History preserved, marked reversed\", () => pm.expect(pm.response.json().map(r => r.status)).to.eql([\"reversed\"]));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "name": "24 Receipt history after reversal",
+      "request": {
+        "description": "Local demo identity only. Run this collection in order against a disposable demo database.",
+        "header": [
+          {
+            "key": "X-Demo-User",
+            "value": "{{demoOfficer}}"
+          }
+        ],
+        "method": "GET",
+        "url": "{{baseUrl}}/loans/{{loanId}}/repayments"
+      }
+    },
+    {
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"HTTP 403\", () => pm.response.to.have.status(403));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "name": "25 Auditor cannot reverse",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          },
+          "raw": "{\n  \"business_date\": \"{{businessDate}}\",\n  \"reason\": \"Submission demo bank settlement reversal\"\n}"
+        },
+        "description": "Local demo identity only. Run this collection in order against a disposable demo database.",
+        "header": [
+          {
+            "key": "X-Demo-User",
+            "value": "{{demoAuditor}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "url": "{{baseUrl}}/loans/{{loanId}}/journals/{{journalId}}/reverse"
+      }
+    },
+    {
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"HTTP 403\", () => pm.response.to.have.status(403));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "name": "26 Missing identity is denied",
+      "request": {
+        "description": "Local demo identity only. Run this collection in order against a disposable demo database.",
+        "header": [],
+        "method": "GET",
+        "url": "{{baseUrl}}/loan-products"
+      }
+    },
+    {
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"HTTP 403\", () => pm.response.to.have.status(403));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "name": "27 Officer cannot read audit history",
+      "request": {
+        "description": "Local demo identity only. Run this collection in order against a disposable demo database.",
+        "header": [
+          {
+            "key": "X-Demo-User",
+            "value": "{{demoOfficer}}"
+          }
+        ],
+        "method": "GET",
+        "url": "{{baseUrl}}/audit-events"
+      }
+    },
+    {
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"HTTP 400\", () => pm.response.to.have.status(400));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "name": "28 Overpayment rejected",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          },
+          "raw": "{\n  \"amount_paise\": 100000000000,\n  \"source\": \"postman-demo\",\n  \"external_event_id\": \"excess-{{runId}}\",\n  \"occurred_at\": \"{{occurredAt}}\",\n  \"business_date\": \"{{businessDate}}\"\n}"
+        },
+        "description": "Local demo identity only. Run this collection in order against a disposable demo database.",
+        "header": [
+          {
+            "key": "X-Demo-User",
+            "value": "{{demoOfficer}}"
+          },
+          {
+            "key": "Idempotency-Key",
+            "value": "{{rejectedKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "url": "{{baseUrl}}/loans/{{loanId}}/repayments"
+      }
+    },
+    {
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"HTTP 422\", () => pm.response.to.have.status(422));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "name": "29 Zero amount rejected",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          },
+          "raw": "{\n  \"amount_paise\": 0,\n  \"source\": \"postman-demo\",\n  \"external_event_id\": \"{{externalEventId}}\",\n  \"occurred_at\": \"{{occurredAt}}\",\n  \"business_date\": \"{{businessDate}}\"\n}"
+        },
+        "description": "Local demo identity only. Run this collection in order against a disposable demo database.",
+        "header": [
+          {
+            "key": "X-Demo-User",
+            "value": "{{demoOfficer}}"
+          },
+          {
+            "key": "Idempotency-Key",
+            "value": "{{rejectedKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "url": "{{baseUrl}}/loans/{{loanId}}/repayments"
+      }
+    },
+    {
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "pm.test(\"OpenAPI 3\", () => pm.expect(pm.response.json().openapi).to.match(/^3\\./));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "name": "30 Running OpenAPI export",
+      "request": {
+        "description": "Local demo identity only. Run this collection in order against a disposable demo database.",
+        "header": [],
+        "method": "GET",
+        "url": "{{baseUrl}}/openapi.json"
+      }
+    },
+    {
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "name": "31 Swagger documentation",
+      "request": {
+        "description": "Local demo identity only. Run this collection in order against a disposable demo database.",
+        "header": [],
+        "method": "GET",
+        "url": "{{baseUrl}}/docs"
+      }
+    },
+    {
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "name": "32 ReDoc documentation",
+      "request": {
+        "description": "Local demo identity only. Run this collection in order against a disposable demo database.",
+        "header": [],
+        "method": "GET",
+        "url": "{{baseUrl}}/redoc"
+      }
+    },
+    {
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "name": "33 Swagger redirect support",
+      "request": {
+        "description": "Local demo identity only. Run this collection in order against a disposable demo database.",
+        "header": [],
+        "method": "GET",
+        "url": "{{baseUrl}}/docs/oauth2-redirect"
+      }
+    }
+  ]
+}

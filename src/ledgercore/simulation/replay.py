@@ -56,6 +56,16 @@ def source_digest():
     return digest.hexdigest()
 
 
+def source_revision():
+    """A submission ZIP intentionally has no Git metadata; never invent a revision."""
+    try:
+        return subprocess.check_output(
+            ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True, stderr=subprocess.DEVNULL
+        ).strip()
+    except (FileNotFoundError, subprocess.CalledProcessError):
+        return None
+
+
 def must(response, status):
     if response.status_code != status:
         raise RuntimeError(
@@ -472,9 +482,7 @@ def run_replay(admin_url, output: Path):
                         "financial_sha256": financial_fingerprint,
                         "clock_start": START.isoformat(),
                         "clock_end": END.isoformat(),
-                        "source_base_commit": subprocess.check_output(
-                            ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True
-                        ).strip(),
+                        "source_base_commit": source_revision(),
                         "source_sha256": source_digest(),
                         "python": platform.python_version(),
                         "platform": platform.system(),
