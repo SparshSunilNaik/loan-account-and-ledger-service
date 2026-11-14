@@ -1,0 +1,53 @@
+{
+  "phase": "after",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "clock": "2026-11-14T13:27:25.095Z",
+  "method": "Real installed Chrome + native PostgreSQL/FastAPI. Pointer click events counted (fill/selectOption excluded), field-entry calls counted separately. Route changes include query-string changes. Times are one automated local run including API latency, not human task times or statistical performance claims.",
+  "records": [
+    {
+      "journey": "A: originate, disburse, partial repayment, inspect posting",
+      "clicks": 5,
+      "routes": ["/loans/273967c8-626b-400f-a5cb-ea36986eb556"],
+      "scrolls": 0,
+      "maxOverflow": 0,
+      "field_entries": 8,
+      "repeated_field_entries": 0,
+      "manual_loan_id_entries": 0,
+      "elapsed_ms": 1044,
+      "repayment_details_ms": 429,
+      "journal_inspection_ms": 33,
+      "loan_id": "273967c8-626b-400f-a5cb-ea36986eb556"
+    },
+    {
+      "journey": "B: return to known loan, repayment details, associated journal",
+      "clicks": 5,
+      "routes": [
+        "/loans",
+        "/loans/273967c8-626b-400f-a5cb-ea36986eb556",
+        "/loans/273967c8-626b-400f-a5cb-ea36986eb556?tab=repayments"
+      ],
+      "scrolls": 0,
+      "maxOverflow": 0,
+      "field_entries": 1,
+      "repeated_field_entries": 0,
+      "manual_loan_id_entries": 0,
+      "elapsed_ms": 301,
+      "repayment_details_ms": 38,
+      "journal_inspection_ms": 29
+    },
+    {
+      "journey": "C: exact retry and changed-payload conflict",
+      "clicks": 3,
+      "routes": [],
+      "scrolls": 0,
+      "maxOverflow": 0,
+      "field_entries": 0,
+      "repeated_field_entries": 0,
+      "manual_loan_id_entries": 0,
+      "elapsed_ms": 541
+    }
+  ]
+}

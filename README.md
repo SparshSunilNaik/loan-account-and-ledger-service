@@ -84,8 +84,8 @@ their own randomly named databases; never clear a developer database.
 # Adapt the URI to your own PostgreSQL role/port/password.
 export TEST_DATABASE_URL=postgresql+psycopg://127.0.0.1:5432/postgres
 uv run pytest -q
-uv run ruff check .
-uv run ruff format --check .
+uv run ruff check src migrations scripts tests
+uv run ruff format --check src migrations scripts tests
 uv lock --check
 uv run alembic check
 uv run python scripts/smoke_http.py --base-url http://127.0.0.1:8000
@@ -140,3 +140,23 @@ contents remain in Git. No `.git`, `.venv`, database runtime files, `.env` or ca
 packaged. Replay works without Git; revision metadata is null in that case, with source
 and financial fingerprints retained. Stop at Phase 4; remaining limitations are explicit
 in the checklist and independent review.
+
+## Final demo and submission package
+
+[Recording script](demo.txt) is a complete 6:15 operator/narration guide, including safe local
+preparation, actual Studio labels and a verified ₹100 loan / ₹10 repayment example.
+[Demo verification](docs/submission/demo_verification.json) records the fresh disposable-database
+Chrome rehearsal, PostgreSQL suite, frontend checks, live API and replay comparisons.
+[Requirement review](docs/submission/finalization.md) lists the delivered backend scope and
+limitations. Earlier verification files remain historical evidence.
+
+The optional [LedgerCore Studio](frontend/README.md) source and screenshots are maintained on
+GitHub separately from the backend-only ZIP. Use the full checkout for frontend recording;
+the archive runs independently through FastAPI, Swagger, Postman and the curl demo.
+The video itself still needs to be recorded. The technical write-up is unchanged.
+
+Run `uv run python scripts/build_submission.py` to back up the previous ZIP and regenerate
+`dist/ledgercore-submission.zip`, its exact inventory, member manifest and SHA-256 files.
+Check them with `shasum -a 256 -c dist/SHA256SUMS`. Fresh-extraction validation is recorded in
+adjacent `dist/zip_validation.json`. Archives/backups remain ignored local submission outputs;
+committing source does not publish the ZIP or submit to an external portal.

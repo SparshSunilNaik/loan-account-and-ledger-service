@@ -78,3 +78,40 @@ def test_packager_manifest_matches_zip_bytes(tmp_path):
         for row in manifest["files"]:
             assert hashlib.sha256(bundle.read(row["path"])).hexdigest() == row["sha256"]
     assert manifest["source_commit"] is None
+
+
+def test_optional_demo_and_frontend_separation(tmp_path):
+    module = script("build_submission")
+    (tmp_path / "demo.txt").write_bytes(b"Exact optional script\r\n")
+    (tmp_path / "frontend").mkdir()
+    (tmp_path / "frontend/package.json").write_text("{}")
+    assert module.source_files(tmp_path) == ["demo.txt"]
+    manifest = module.build(tmp_path)
+    assert manifest["demo_script_included"]
+    assert not manifest["frontend_included"]
+    import zipfile
+
+    with zipfile.ZipFile(tmp_path / "dist/ledgercore-submission.zip") as archive:
+        assert archive.read("demo.txt") == b"Exact optional script\r\n"
+        assert not any(p.startswith("frontend/") for p in archive.namelist())
+
+
+def test_rebuild_preserves_previous_archive_and_writes_checksums(tmp_path):
+    import hashlib
+
+    module = script("build_submission")
+    (tmp_path / "README.md").write_text("Original")
+    first = module.build(tmp_path)
+    original = (tmp_path / "dist/ledgercore-submission.zip").read_bytes()
+    (tmp_path / "README.md").write_text("Revised")
+    second = module.build(tmp_path)
+    backup = tmp_path / second["previous_archive_backup"]
+    assert (backup / "ledgercore-submission.zip").read_bytes() == original
+    assert hashlib.sha256(original).hexdigest() == first["sha256"]
+    for line in (tmp_path / "dist/SHA256SUMS").read_text().splitlines():
+        digest, name = line.split("  ", 1)
+        assert hashlib.sha256((tmp_path / name).read_bytes()).hexdigest() == digest
+    rows = (
+        (tmp_path / "dist/ledgercore-submission.files.sha256").read_text().splitlines()
+    )
+    assert len(rows) == second["member_count"]

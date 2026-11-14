@@ -1,0 +1,331 @@
+LEDGERCORE — RECORDING SCRIPT
+Target duration: 6 minutes 15 seconds (375 seconds), within the 5–7 minute limit.
+Read only the SAY paragraphs aloud. SHOW, DO and EXPECT are operator directions.
+Screen: Chrome at 1440×900 or wider, browser zoom 100%. Keep the pointer deliberate.
+Use real responses. If an expected result differs, stop and investigate; do not narrate
+an unobserved success or replace it with a screenshot/mock response.
+
+PREPARATION — OFF CAMERA
+
+1. Use the full GitHub repository for the optional Studio frontend. The backend-only
+   submission ZIP deliberately excludes frontend/. Its API, Postman and curl demo work
+   independently. Do not put passwords, .env contents or unrelated personal data on screen.
+
+2. On this Mac, open Terminal at the repository root:
+
+   cd /Users/sparshsunilnaik/Documents/dvara
+   export PATH="$HOME/.local/share/vite-plus/bin:$HOME/.local/bin:/opt/homebrew/opt/postgresql@16/bin:$PATH"
+   pg_isready -h 127.0.0.1 -p 5432
+   uv sync --frozen --python 3.12
+
+   EXPECT: PostgreSQL accepts connections. Use your configured local PostgreSQL role.
+   The following credential-free URI works in the verified local environment; adapt it
+   privately if your own PostgreSQL installation requires different authentication.
+
+3. Prefer a fresh recording database so audit pagination and existing records cannot
+   confuse the demonstration. Create it ONCE:
+
+   createdb -h 127.0.0.1 -p 5432 ledgercore_recording_20261114_01
+
+   If that name already exists, choose _02 (and update DATABASE_URL below). Never drop,
+   truncate, reset or downgrade an existing database to repeat the video.
+
+4. In the backend Terminal, stop only your own existing FastAPI process with Ctrl+C if
+   it occupies port 8000. Stopping a process does not delete its database. Then run:
+
+   export DATABASE_URL=postgresql+psycopg://127.0.0.1:5432/ledgercore_recording_20261114_01
+   export DEMO_AUTH_ENABLED=true
+   uv run alembic upgrade head
+   uv run alembic check
+   uv run uvicorn ledgercore.main:app --host 127.0.0.1 --port 8000
+
+   EXPECT: schema head 0005, no new upgrade operations, and the server stays running.
+   The five migrations seed the three products, six ledger accounts and three demo users.
+   Do not run the overdue accrual CLI on this recording loan before the payment example.
+
+5. In a second Terminal (stop only your own existing Next.js process if using port 3000):
+
+   cd /Users/sparshsunilnaik/Documents/dvara/frontend
+   export PATH="$HOME/.local/share/vite-plus/bin:$HOME/.local/bin:$PATH"
+   npm ci
+   BACKEND_URL=http://127.0.0.1:8000 npm run build
+   BACKEND_URL=http://127.0.0.1:8000 npm run start
+
+   EXPECT: Studio at http://127.0.0.1:3000. Explicit BACKEND_URL overrides any previous
+   local setting. Keep both Terminal servers running throughout recording.
+
+6. In a third Terminal at the repository root, check:
+
+   curl -fsS http://127.0.0.1:8000/health
+   curl -fsS http://127.0.0.1:3000/api/backend/health
+
+   EXPECT for both: {"status":"ok","database":"ok"}.
+   Open a new Chrome Incognito window at http://127.0.0.1:3000/loans. This prevents old
+   browser-session loan references from pointing into another database. It does not erase
+   database records. Choose Light or Dark in Appearance and demo-officer in Active demo
+   identity. System follows OS preferences; theme choice is independent of the actor.
+
+7. Pre-open these editor tabs and browser tab; do not edit the files:
+   - docs/architecture.md
+   - src/ledgercore/models/entities.py
+   - migrations/versions/ (five revision files)
+   - artifacts/phase3/replay_report.json and reconciliation_report.json
+   - Swagger: http://127.0.0.1:8000/docs
+   Keep the replay-summary command in section 6 ready to paste.
+
+8. Rehearse once with a fresh invented borrower/loan, not the same funded loan. For the
+   recorded take, use a fresh recording database or another fresh borrower/loan. If New
+   loan shows a completed application, click New application before starting. All monetary
+   examples below depend on the stated product, dates, principal and tenure. UUIDs and
+   actual posting timestamps are generated: never substitute made-up identifiers.
+
+9. Fixed business dates make this demo repeatable without changing the computer clock:
+   first due 2026-01-31; disburse 2026-01-01; payment time 2026-01-31T10:00 UTC;
+   processing date 2026-01-31. The received_at/posting timestamp remains the actual server
+   receipt time. No future interest is collected and no overdue job is being run here.
+   The actor selector is development-only impersonation, not production authentication.
+
+RECORDING TIMELINE
+
+1. INTRODUCTION — 00:00–00:30 (30 seconds)
+
+SHOW: Studio Loans screen at http://127.0.0.1:3000/loans. Point out Backend connected,
+Active demo identity and the four destinations: Loans, New loan, Activity and Testing.
+DO: Confirm demo-officer. Do not claim this session list is the entire database portfolio.
+EXPECT: Live backend connectivity; an empty or session-known list, not invented KPIs.
+
+SAY:
+"LedgerCore is a loan account and ledger service. It handles origination, repayment
+schedules, disbursement, collections and overdue charges, with an accounting trail for
+every financial posting. The backend uses Python, FastAPI, SQLAlchemy and PostgreSQL.
+LedgerCore Studio is an optional Next.js testing workbench. I will create a small synthetic
+loan, trace a payment into the ledger, then show verified replay evidence. Everything is
+local; the header identities are explicitly for development."
+
+2. ARCHITECTURE — 00:30–01:15 (45 seconds)
+
+SHOW: Editor docs/architecture.md, its Data model table, then models/entities.py and the
+migration directory. Briefly switch to Swagger at http://127.0.0.1:8000/docs.
+DO: Point to borrowers, loans, repayment_schedules, repayments/allocations and ledger
+journals/entries. In the third Terminal, execute from repository root:
+
+   uv run alembic heads
+
+EXPECT: 0005 (head). The architecture documents 13 business tables and five revisions.
+Swagger lists the real API; do not create additional records from Swagger in this take.
+
+SAY:
+"This is a modular monolith. Routes own transactions, Pydantic validates requests, and
+services implement schedules and posting. SQLAlchemy maps thirteen business tables, with
+Alembic maintaining the schema. Loans snapshot their terms, so later product changes do
+not rewrite their schedules. Money is stored as integer paise and calculated with Decimal
+and half-up rounding. Schedules describe contractual dues; posted ledger entries determine
+receivables. A financial operation locks the loan row in PostgreSQL and commits its receipt,
+allocations, balanced journal, idempotency result and audit together."
+
+3. LOAN CREATION — 01:15–02:15 (60 seconds)
+
+SHOW: Return to Studio, same Chrome tab/session.
+DO:
+  a. Click New loan in the sidebar. If a completed application appears, click New application.
+  b. Enter Borrower name: Nila Synthetic Recording. Leave Phone (optional) blank.
+     If repeating, append Take 2 to the invented name; do not use a real person.
+  c. Click Continue to loan terms.
+  d. Select Personal EMI Loan (12% annual nominal, monthly, reducing balance).
+  e. Enter Principal (INR): 100.00.
+  f. Enter Tenure (instalments): 2.
+  g. Enter First due date (UTC): 2026-01-31.
+  h. Click Create loan & review schedule. Wait for the account to open automatically.
+     No extra Open account click or manual UUID entry is required.
+  i. Show the Schedule tab. Point to both rows and the Awaiting disbursement status.
+
+EXPECT: These actual saved rows:
+  Instalment 1 | 31 Jan 2026 | principal ₹49.75 | contractual interest ₹1.00 | total ₹50.75
+  Instalment 2 | 28 Feb 2026 | principal ₹50.25 | contractual interest ₹0.50 | total ₹50.75
+  Total contractual principal ₹100.00; total contractual interest ₹1.50.
+  Posted principal is still ₹0.00 before disbursement; creating a schedule posts no money.
+
+SAY:
+"I am creating an invented borrower and a one-hundred-rupee Personal EMI loan. Its annual
+nominal rate is twelve percent, converted to one percent per monthly period. The backend
+generates these two saved instalments. Principal is forty-nine rupees seventy-five paise,
+then fifty rupees twenty-five paise, adding back to exactly one hundred rupees. Contractual
+interest is one rupee, then fifty paise. These are scheduled amounts, not payments received
+or interest already recognized. The loan is awaiting disbursement, and its reference stays
+selected throughout the workbench."
+
+4. DISBURSEMENT, PARTIAL REPAYMENT AND LEDGER — 02:15–03:45 (90 seconds)
+
+SHOW: Same loan account, persistent summary and main record tabs.
+DO:
+  a. Select demo-manager in Active demo identity.
+  b. Enter Disbursement date (UTC): 2026-01-01. Click Disburse loan once.
+  c. Wait for Disbursed and principal outstanding ₹100.00. Interest and penalties are ₹0.00.
+  d. Click Ledger. Click the visible Disbursement journal row/button.
+     The adjacent Journal details inspector shows Dr principal receivable ₹100.00 and
+     Cr cash ₹100.00, balanced. Close inspector using its X/Close inspector button.
+  e. Switch Active demo identity back to demo-officer.
+  f. Click Record repayment beside the loan summary. In its side panel enter:
+       Amount received (INR): 10.00
+       Payment time (UTC): 2026-01-31T10:00
+       Processing date (UTC): 2026-01-31
+  g. Click Record repayment INSIDE the form. Wait for Received and verified / HTTP 201.
+  h. Show Where the payment went: ₹0.00 penalties, ₹1.00 recognized interest, ₹9.00 principal.
+     Show the refreshed summary: principal ₹91.00, interest ₹0.00, penalties ₹0.00.
+  i. Show How this payment was recorded and its Balanced journal row:
+       Debit CASH ₹10.00
+       Credit INTEREST_RECEIVABLE ₹1.00
+       Credit LOAN_PRINCIPAL_RECEIVABLE ₹9.00
+     Debits = credits = ₹10.00. Row order may differ; compare accounts/directions/amounts.
+  j. Click View posted journal in account. Inspect the actual receipt/allocation records,
+     journal reference and entries. Note the real receipt/journal identifiers, not fixed UUIDs.
+     The main Ledger tab now contains three journal kinds: Disbursement, Scheduled interest,
+     Repayment. The scheduled-interest journal is Dr interest receivable / Cr interest income,
+     ₹1.00 each. Select that row if needed, then return to the repayment row.
+     Scroll only the inspector or record table if necessary, not to another application page.
+
+EXPECT: Exactly one payment receipt and three balanced posted journals. The schedule remains
+unchanged. Only the first due instalment's ₹1.00 interest is recognized; the second period's
+₹0.50 remains future contractual interest at the explicit processing date. The displayed
+receivables are NOT a future payoff quote. Current record inspectors show current backend
+receivables, not a reconstructed balance at a historical posting time.
+
+SAY:
+"Only a manager can disburse. The first journal debits principal receivable and credits
+cash for one hundred rupees. I switch back to the officer and explicitly record ten rupees
+on the first due date. Before allocation, the same transaction recognizes the one rupee
+of due interest. Collections prioritize recognized penalties, then interest, due principal
+and future principal. Here there is no penalty: one rupee pays interest and nine pays
+principal. The actual principal receivable is now ninety-one rupees. The receipt journal
+debits cash by ten and credits interest and principal by one and nine. Both sides balance.
+I can trace the receipt, allocations and journal together, without copying identifiers.
+The original schedule and future contractual interest have not been rewritten."
+
+5. IDEMPOTENCY, AUTHORIZATION AND AUDIT — 03:45–04:45 (60 seconds)
+
+SHOW: Same selected loan. Keep the actor demo-officer initially.
+DO:
+  a. Click Delivery checks near the summary. This opens Advanced delivery testing in the
+     repayment inspector. Scroll WITHIN that inspector to its result if needed.
+  b. Click Retry identical request. Wait for the actual message:
+     "Existing receipt and journal verified — original response reused."
+     Show the real receipt/journal IDs, Receipts 1 → 1 and Journals 3 → 3.
+     HTTP 201 is intentional: the backend returns the original successful response.
+  c. Click Test same-key conflict. It changes the original amount by one paisa under the
+     same key. EXPECT HTTP 409, no extra receipt/journal and principal still ₹91.00.
+     Do not click New repayment or New delivery identifiers to simulate an exact retry.
+  d. Click Test auditor denial. EXPECT actual HTTP 403 and unchanged financial records.
+     This button deliberately sends demo-auditor even while the header remains officer.
+  e. Close repayment using its X/Close repayment button. Select demo-auditor in the header.
+     Point to the disabled Record repayment action: auditor is read-only.
+  f. Click History, then the repayment.posted action. The Audit event inspector shows the
+     original officer actor ID, UTC timestamp, entity, correlation ID and journal metadata.
+     The auditor can read this history; the officer cannot. Do not confuse reader and actor.
+
+EXPECT: One receipt, no duplicated financial posting. Exact retry preserves the original
+actor, full payload, source/event and key. Changed-payload/source-alias tests remain disabled
+until an original delivery is verified; an unknown outcome should use exact retry first.
+
+SAY:
+"An identical retry returns the same accepted response and the same receipt and journal.
+The receipt and journal counts remain one and three; HTTP 201 alone is not my proof.
+Changing the payload under that key produces a conflict instead of another posting.
+An actual auditor mutation is forbidden, while audit history remains readable. Here the
+audit record identifies the original officer and linked journal. The roles come from
+active database users. This header mechanism is local demo impersonation, not production
+authentication or tenant isolation."
+
+6. REPLAY AND RECONCILIATION — 04:45–05:45 (60 seconds)
+
+SHOW: Third Terminal at repository root. Paste and execute this read-only summary command:
+
+uv run python - <<'PY'
+import json
+from pathlib import Path
+p = Path("artifacts/phase3")
+r = json.loads((p / "replay_report.json").read_text())
+q = json.loads((p / "reconciliation_report.json").read_text())
+print("Input borrowers:", len(json.loads((p / "borrowers.json").read_text())))
+print("Input loans:", len(json.loads((p / "loans.json").read_text())))
+print("Products:", len(json.loads((p / "products.json").read_text())))
+print("Delivery input lines:", sum(1 for _ in (p / "events.jsonl").open()))
+print("Recorded outcome lines:", sum(1 for _ in (p / "replay_outcomes.jsonl").open()))
+for key in ("submitted", "accepted_new_repayments", "duplicate_deliveries_detected",
+            "exact_retry_deliveries", "source_duplicate_deliveries",
+            "out_of_order_unique_accepted", "http_status_counts", "posted_journals",
+            "total_debit_paise", "total_credit_paise", "unbalanced_journal_count"):
+    print(key + ":", r[key])
+print("Reconciliation passed:", q["passed"])
+print("Penalty basis errors:", q["penalty_basis_errors"])
+print("Reconciliation difference counts:", {
+    key: len(q[key]) for key in
+    ("principal_differences", "interest_differences", "penalty_differences", "errors")
+})
+PY
+
+EXPECT: 250 borrowers, 400 loans, three products; 5,000 inputs AND 5,000 recorded outcomes.
+  accepted_new_repayments: 4510
+  duplicate_deliveries_detected: 330 = 300 exact retries + 30 different-key source duplicates
+  out_of_order_unique_accepted: 250
+  http_status_counts: 201=4840, 400=60, 403=25, 409=25, 422=50
+  rejected deliveries: 160; 4510 + 330 + 160 = 5000
+  posted_journals: 9903
+  total_debit_paise = total_credit_paise = 3641480368
+  unbalanced_journal_count: 0; reconciliation passed: True; penalty basis errors: 0
+  principal/interest/penalty/error difference counts: all zero.
+
+DO: Briefly show scenario_manifest.json and one replay_outcomes.jsonl line in the editor.
+Identify these as RETAINED, EXECUTED REPLAY EVIDENCE, not live portfolio totals. The generator
+uses seed 20261114 and a fixed simulation clock. Do not rerun all 5,000 events during this
+60-second segment. If desired, rerun off camera with a fresh output path:
+
+   REPLAY_ADMIN_DATABASE_URL=postgresql+psycopg://127.0.0.1:5432/postgres uv run ledgercore-replay --output /tmp/ledgercore-recording-replay-01
+
+Choose a new, empty output path for each run. The replay creates its own isolated DB/server;
+never overwrite artifacts/phase3. Its financial fingerprint can be compared with retained
+evidence using scripts/verify_submission.py --fresh-replay PATH_TO_NEW/replay_report.json.
+
+SAY:
+"These files are evidence from the executed synthetic replay, not dashboard statistics.
+The deterministic dataset has two hundred fifty borrowers, four hundred loans and five
+thousand delivery attempts. There are four thousand five hundred ten new receipts, three
+hundred thirty duplicate responses and one hundred sixty rejections. Three hundred retries
+are exact and thirty are source duplicates under another key. Two hundred fifty accepted
+events arrive out of economic order. Every attempt has an observed outcome checked against
+an independent scenario manifest. All nine thousand nine hundred three journals balance,
+and ledger principal, interest and penalties reconcile with zero differences. Overdue
+penalties use opening unpaid scheduled principal, never interest-on-interest."
+
+7. CONCLUSION — 05:45–06:15 (30 seconds)
+
+SHOW: Return to Studio with the same loan and its audit or ledger inspector. Optionally
+point to docs/technical_writeup.pdf and the backend-only package file inventory in editor.
+DO: Make no further financial mutation. Keep the chosen account visible.
+EXPECT: The live example still has one receipt and ₹91.00 principal receivable. The backend
+ZIP contains source, migrations, tests, replay artifacts, API assets, documentation and this
+script; Studio source is on GitHub but remains outside that backend ZIP.
+
+SAY:
+"LedgerCore's strengths are exact monetary arithmetic, database-backed transaction
+boundaries, immutable accounting history and verifiable replay outcomes. Its limits are
+explicit: demo identity is not production authentication, there is no tenant ownership
+filtering, and only repayment reversals are supported. Docker execution has not been
+validated here; native PostgreSQL has. My next improvement would be real identity with
+tenant-scoped authorization. Studio makes those backend decisions easy to inspect, while
+the backend submission remains independently runnable."
+
+RECORDING RECOVERY NOTES — NOT NARRATION
+- Do not disburse the same loan twice; a duplicate must conflict. Start a fresh application
+  for another take. Do not delete existing borrowers, loans, journals or database volumes.
+- A network timeout is an unknown outcome. Inspect records and retry the exact frozen
+  request. Never silently generate a fresh key to retry a possibly committed payment.
+- At 1024px or mobile, use the inspector's internal scrolling/bottom sheet. The supplied
+  desktop framing makes money, context and entries visible together.
+- If the first due date, product or business date differs, the stated schedule/interest
+  figures may no longer apply. Recreate the intended fresh example, not fabricated output.
+- Audit History scans at most 5,000 global records. The recommended fresh recording DB
+  keeps this loan's events visible. The standalone Activity view offers real pagination.
+- Services already running from other work should not be killed indiscriminately. Stop
+  only your labelled server Terminal, or coordinate alternate ports before recording.
+- Rehearse and record the actual screen. No screenshot or video capture is claimed merely
+  because this script exists. The separate verification report states what was executed.

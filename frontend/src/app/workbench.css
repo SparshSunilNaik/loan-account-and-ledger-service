@@ -1,0 +1,756 @@
+/* Composition only. Precision Finance owns every palette and type token. */
+.command-trigger {
+  gap: 3px;
+  flex-shrink: 0;
+}
+.command-trigger kbd {
+  font: 11px var(--mono);
+}
+.command-palette {
+  position: fixed;
+  top: 14dvh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(560px, calc(100vw - 32px));
+  max-height: 72dvh;
+  overflow: auto;
+  background: var(--surface-raised);
+  border: 1px solid var(--control-border);
+  border-radius: 10px;
+  padding: 16px;
+  z-index: 80;
+  box-shadow: 0 16px 50px var(--overlay-shadow);
+}
+.command-search {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 4px 0 16px;
+  border-bottom: 1px solid var(--border);
+}
+.command-search input {
+  width: 100%;
+  min-width: 0;
+  background: transparent;
+  color: var(--ink);
+  border: 0;
+  font-size: 16px;
+  padding: 8px 2px;
+}
+.command-results {
+  padding: 8px 0;
+  max-height: 46dvh;
+  overflow-y: auto;
+}
+.command-results button {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: left;
+  padding: 12px;
+  background: none;
+  border: 0;
+  border-radius: 5px;
+  color: var(--ink);
+  font-size: 14px;
+}
+.command-results button[aria-selected="true"] {
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+}
+.command-results small {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 3px;
+}
+.command-hint {
+  font-size: 11px;
+  color: var(--muted);
+  margin: 0 0 10px;
+}
+.command-palette > .command-hint:last-child {
+  margin-top: 12px;
+  margin-bottom: 0;
+}
+.record-select {
+  border: 0;
+  background: none;
+  color: var(--accent-ink);
+  font: inherit;
+  font-weight: 500;
+  text-align: left;
+  padding: 4px 0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.is-selected > td,
+.journal-register-row.is-selected > td {
+  background: var(--accent-soft);
+}
+.workbench-summary {
+  flex-shrink: 0;
+}
+.workbench-summary .account-heading {
+  margin: 0 0 16px;
+  gap: 12px;
+}
+.workbench-summary .account-heading-copy h1 {
+  font-size: 25px;
+}
+.workbench-summary .account-heading-copy p {
+  font-size: 12px;
+}
+.workbench-summary .account-heading-copy p > span {
+  display: inline;
+  margin-left: 10px;
+}
+.workbench-back {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 36px;
+  flex-shrink: 0;
+  color: var(--muted);
+}
+.workbench-summary .account-position {
+  padding: 17px 24px;
+  gap: 24px;
+}
+.workbench-summary .account-position::before {
+  top: 18px;
+  bottom: 18px;
+}
+.workbench-summary .account-position > div {
+  gap: 7px;
+}
+.workbench-summary .account-position .account-principal strong {
+  font-size: 31px;
+}
+.workbench-summary .account-position strong {
+  font-size: 24px;
+}
+.workbench-summary .account-position-note {
+  margin: 6px 0 8px;
+}
+.workbench-summary .account-position-note > div {
+  display: flex;
+  gap: 8px;
+}
+.workbench-summary .disbursement-prompt {
+  padding: 12px 16px;
+  margin: 0 0 10px;
+  gap: 12px;
+}
+.workbench-summary .disbursement-prompt h2 {
+  font-size: 16px;
+}
+.workbench-summary .disbursement-prompt p {
+  font-size: 12px;
+}
+.workbench-summary .disbursement-prompt .field input {
+  min-height: 38px;
+  padding: 7px 10px;
+  font-size: 14px;
+}
+.workbench-summary .disbursement-prompt .field {
+  gap: 3px;
+}
+.workbench-summary .role-note {
+  margin: 0 0 8px;
+}
+.workbench-panels {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 400px;
+  gap: 20px;
+  min-height: 0;
+  flex: 1;
+}
+.workbench-register {
+  min-width: 0;
+  min-height: 0;
+}
+.workbench-register > div {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+.workbench-register .tab-list {
+  margin: 0;
+  flex-shrink: 0;
+}
+.workbench-register .tab-trigger {
+  padding-block: 10px;
+}
+.workbench-data {
+  overflow: auto;
+  min-height: 0;
+  flex: 1;
+  padding: 0 2px 16px;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+.workbench-data .section-toolbar {
+  margin: 16px 0;
+  align-items: start;
+  gap: 12px;
+}
+.workbench-data .section-toolbar h2 {
+  font-size: 16px;
+}
+.workbench-data .section-toolbar > span {
+  font-size: 11px;
+  max-width: 230px;
+}
+.workbench-data .journal-register {
+  min-width: 620px;
+}
+.workbench-inspector {
+  min-width: 0;
+  min-height: 0;
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.inspector-idle {
+  padding: 26px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.inspector-idle h2 {
+  font-size: 18px;
+  color: var(--ink);
+  margin: 16px 0 8px;
+}
+.inspector-idle > .button {
+  margin-top: 20px;
+}
+.workbench-repayment,
+.record-inspector {
+  background: var(--surface-raised);
+  color: var(--ink);
+  padding: 20px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+.workbench-inspector .workbench-repayment,
+.workbench-inspector .record-inspector {
+  position: static;
+  inset: auto;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  border: 0;
+  box-shadow: none;
+}
+.workbench-inspector .sheet-heading {
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+  gap: 10px;
+}
+.workbench-inspector .sheet-heading h2 {
+  font-size: 20px;
+}
+.workbench-inspector .sheet-heading p {
+  font-size: 12px;
+}
+.workbench-inspector .field {
+  gap: 5px;
+}
+.workbench-inspector .field > span:first-child {
+  font-size: 13px;
+}
+.workbench-inspector .field input {
+  min-height: 42px;
+  padding: 9px 10px;
+}
+.workbench-inspector .repayment-sheet input#payment-amount {
+  font-size: 29px;
+  min-height: 52px;
+}
+.workbench-inspector .repayment-sheet > form > .field {
+  margin-bottom: 15px;
+}
+.workbench-inspector .payment-policy {
+  font-size: 11px;
+  margin: 16px 0;
+}
+.workbench-inspector .form-actions {
+  margin-top: 16px;
+}
+.workbench-inspector .button {
+  font-size: 12px;
+  min-height: 36px;
+  padding: 8px 10px;
+}
+.workbench-inspector .payment-confirmation-amount {
+  margin-bottom: 18px;
+  gap: 10px;
+}
+.workbench-inspector .payment-confirmation-amount strong {
+  font-size: 29px;
+}
+.workbench-inspector .payment-confirmation-amount > span:last-child {
+  margin-left: 48px;
+  font-size: 12px;
+}
+.workbench-inspector .confirmation-check {
+  width: 36px;
+  height: 36px;
+}
+.workbench-inspector .allocation-story {
+  padding: 12px;
+  gap: 10px;
+  margin: 10px 0;
+}
+.workbench-inspector .allocation-story dt {
+  font-size: 12px;
+}
+.workbench-inspector .allocation-story dd {
+  font-size: 14px;
+}
+.workbench-inspector h3 {
+  font-size: 14px;
+  margin-top: 16px;
+}
+.workbench-inspector .balance-strip {
+  gap: 10px;
+  padding: 8px 0;
+  margin: 8px 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.workbench-inspector .balance-strip dt {
+  font-size: 10px;
+}
+.workbench-inspector .balance-strip dd {
+  font-size: 17px;
+  margin: 4px 0;
+  overflow-wrap: anywhere;
+}
+.workbench-inspector .balance-strip small {
+  display: none;
+}
+.workbench-inspector .payment-entry-table {
+  margin: 12px 0;
+  min-width: 300px;
+}
+.workbench-inspector .payment-entry-table th,
+.workbench-inspector .payment-entry-table td {
+  font-size: 11px;
+  padding: 9px 5px;
+}
+.workbench-inspector .payment-entry-table .account-name {
+  font-size: 12px;
+  max-width: 160px;
+}
+.workbench-inspector .technical-details {
+  margin-top: 18px;
+}
+.workbench-inspector .reply {
+  margin-top: 12px;
+}
+.delivery-identities {
+  margin: 16px 0;
+  display: grid;
+  gap: 12px;
+}
+.delivery-identities dt {
+  font-size: 11px;
+  color: var(--muted);
+}
+.delivery-identities dd {
+  font-size: 12px;
+  margin-top: 3px;
+  overflow-wrap: anywhere;
+}
+.inspector-amount {
+  font: 29px/1.3 var(--mono);
+  margin: 12px 0;
+}
+.inspector-id {
+  font-size: 11px;
+  display: grid;
+  gap: 3px;
+  margin: 12px 0;
+}
+.inspector-id > span {
+  color: var(--muted);
+}
+.inspector-receipt th,
+.inspector-receipt td {
+  padding: 9px 6px;
+  font-size: 12px;
+}
+.origination-complete {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: var(--success);
+  gap: 12px;
+  margin-bottom: 10px;
+}
+@media (min-width: 761px) {
+  .main-shell {
+    height: 100dvh;
+    min-height: 0;
+    overflow: hidden;
+  }
+  .topbar {
+    flex-shrink: 0;
+    min-height: 68px;
+    padding-block: 8px;
+    gap: 16px;
+  }
+  .topbar-actions {
+    gap: 14px;
+  }
+  .page-footer {
+    display: none;
+  }
+  .page-content {
+    min-height: 0;
+    overflow: auto;
+    padding: 24px 28px;
+  }
+  .workbench-shell .page-content {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 20px 24px;
+  }
+  .loan-workbench {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+    flex: 1;
+  }
+  .origination-host:not([hidden]) {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+  }
+  .originated-account {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+  }
+  .origination-host > .page-heading {
+    margin-bottom: 18px;
+  }
+  .origination-host > .page-heading h1 {
+    font-size: 27px;
+  }
+  .origination-host > .page-heading .lede {
+    font-size: 13px;
+    margin-top: 5px;
+  }
+  .origination-progress {
+    margin-bottom: 20px;
+    gap: 26px;
+    font-size: 13px;
+  }
+  .new-loan-layout {
+    overflow: auto;
+    min-height: 0;
+    gap: 30px;
+    grid-template-columns: minmax(0, 1fr) 230px;
+  }
+  .wizard-form > h2,
+  .wizard-section-heading {
+    margin-bottom: 18px;
+  }
+  .wizard-form form:has(input[name="name"]) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  .wizard-form form:has(input[name="name"]) > .field {
+    margin-bottom: 0;
+  }
+  .wizard-form form:has(input[name="name"]) > .form-actions {
+    grid-column: 1/-1;
+    margin-top: 0;
+  }
+  .wizard-form form > .field {
+    margin-bottom: 18px;
+  }
+  .wizard-form .product-options {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .product-options legend {
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+  .product-option {
+    align-items: start;
+    padding: 12px;
+    gap: 8px;
+    margin: 0;
+  }
+  .product-option input {
+    margin-top: 4px;
+    flex-shrink: 0;
+  }
+  .product-option strong {
+    font-size: 13px;
+  }
+  .product-option small {
+    font-size: 11px;
+    line-height: 1.65;
+  }
+  .wizard-form .form-note {
+    font-size: 11px;
+    margin-block: 12px;
+  }
+  .wizard-form .form-actions {
+    margin-top: 16px;
+  }
+  .wizard-summary {
+    padding: 20px;
+  }
+}
+@media (min-width: 761px) and (max-width: 1180px) {
+  .workbench-panels {
+    grid-template-columns: minmax(0, 1fr) 330px;
+    gap: 12px;
+  }
+  .workbench-inspector .workbench-repayment,
+  .workbench-inspector .record-inspector {
+    padding: 16px;
+  }
+  .topbar .account-switcher {
+    max-width: 340px;
+  }
+  .workbench-summary .account-heading-copy h1 {
+    font-size: 22px;
+  }
+  .workbench-summary .account-heading-copy p > span {
+    display: block;
+    margin-left: 0;
+  }
+  .workbench-summary .account-position {
+    padding: 16px 20px;
+    gap: 18px;
+  }
+  .workbench-summary .account-position > div:not(:first-child) {
+    padding-left: 14px;
+  }
+  .workbench-summary .account-position .account-principal strong {
+    font-size: 27px;
+  }
+  .workbench-summary .account-position strong {
+    font-size: 21px;
+  }
+  .workbench-summary .account-heading > .button {
+    margin-left: 0;
+  }
+  .new-loan-layout {
+    grid-template-columns: minmax(0, 1fr) 180px;
+    gap: 22px;
+  }
+  .wizard-summary {
+    padding: 16px;
+  }
+  .wizard-summary dl {
+    gap: 12px;
+  }
+}
+@media (max-width: 760px) {
+  .command-trigger {
+    min-width: 34px;
+    padding: 4px;
+  }
+  .command-trigger kbd {
+    display: none;
+  }
+  .topbar-actions {
+    gap: 8px;
+  }
+  .topbar-actions .identity-select {
+    gap: 3px;
+    padding-right: 7px;
+  }
+  .topbar-actions .identity-select > span {
+    display: none;
+  }
+  .topbar-actions .connection {
+    margin-right: auto;
+  }
+  .workbench-summary .account-heading {
+    grid-template-columns: 24px minmax(0, 1fr);
+    margin-bottom: 18px;
+  }
+  .workbench-summary .account-heading-copy h1 {
+    font-size: 24px;
+  }
+  .workbench-summary .account-heading-copy p > span {
+    display: block;
+    margin-left: 0;
+  }
+  .workbench-summary .account-position {
+    padding: 20px;
+  }
+  .workbench-summary .account-position .account-principal strong {
+    font-size: 31px;
+  }
+  .workbench-summary .account-position strong {
+    font-size: 22px;
+  }
+  .workbench-summary .account-position-note > div {
+    gap: 4px;
+  }
+  .workbench-summary .account-position-note .button {
+    min-width: 40px;
+  }
+  .workbench-summary .disbursement-prompt {
+    padding: 16px;
+  }
+  .workbench-summary .disbursement-prompt .field input {
+    min-height: 44px;
+    font-size: 16px;
+  }
+  .workbench-panels {
+    display: block;
+  }
+  .workbench-data {
+    overflow: visible;
+  }
+  .workbench-register .tab-list {
+    margin: 20px 0;
+  }
+  .workbench-inspector {
+    border: 0;
+    background: none;
+  }
+  .inspector-idle {
+    display: none;
+  }
+  .workbench-repayment,
+  .record-inspector {
+    position: fixed;
+    inset: auto 0 0;
+    width: 100%;
+    max-width: 100vw;
+    max-height: 88dvh;
+    height: 88dvh;
+    z-index: 61;
+    padding: 22px 20px max(28px, env(safe-area-inset-bottom));
+    border-radius: 12px 12px 0 0;
+    border: 1px solid var(--control-border);
+    box-shadow: 0 -12px 35px var(--overlay-shadow);
+  }
+  .workbench-repayment .sheet-heading,
+  .record-inspector .sheet-heading {
+    margin-bottom: 18px;
+  }
+  .record-inspector .balance-strip {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .record-inspector .balance-strip dd {
+    font-size: 19px;
+  }
+  .record-inspector .balance-strip small {
+    display: none;
+  }
+  .record-inspector .payment-entry-table {
+    min-width: 310px;
+  }
+  .workbench-summary .account-heading > .button {
+    position: sticky;
+    top: 8px;
+    z-index: 5;
+  }
+  .origination-complete {
+    align-items: start;
+    font-size: 11px;
+  }
+}
+/* Ordinary posting evidence fits beside the register; longer evidence scrolls internally. */
+@media (min-width: 761px) {
+  .workbench-summary .account-heading {
+    margin-bottom: 12px;
+  }
+  .workbench-summary .account-position {
+    padding-block: 12px;
+  }
+  .workbench-summary .account-position > div {
+    gap: 4px;
+  }
+  .workbench-summary .account-position-note {
+    margin-block: 3px;
+  }
+  .workbench-inspector .payment-confirmation .allocation-story {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    padding: 10px;
+  }
+  .workbench-inspector .allocation-story > div {
+    flex-direction: column;
+    gap: 4px;
+  }
+  .workbench-inspector .allocation-story dt {
+    font-size: 10px;
+  }
+  .workbench-inspector .payment-confirmation-amount {
+    margin-bottom: 12px;
+  }
+  .workbench-inspector .payment-confirmation h3 {
+    margin-top: 10px;
+    font-size: 13px;
+  }
+  .workbench-inspector .payment-entry-table {
+    margin-block: 8px;
+  }
+  .workbench-inspector .posting-date {
+    font-size: 10px;
+    margin-block: 6px;
+  }
+  .workbench-inspector .compact-http {
+    font-size: 11px;
+    color: var(--success);
+    margin: 8px 0;
+  }
+  .workbench-inspector .payment-confirmation .balance-strip {
+    padding: 0;
+    margin-bottom: 8px;
+  }
+  .workbench-inspector .payment-confirmation .balance-strip dd {
+    font-size: 16px;
+  }
+}
+@media (max-width: 760px) {
+  .loan-workbench {
+    padding-bottom: 70px;
+  }
+  .workbench-summary .account-heading > .button {
+    position: fixed;
+    top: auto;
+    bottom: calc(80px + env(safe-area-inset-bottom));
+    left: auto;
+    right: 20px;
+    width: auto;
+    box-shadow: 0 3px 14px var(--overlay-shadow);
+    z-index: 30;
+  }
+  .workbench-summary .account-heading > .button.awaiting-disbursement {
+    display: none;
+  }
+}
+@media (min-width: 761px) and (max-width: 1180px) {
+  .loan-workbench:not(.has-inspector) .workbench-panels {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .loan-workbench:not(.has-inspector) .workbench-inspector {
+    display: none;
+  }
+}

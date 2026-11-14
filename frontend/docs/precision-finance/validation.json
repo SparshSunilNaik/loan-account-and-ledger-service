@@ -1,0 +1,114 @@
+{
+  "validated_at": "2026-11-14T09:47:43.831788+00:00",
+  "scope": "Frontend-only visual identity and dual-theme polish. Approved information architecture and financial integrations preserved. No commit or push.",
+  "environment": {
+    "platform": "macOS ARM64",
+    "node": "26.13.1",
+    "next": "16.4.6",
+    "browser": "installed Google Chrome 157.0.8103.52 via Playwright",
+    "backend": "native PostgreSQL 16.15 / FastAPI on 127.0.0.1:8000; existing ledgercore_studio retained",
+    "frontend": "optimized production Next.js on 127.0.0.1:3000",
+    "docker": "not executed"
+  },
+  "checks": {
+    "lint": "passed",
+    "typescript": "passed",
+    "formatting": "passed",
+    "production_build": "passed (including SVG browser icon)",
+    "unit_component_tests": {
+      "passed": 36,
+      "failed": 0,
+      "skipped": 0
+    },
+    "production_chrome_suite": {
+      "passed": 15,
+      "failed": 0,
+      "skipped": 0,
+      "duration": "1.0 minute",
+      "retries": 0
+    },
+    "real_offline_chrome_suite": {
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 1.2,
+      "themes": ["light", "dark"],
+      "temporary_next_port": 3002,
+      "actual_http_status": 503,
+      "main_fastapi_stopped": false,
+      "temporary_server_stopped_after_validation": true
+    },
+    "post_icon_build_cold_load_smoke": {
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 1.7,
+      "note": "Additional rerun of an existing cold-load test after icon asset addition and more specific reduced-motion assertion; not counted as a new unique test"
+    },
+    "contrast": {
+      "pairs": 32,
+      "text_minimum_ratio": 4.5,
+      "selected_control_focus_minimum_ratio": 3,
+      "all_passed": true,
+      "method": "Independent WCAG relative-luminance calculation from actual semantic hex tokens"
+    },
+    "full_backend_pytest": "not rerun; frontend-only scope"
+  },
+  "theme_validation": [
+    "Light and Dark real borrower/loan/disbursement/partial-repayment/journal workflows at 1440, 1024 and 390px",
+    "Four original destinations and all account tabs retain selected-loan context",
+    "Explicit preference persists on refresh and navigation",
+    "System follows live Chrome OS-media changes; explicit Light/Dark override OS",
+    "Cross-tab storage updates",
+    "Keyboard type-ahead selection, visible focus and record-tab keyboard navigation",
+    "Cold load blocks hydration JS; first-body theme and body color match saved preference even when OS disagrees",
+    "Invalid values and blocked localStorage fall back to OS; current-tab switching still works",
+    "Reduced motion disables actual repayment drawer animation; no monetary animation",
+    "Actual clipboard readback matches displayed loan ID and visible Copied feedback",
+    "Held actual balance GET shows refresh state, then continues to real backend",
+    "No document overflow across five major layouts at each width; wide tables scroll locally"
+  ],
+  "financial_validation": [
+    "Existing principal/interest reconciliation and balanced journal assertions retained",
+    "10000-paise principal at annual nominal 0.12 over two monthly periods; first due principal 4975 paise",
+    "1000-paise repayment on first due date allocates 100 interest and 900 principal; actual remaining principal 9100 paise, recognized interest and penalty zero",
+    "Same-key retry and source alias retain one receipt and original journal",
+    "Different payload gives actual 409; auditor mutation gives actual 403",
+    "Atomic overpayment rejection, single manager disbursement and audit actor attribution",
+    "Dropped HTTP response after real commit; exact retry after reload and edited form retains original receipt"
+  ],
+  "iteration_history": "First theme suite had six ambiguous cell assertions before tab route completion, plus a native select Home-key assumption on Mac Chrome. Tests now wait for the repayment heading and use verified native keyboard type-ahead. Final full production rerun passed with zero retries. Initial screenshot captures froze transient theme colors; final evidence completes animations. A direct Prettier SVG invocation needed its built-in HTML parser; final formatting check passed.",
+  "preservation": {
+    "tracked_git_changes": [],
+    "sha256_identical_files": [
+      "frontend/src/lib/api.ts",
+      "frontend/src/lib/money.ts",
+      "frontend/src/lib/proxy.ts",
+      "frontend/src/lib/openapi.generated.ts",
+      "frontend/src/lib/session.ts",
+      "frontend/src/lib/types.ts",
+      "frontend/src/lib/delivery-context.ts",
+      "frontend/src/app/api/backend/[...path]/route.ts",
+      "frontend/package.json",
+      "frontend/package-lock.json"
+    ],
+    "new_runtime_dependencies": 0,
+    "submission_zip_and_technical_writeup": "untouched",
+    "database_reset": false
+  },
+  "screenshots": {
+    "before": 5,
+    "populated_theme_and_state_evidence": 72,
+    "legacy_regression_captures_redirected_here": 31
+  },
+  "limitations": [
+    "Existing list/search API absent; current-tab history remains capped at 12",
+    "Loan audit scan remains capped at 5000 global records",
+    "Before/after reads are not an atomic snapshot",
+    "Storage-disabled preferences cannot persist across reload",
+    "System behavior verified using Chrome OS-media emulation, not changing macOS appearance settings",
+    "Physical devices, Safari/Firefox and full assistive-technology certification not performed",
+    "Future strict production CSP would require a nonce/hash for the static bootstrap",
+    "Demo impersonation remains development-only, not production security"
+  ]
+}

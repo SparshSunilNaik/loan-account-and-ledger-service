@@ -16,6 +16,7 @@ artifacts/phase3/replay_outcomes.jsonl
 artifacts/phase3/replay_report.json
 artifacts/phase3/reproducibility_check.json
 artifacts/phase3/scenario_manifest.json
+demo.txt
 docker-compose.yml
 docs/architecture.md
 docs/demo.md
@@ -32,6 +33,9 @@ docs/postman/ledgercore.postman_collection.json
 docs/postman/local.postman_environment.json
 docs/submission/asset_verification.json
 docs/submission/checklist.md
+docs/submission/demo_verification.json
+docs/submission/finalization.json
+docs/submission/finalization.md
 docs/submission/included_files.txt
 docs/submission/newman_report.json
 docs/submission/phase4_replay_report.json

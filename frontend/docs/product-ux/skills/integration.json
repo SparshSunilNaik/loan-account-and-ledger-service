@@ -1,0 +1,25 @@
+{
+  "ui_ux_pro_max": {
+    "command": "npx --yes ui-ux-pro-max-cli init --ai codex",
+    "cli_version": "2.15.0",
+    "path": ".agents/skills/ui-ux-pro-max/SKILL.md",
+    "installation": "successful project-local Codex installation",
+    "recommendations_reviewed": [
+      "banking loan servicing fintech --design-system",
+      "banking operations dashboard light --design-system",
+      "complex form progressive disclosure --domain ux",
+      "financial data table readability --domain ux",
+      "developer tools testing --domain product",
+      "multi-step form error summary validation --domain ux",
+      "form state modal navigation --stack nextjs"
+    ],
+    "rejected": "marketing conversion pattern, crypto palette, irrelevant bulk edits and server-actions migration"
+  },
+  "anthropic_frontend_design": {
+    "revision": "b5b01ac4f889fec0c4c6bb89f27ca7c8574473f6",
+    "path": ".agents/skills/frontend-design/SKILL.md",
+    "installation": "successful manual project-local skill installation via Codex skill installer",
+    "sha256": "d91970639e9f5c37682ac7ab60094d35f1c7c1f38d731bd56396563aee10c1d3",
+    "native_claude_plugin_installed": false
+  }
+}

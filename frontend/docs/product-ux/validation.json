@@ -1,0 +1,94 @@
+{
+  "validated_at": "2026-11-14T09:24:28.914826+00:00",
+  "scope": "Frontend product UX rebuild; no backend/schema/accounting changes, commit, push or submission ZIP modification",
+  "environment": {
+    "os": "macOS ARM64",
+    "node": "26.13.1",
+    "next": "16.4.6",
+    "browser": "installed Google Chrome 157.0.8103.52, driven with Playwright",
+    "database": "native PostgreSQL 16.15, existing ledgercore_studio; not reset",
+    "python": "3.12.13",
+    "backend": "FastAPI at http://127.0.0.1:8000",
+    "frontend": "production Next.js at http://127.0.0.1:3000",
+    "docker_validation": "not performed"
+  },
+  "checks": {
+    "frontend_lint": "passed",
+    "typescript": "passed",
+    "production_build": "passed",
+    "unit_component_tests": {
+      "passed": 30,
+      "failed": 0,
+      "skipped": 0
+    },
+    "chrome_real_backend_tests": {
+      "passed": 7,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 20.6,
+      "viewports": [1440, 1024, 390]
+    },
+    "chrome_real_offline_test": {
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 0.87,
+      "method": "Temporary Next.js port 3002 pointing to an unused loopback backend port; real proxy HTTP 503; temporary process stopped afterwards"
+    },
+    "full_backend_pytest": "not rerun for frontend-only scope",
+    "contrast_checks": "4 primary/secondary/action text pairs pass normal-text WCAG AA; not full accessibility certification",
+    "formatting": "passed"
+  },
+  "independent_case": {
+    "principal_paise": 10000,
+    "annual_nominal_rate": "0.12",
+    "monthly_periods": 2,
+    "first_due_date": "2026-01-31",
+    "first_scheduled_principal_paise": 4975,
+    "received_paise": 1000,
+    "interest_allocation_paise": 100,
+    "principal_allocation_paise": 900,
+    "resulting_ledger_receivables_paise": {
+      "principal": 9100,
+      "interest": 0,
+      "penalty": 0
+    },
+    "after_same_key_retry_source_alias_and_changed_payload_conflict": "one original receipt and journal, same balances"
+  },
+  "journeys": {
+    "A": "Passed at all three widths: UI borrower \u2192 loan \u2192 actual schedule \u2192 manager disbursement \u2192 officer repayment \u2192 actual journal",
+    "B": "Passed at all three widths: filter known borrower \u2192 open account \u2192 balances \u2192 keyboard schedule/repayments tabs; reload retains context",
+    "C": "Passed at all three widths: inherited frozen request \u2192 identical retry \u2192 source alias \u2192 one receipt \u2192 changed-payload 409; no repeated loan ID or key input"
+  },
+  "adversarial_checks": [
+    "manager-only single disbursement",
+    "auditor mutation HTTP 403",
+    "atomic overpayment rejection HTTP 400",
+    "actor-attributed audit, officer audit HTTP 403",
+    "balanced actual financial journals",
+    "input rejects fractional paise",
+    "proxy route, origin and actor boundaries",
+    "actual backend commit followed by dropped HTTP response, reload, edited form and frozen exact retry: one original receipt"
+  ],
+  "iteration_history": "Earlier browser attempts failed on a dev-indicator obstruction, premature reload, ambiguous route-announcer alert, product-render timing and Escape before mutation settled. UI obstruction fixed; tests now wait for actual visible/enabled states. Final complete reruns passed without retries.",
+  "evidence": {
+    "before_png_count": 5,
+    "after_png_count": 32,
+    "artificial_backend_success_responses": false,
+    "all_created_borrowers": "invented synthetic names; real API writes appended to existing local database"
+  },
+  "preservation": {
+    "tracked_git_diff_files": [],
+    "existing_api_money_proxy_generated_contract_session_and_package_files": "SHA-256 identical to pre-task snapshot"
+  },
+  "limitations": [
+    "No server-backed portfolio list/search API; at most 12 current-tab session references",
+    "Loan history scans at most 5000 actual global audit records",
+    "Saved schedule review occurs after origination, before disbursement",
+    "Demo impersonation only; not production authentication",
+    "One complete light theme; no dark mode",
+    "Physical devices, Safari/Firefox and full assistive-technology certification not tested",
+    "Before/after endpoint reads are observations, not atomic snapshots",
+    "Creation does not have repayment-style idempotency; uncertain origination needs inspection"
+  ]
+}

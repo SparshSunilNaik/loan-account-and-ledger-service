@@ -40,3 +40,7 @@ metrics; [review.md](review.md) gives the independent review and explicit limita
 Complete source and contents are committed; the generated ZIP is not committed. The final
 commit SHA and ZIP size/hash are reported in the handoff and external archive manifest,
 avoiding a self-referential commit or ZIP hash inside its own contents. Stop after Phase 4.
+
+## Later packaging refresh
+
+See [finalization.md](finalization.md) for the current requirement-by-requirement review and [finalization.json](finalization.json) for newly executed checks. The historical check counts above remain dated Phase 4 evidence. The optional frontend is excluded. The root [demo.txt](../../demo.txt) now supplies the complete recording script. [demo_verification.json](demo_verification.json) supersedes the earlier missing-script status and records a real Chrome rehearsal, 398 backend tests, 36 frontend unit tests, 22 browser regression cases and two offline cases. The owner still records the video. Existing ZIP backups and final extraction evidence live under ignored `dist/`. The technical write-up remains unchanged.
