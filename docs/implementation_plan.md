@@ -26,17 +26,21 @@ repayment deliveries, shared-source/key races across loans, real row-lock waits,
 rollback failures, authorization/audit identity and exact reversal invariants. Original
 schedule tests are retained. The local header mechanism is explicitly development-only.
 
-No disbursement/recognition reversal, automatic closure, scheduled overdue job or synthetic
-replay is delivered. Subsequent phases must preserve posted history and existing retry
-contracts, define any overdue-charge policy, and replace demo identity before deployment.
+Phase 2 excluded disbursement/recognition reversal, automatic closure, overdue jobs and
+replay. Phase 3 extends its posting contracts below; real identity and production deployment
+remain outside this assignment phase.
 
-## Later — accrual and replay
+## Phase 3 — delivered
 
-Implement scheduled recognition separately from any approved overdue charge. Use unique
-period identity and validate nonoverlapping intervals. Add late-arrival correction and
-reconciliation policies and scheduled execution only after accounting semantics are settled.
+Phase 3 implements explicit dated daily penalties on opening unpaid scheduled principal,
+with immutable zero-day identities, safe historical catch-up, per-loan locking, rollback
+and resumable CLI batches. Scheduled interest still uses the existing once-only service.
+The generator and independent manifest specify the fixed 5000-delivery simulation; the
+runner initializes an isolated PostgreSQL database and submits every delivery through real
+HTTP, retaining actual outcomes and three-way reconciliation. Tests retain Phase 1/2 and
+add concurrent accrual, reversals, failures, deterministic generation and the full replay.
 
-The future synthetic dataset contract is:
+The implemented synthetic dataset contract is:
 
 - Exactly 250 synthetic borrowers, 400 loans and the three products.
 - Exactly **5,000 repayment delivery events**, not 5,000 successful receipt rows.
@@ -53,9 +57,10 @@ The future synthetic dataset contract is:
   never present generated expectations as observed behavior.
 - Store every delivery outcome in a replay artifact or future delivery table, separate
   from `repayments`, which represents accepted receipts. Add that structure in the replay
-  phase; current source/event uniqueness, occurred/received times, scoped idempotency,
+  phase as artifacts; source/event uniqueness, occurred/received times, scoped idempotency,
   correlation audit and stable external references provide the foundations.
 
-No borrowers/loans/events, replay manifest, seed runner or claimed replay results have been
-generated in Phase 1. Future work must check dataset totals and independence of expected
-outcomes, including authorization failures before monetary state mutation.
+Phase 1/2 did not generate these records. Phase 3 now includes actual executed artifacts
+under artifacts/phase3, and reports observed results separately from independent expected
+outcomes. No frontend or subsequent phase was started. Remaining production concerns and
+reversal limits are documented for review; stop at Phase 3.

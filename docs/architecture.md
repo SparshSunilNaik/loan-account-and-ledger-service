@@ -23,7 +23,7 @@ READ COMMITTED. No in-memory financial lock or authoritative cached balance exis
 The posting functions in `accounting/posting.py` receive the caller's Session and never
 commit. `accounting/contracts.py` exposes their implemented contracts. Scheduled recognition
 is independently callable under an authorized caller-owned transaction; repayments invoke
-it inside their transaction. There is no scheduler or overdue-charge execution.
+it inside their transaction. The explicit Phase 3 job invokes it before daily overdue evaluation; no resident scheduler is needed.
 
 Uniqueness/deadlock/serialization races roll back the entire attempt and retry up to three
 times in a new transaction. At READ COMMITTED, the winner's committed key or event is then
@@ -53,7 +53,7 @@ fields are indexed. Dates are contractual/processing dates; timestamps identify 
 | ledger_accounts | Six seeded account codes, classification and INR; immutable chart; no balances |
 | ledger_journals | Unique event key, receipt journal and reversal target; one disbursement per loan; consistent draft/posted timestamp; explicit processing date and economic effective timestamp |
 | ledger_entries | Positive paise, debit/credit; account/journal FKs; optional schedule and original recognized receivable entry links |
-| accrual_records | Unique scheduled recognition per schedule; unique loan/schedule/kind/start/end; same-loan schedule FK and unique journal |
+| accrual_records | Unique scheduled recognition per schedule; unique loan/schedule/kind/start/end; same-loan schedule FK and unique journal (nullable only for zero-charge daily penalties); immutable daily basis/rate and one-day identities |
 | users | Unique external subject, database role and active flag; three explicit demo subjects; no tokens or password imitation |
 | audit_events | Actor, UTC creation timestamp, action, entity, correlation and minimized before/after/journal metadata; immutable |
 
@@ -75,8 +75,9 @@ a historical view or a later-day payoff quote.
 
 Recognized interest/penalty debit entries are receivable lots. Collection credits link
 back to the original debit; reversal debits retain that same origin. Lot outstanding is
-computed from posted entries, sorted by original effective date, creation timestamp and
-entry UUID. The database validates same-loan/same-account/same-schedule origin linkage.
+computed from posted entries, sorted by effective date, contractual due date/instalment,
+creation timestamp and entry UUID. Contractual tie-breaking keeps same-day charge allocation
+reproducible across fresh database UUIDs. The database validates same-loan/same-account/same-schedule origin linkage.
 This preserves oldest recognized allocation even when several charges share one schedule.
 
 Principal was recognized as a whole at disbursement. Per-schedule active principal
@@ -115,6 +116,71 @@ identity verification, least-privilege DB users, retention rules and deployment 
 Cross-row schedule principal equality is enforced by origination and tested. Aggregate
 allocation limits are enforced by serialized posting services with ledger reconciliation;
 privileged raw inserts bypass that service contract. There is no public low-level journal,
-penalty-generation, recognition-job, historical balance, or replay API. No loan is marked
+low-level penalty-generation, recognition-job, historical balance, or replay HTTP API.
+Accrual and replay are explicit local CLI operations. No loan is marked
 closed merely because today's posted receivables reach zero: future contractual interest
 may still become due. Account and receivable policy details are in the financial rules.
+
+
+## Phase 3 daily accrual boundary
+
+Migration 0005 extends accrual records with immutable opening principal basis and daily
+rate, permits a null journal for zero-charge days, and introduces overdue_penalty kind.
+A daily-penalty CHECK requires one half-open UTC day, the fixed 0.0005 rate, a bounded
+basis and positive-charge/journal consistency. The existing unique loan/schedule/kind/
+start/end constraint plus one-day intervals excludes duplicate and overlapping periods
+for this kind. A trigger checks overdue eligibility, rounding and posted same-loan journal
+linkage. Existing scheduled-interest identities and posted history remain intact.
+
+`jobs/accrual.py` locks each loan before examining history. The entire loan's missing-day
+catch-up, interest recognition, penalty journals, zero evaluations and job audit commit in
+one caller-owned transaction. The batch coordinator commits each loan independently,
+reports failures, retries uniqueness/deadlock conflicts and resumes by querying existing
+period identities. There is no financial cache or in-memory safety lock.
+
+Before accrual, current scheduled-principal capacities must reconcile with posted ledger
+principal; inconsistent history fails before recognition or charges. Malformed receivable
+lots retain fail-closed validation during deterministic ordering.
+
+Daily opening basis is contractual schedule principal minus principal allocations processed
+before that UTC date, with a reversal restoring principal only after its processing date.
+The service reconstructs history rather than applying current capacity to past dates.
+Business-date validation also consults immutable daily evaluations, including zero-charge
+days, preventing later backdated operations from invalidating already evaluated history.
+Same-date repayments/reversals affect the next day's opening balance. Existing exact retry
+behavior is unchanged because deduplication precedes new-operation date validation.
+
+The job and HTTP repayment path serialize on the same PostgreSQL loan row. Financial
+safety does not require a scheduler. As in Phase 2, repayment collects recognized penalties;
+a job that runs after a receipt does not retroactively change that receipt's allocation.
+Concurrent orders can therefore produce different valid principal-versus-penalty collection
+mixes. The replay fixes order by accruing before each day's deliveries. Every charge uses
+the same historical opening basis regardless of when catch-up evaluates that date.
+
+## Phase 3 simulation and independent verification
+
+`simulation/generate.py` uses a fixed seed/UTC timeline, invented subjects and UUIDv5 logical
+identifiers. Inputs and their ordering are reproducible. Server UUIDs are mapped to source
+IDs in an explicit artifact; no client-chosen database primary-key shortcut was added.
+The API keeps real receipt/audit timestamps, while every delivery retains a separate
+simulated arrival time and explicit business date.
+
+`simulation/reference.py` is a separate chronological specification using Decimal annuity
+math and its own principal capacities/receivable lots. It imports no production posting,
+schedule, ORM or job implementation. It generates intended statuses, canonical identities,
+allocations, daily expected totals and per-loan final state before any API submission.
+
+`simulation/replay.py` creates its own PostgreSQL database, migrates it and starts a real
+loopback Uvicorn process. All borrower/loan/disbursement setup and all 5,000 repayment
+attempts go through HTTP. Only accrual jobs use the documented service transaction boundary.
+The runner records actual responses for successful, duplicate and rejected deliveries.
+It compares observed allocations to reference expectations using instalment numbers,
+checks the API balances, reruns accrual for idempotence and invokes independent raw-record
+reconciliation. Cleanup stops its own server and drops only its own random database.
+
+`simulation/reconcile.py` checks all journals and receipt cash/receivable effects, each
+historical penalty basis/rounding, immutable schedule principal, active allocation caps,
+and ledger-versus-operational-versus-reference balances. It does not call the production
+balance calculator. Monetary totals are integer paise. Only timing metadata uses floats.
+A normalized financial digest excludes generated DB UUIDs and real timestamps; inputs
+have their own SHA-256 digest. Source and dependency versions accompany actual run results.

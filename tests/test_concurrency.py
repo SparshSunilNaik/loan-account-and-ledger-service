@@ -3,16 +3,14 @@
 import time
 from concurrent.futures import ThreadPoolExecutor
 from threading import Barrier
-from uuid import UUID, uuid4
+from uuid import UUID
 
 import pytest
 from alembic import command
 from alembic.config import Config
-from fastapi.testclient import TestClient
-from sqlalchemy import create_engine, func, select, text
+from sqlalchemy import func, select, text
 from sqlalchemy.orm import Session
 from test_posting import (
-    OFFICER,
     assert_journals_balance,
     balances,
     make_loan,
@@ -20,8 +18,6 @@ from test_posting import (
     repay,
 )
 
-from ledgercore.db.session import get_session
-from ledgercore.main import app
 from ledgercore.models.entities import (
     IdempotencyRequest,
     LedgerJournal,
@@ -32,44 +28,6 @@ from ledgercore.models.entities import (
 )
 
 pytestmark = pytest.mark.integration
-
-
-@pytest.fixture
-def parallel_env(pg_engine, monkeypatch):
-    """Committed requests need their own database, isolated from rollback-based tests."""
-    name = "ledgercore_parallel_" + uuid4().hex
-    admin = create_engine(
-        pg_engine.url.set(database="postgres"), isolation_level="AUTOCOMMIT"
-    )
-    with admin.connect() as conn:
-        conn.execute(text(f'CREATE DATABASE "{name}"'))
-    url = pg_engine.url.set(database=name)
-    engine = create_engine(
-        url,
-        pool_size=25,
-        max_overflow=5,
-        connect_args={
-            "options": "-c timezone=UTC",
-            "application_name": "ledgercore_parallel",
-        },
-    )
-    monkeypatch.setenv("DATABASE_URL", url.render_as_string(hide_password=False))
-    command.upgrade(Config("alembic.ini"), "head")
-
-    def dependency():
-        with Session(engine, expire_on_commit=False) as session:
-            yield session
-
-    app.dependency_overrides[get_session] = dependency
-    try:
-        with TestClient(app, headers=OFFICER) as client:
-            yield client, engine
-    finally:
-        app.dependency_overrides.clear()
-        engine.dispose()
-        with admin.connect() as conn:
-            conn.execute(text(f'DROP DATABASE "{name}" WITH (FORCE)'))
-        admin.dispose()
 
 
 @pytest.mark.parametrize(

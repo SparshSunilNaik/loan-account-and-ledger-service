@@ -9,7 +9,7 @@ from ledgercore.api.routes import router
 
 app = FastAPI(
     title="LedgerCore",
-    version="0.2.0",
+    version="0.3.0",
     description="Local development demo only. X-Demo-User is NOT production authentication.",
 )
 

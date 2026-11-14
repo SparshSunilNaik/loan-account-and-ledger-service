@@ -1,0 +1,23 @@
+[
+  {
+    "annual_rate": "0.24",
+    "code": "WEEKLY_GROUP",
+    "frequency": "weekly",
+    "id": "00000000-0000-0000-0000-000000000001",
+    "interest_method": "flat"
+  },
+  {
+    "annual_rate": "0.12",
+    "code": "PERSONAL_EMI",
+    "frequency": "monthly",
+    "id": "00000000-0000-0000-0000-000000000002",
+    "interest_method": "reducing"
+  },
+  {
+    "annual_rate": "0.18",
+    "code": "SMALL_BUSINESS",
+    "frequency": "monthly",
+    "id": "00000000-0000-0000-0000-000000000003",
+    "interest_method": "flat"
+  }
+]

@@ -282,7 +282,9 @@ class AccrualRecord(Record, Base):
     period_start: Mapped[date]
     period_end: Mapped[date]
     amount_paise: Mapped[int] = mapped_column(BigInteger)
-    journal_id: Mapped[uuid.UUID] = mapped_column(
+    basis_paise: Mapped[int | None] = mapped_column(BigInteger)
+    daily_rate: Mapped[Decimal | None] = mapped_column(Numeric(12, 10))
+    journal_id: Mapped[uuid.UUID | None] = mapped_column(
         ForeignKey("ledger_journals.id"), unique=True
     )
     __table_args__ = (
@@ -305,9 +307,18 @@ class AccrualRecord(Record, Base):
             postgresql_where=text("kind = 'scheduled_interest'"),
         ),
         CheckConstraint(
-            "kind IN ('scheduled_interest','overdue_interest')", name="accrual_kind"
+            "kind IN ('scheduled_interest','overdue_interest','overdue_penalty')",
+            name="accrual_kind",
         ),
         CheckConstraint("period_end > period_start", name="accrual_period"),
+        CheckConstraint(
+            "kind <> 'overdue_penalty' OR (period_end = period_start + 1 AND basis_paise IS NOT NULL AND basis_paise BETWEEN 0 AND 100000000000 AND daily_rate = 0.0005 AND daily_rate IS NOT NULL AND ((amount_paise = 0 AND journal_id IS NULL) OR (amount_paise > 0 AND journal_id IS NOT NULL)))",
+            name="daily_penalty_policy",
+        ),
+        CheckConstraint(
+            "kind = 'overdue_penalty' OR journal_id IS NOT NULL",
+            name="nonpenalty_journal",
+        ),
         CheckConstraint(
             "amount_paise BETWEEN 0 AND 100000000000", name="accrual_amount"
         ),

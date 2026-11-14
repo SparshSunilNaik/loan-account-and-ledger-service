@@ -156,7 +156,7 @@ schedule/kind with half-open period [due_date,due_date+1 day); that day is a rec
 identity, not a day-count computation. A unique schedule recognition index prevents
 repeats. Economic effective_at is the due date at UTC midnight; business_date records
 when processing happened. No future row is recognized and zero interest is a no-op,
-without an empty journal or zero entries. There is no overdue accrual or penalty generator.
+without an empty journal or zero entries. Phase 3 adds a separate principal-only daily overdue penalty job, described below.
 
 Prepaid principal does not change original contractual interest. Even after all principal
 is paid, later scheduled interest still becomes due and collectible in this assignment.
@@ -222,11 +222,68 @@ disbursement. Financial mutations are audited with actor, UTC time, correlation,
 before/after state and journal references. Denied role attempts commit minimized audit
 metadata separately; they do not mutate financial state.
 
-## Deferred policies
+## Phase 3 daily overdue policy
 
-No overdue penalty/interest execution, scheduled worker, synthetic replay, prepayment
-rebate, re-amortization, real bank settlement, multi-currency support, backdated ledger
-restatement or general journal adjustment is implemented. Future overdue charges require
-an approved rate/basis and unique nonoverlapping period identity without recognizing
-scheduled interest again. Production identity, ownership scoping and database permissions
-need a separate design. These policies are assignment semantics, not regulatory guidance.
+The fixed simple daily penalty rate is **0.05% = Decimal("0.0005")**. For each schedule and
+eligible UTC date D, charge ROUND_HALF_UP(opening unpaid scheduled principal × 0.0005)
+paise. Eligibility starts strictly after the contractual due date and strictly after the
+loan's disbursement business date. No charge is levied before funds were disbursed.
+Each schedule/day is rounded independently; rounded daily charges are then summed.
+Interest and previous penalties never enter the basis and penalties do not compound.
+
+Opening principal for D subtracts principal allocations with receipt business_date < D.
+A posted repayment reversal restores its principal from the day after the reversal's
+business date. Economic occurred_at is not a basis restatement date. Same-day payments
+and reversals influence D+1, so accrual versus receipt lock acquisition cannot change
+D's opening charge. Catch-up reconstructs each day's actual processing history, rather
+than charging all historical dates on today's principal.
+
+Examples: 4975 paise overdue principal produces 2 paise/day (2.4875 rounded half-up).
+1000 produces 1 (0.5 rounds up); 999 produces 0. After a payment reduces a 4975-paise
+schedule to 975, the following day's charge is 0, while the payment date retains its
+opening-day charge. Reversing that payment restores the basis only from the next date.
+
+Each evaluation stores loan/schedule/overdue_penalty/[D,D+1), opening basis, fixed rate
+and rounded amount. Positive charges debit PENALTY_RECEIVABLE and credit PENALTY_INCOME,
+with schedule-tagged recognized lots. Zero charges keep the evaluation record and have
+no financial journal. One-day period constraints and unique identities prohibit duplicate
+or overlapping days; all evaluations are immutable. Their latest date also participates
+in the loan's new-operation business-date floor, including zero-charge history.
+
+Catch-up journals have business_date equal to the explicit processing target and economic
+effective_at equal to the evaluated day's UTC midnight. No earlier journal or receipt is
+edited. Existing scheduled interest is recognized through the original recognition service
+exactly once and is never recognized again as a penalty or overdue interest amount.
+
+The CLI defaults to the explicit day only; --catch-up fills every missing eligible day,
+including zero-basis days. A failed loan rolls back all of its new evaluations, journals,
+entries, recognition and audit. Other loans may commit; rerun resumes missing work. The
+same loan lock as repayment/reversal protects concurrent execution. The default maximum
+catch-up horizon is 3660 days; longer histories need an explicit larger bound.
+
+Repayments continue to collect only recognized penalties. If the job is late, a previous
+receipt is not reallocated when catch-up posts additional penalties. Run accrual before
+daily deliveries for a fixed processing order, as the replay does. Concurrent orders are
+serialized and financially valid but can yield a different mix of principal and penalty
+collected; this is explicit rather than a retroactive rewrite of immutable receipts.
+
+## Replay interpretation
+
+The generated manifest is an independent expectation, not an observed result. The runner
+records actual HTTP results and reads database effects. There are exactly 5000 deliveries,
+not 5000 receipts. Exact duplicate financial payloads preserve their original business
+dates while later delivery IDs/arrival times differ. Source aliases are separately labelled.
+New delayed events retain economic occurred_at and use their simulated receipt business
+date. Canonical request/key semantics from Phase 2 remain unchanged.
+
+The simulation uses invented source UUIDs and fixed dates. Actual API UUIDs and server
+receipt/audit times are retained as observed and mapped separately. Financial reproducibility
+compares normalized actual allocations, final balances and journal totals; it does not
+claim real wall-clock timestamps are byte-identical between independent runs.
+
+## Remaining limits
+
+No automatic interest rebate, re-amortization, real bank settlement, multi-currency,
+backdated restatement or general journal adjustment is implemented. Reversals remain
+restricted to repayments. Production identity, ownership scoping and database permissions
+need a separate design. These are assignment policies, not regulatory guidance.

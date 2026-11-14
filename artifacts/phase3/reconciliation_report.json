@@ -1,0 +1,5222 @@
+{
+  "database_counts": {
+    "accepted_receipts": 4510,
+    "borrowers": 250,
+    "loans": 400,
+    "products": 3
+  },
+  "errors": [],
+  "interest_differences": [],
+  "passed": true,
+  "penalty_basis_errors": 0,
+  "penalty_differences": [],
+  "penalty_evaluations": 4537,
+  "per_loan": [
+    {
+      "ledger": {
+        "interest": 40526,
+        "penalty": 1556,
+        "principal": 11550818
+      },
+      "loan_id": "00386bc0-815c-5d1d-81e8-78976fc82e31",
+      "operational": {
+        "interest": 40526,
+        "penalty": 1556,
+        "principal": 11550818
+      }
+    },
+    {
+      "ledger": {
+        "interest": 1720,
+        "penalty": 712,
+        "principal": 6428263
+      },
+      "loan_id": "0074d144-8292-5d21-9bf3-dc0238ba164a",
+      "operational": {
+        "interest": 1720,
+        "penalty": 712,
+        "principal": 6428263
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 606,
+        "principal": 9586981
+      },
+      "loan_id": "01774343-9b7f-59a3-80b6-99c153ac144d",
+      "operational": {
+        "interest": 0,
+        "penalty": 606,
+        "principal": 9586981
+      }
+    },
+    {
+      "ledger": {
+        "interest": 53776,
+        "penalty": 936,
+        "principal": 11990700
+      },
+      "loan_id": "021aadd7-0edb-588a-b7c4-9db5a47b3c77",
+      "operational": {
+        "interest": 53776,
+        "penalty": 936,
+        "principal": 11990700
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 168,
+        "principal": 4487443
+      },
+      "loan_id": "022a972b-a64a-5b4d-b4ce-b40917e5b836",
+      "operational": {
+        "interest": 0,
+        "penalty": 168,
+        "principal": 4487443
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 628,
+        "principal": 5768114
+      },
+      "loan_id": "02b6edd3-2004-56ce-ba43-d57464a3d024",
+      "operational": {
+        "interest": 0,
+        "penalty": 628,
+        "principal": 5768114
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 712,
+        "principal": 10650882
+      },
+      "loan_id": "03c513fa-2497-54e9-b3c1-e1cacf1307d0",
+      "operational": {
+        "interest": 0,
+        "penalty": 712,
+        "principal": 10650882
+      }
+    },
+    {
+      "ledger": {
+        "interest": 79540,
+        "penalty": 2112,
+        "principal": 13540200
+      },
+      "loan_id": "0532619d-6a28-5757-8f45-6080450ebe65",
+      "operational": {
+        "interest": 79540,
+        "penalty": 2112,
+        "principal": 13540200
+      }
+    },
+    {
+      "ledger": {
+        "interest": 25963,
+        "penalty": 918,
+        "principal": 11872700
+      },
+      "loan_id": "0554edd6-d598-5b65-9223-d37e5f3bc975",
+      "operational": {
+        "interest": 25963,
+        "penalty": 918,
+        "principal": 11872700
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 944,
+        "principal": 13029763
+      },
+      "loan_id": "067abbc9-7808-568a-9956-c2dbaf452afd",
+      "operational": {
+        "interest": 0,
+        "penalty": 944,
+        "principal": 13029763
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 450,
+        "principal": 7889728
+      },
+      "loan_id": "07732847-07e2-530f-92cd-ca3b0ed399e9",
+      "operational": {
+        "interest": 0,
+        "penalty": 450,
+        "principal": 7889728
+      }
+    },
+    {
+      "ledger": {
+        "interest": 36763,
+        "penalty": 1544,
+        "principal": 11792737
+      },
+      "loan_id": "0887afd7-070d-52a6-aa16-69b9e86cf258",
+      "operational": {
+        "interest": 36763,
+        "penalty": 1544,
+        "principal": 11792737
+      }
+    },
+    {
+      "ledger": {
+        "interest": 32879,
+        "penalty": 790,
+        "principal": 11773368
+      },
+      "loan_id": "08efe84d-a695-5873-b816-823159d130f6",
+      "operational": {
+        "interest": 32879,
+        "penalty": 790,
+        "principal": 11773368
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 76,
+        "principal": 2936031
+      },
+      "loan_id": "09cd113a-af28-5dd2-bdfe-bf627d303c20",
+      "operational": {
+        "interest": 0,
+        "penalty": 76,
+        "principal": 2936031
+      }
+    },
+    {
+      "ledger": {
+        "interest": 39115,
+        "penalty": 1612,
+        "principal": 10375100
+      },
+      "loan_id": "0a2574d7-b479-56f6-9098-86b14cf8d23c",
+      "operational": {
+        "interest": 39115,
+        "penalty": 1612,
+        "principal": 10375100
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 87,
+        "principal": 4918694
+      },
+      "loan_id": "0b5f4075-3bbb-532c-9c06-68d086c8e1d9",
+      "operational": {
+        "interest": 0,
+        "penalty": 87,
+        "principal": 4918694
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 880,
+        "principal": 12651473
+      },
+      "loan_id": "0c0bb04b-20a5-5be7-b546-0dbd34783d35",
+      "operational": {
+        "interest": 0,
+        "penalty": 880,
+        "principal": 12651473
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 420,
+        "principal": 7508916
+      },
+      "loan_id": "0c4f6a6b-4be9-5590-bf76-78326e75a500",
+      "operational": {
+        "interest": 0,
+        "penalty": 420,
+        "principal": 7508916
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 110,
+        "principal": 4871593
+      },
+      "loan_id": "0cff70ef-ebd9-50b5-82a6-7251741994df",
+      "operational": {
+        "interest": 0,
+        "penalty": 110,
+        "principal": 4871593
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 230,
+        "principal": 5214130
+      },
+      "loan_id": "0e350ed6-4157-54db-8c4d-1dd2bdbafd60",
+      "operational": {
+        "interest": 0,
+        "penalty": 230,
+        "principal": 5214130
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 520,
+        "principal": 7577876
+      },
+      "loan_id": "0ea9485d-f7f3-5e89-bafc-fc03f0daf2e7",
+      "operational": {
+        "interest": 0,
+        "penalty": 520,
+        "principal": 7577876
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 1948,
+        "principal": 13170628
+      },
+      "loan_id": "0ec6c946-66ab-5961-b4bf-bc6ea8768058",
+      "operational": {
+        "interest": 0,
+        "penalty": 1948,
+        "principal": 13170628
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 396,
+        "principal": 4360223
+      },
+      "loan_id": "0edcc0c8-aba1-5257-a4e1-6538ac0fac54",
+      "operational": {
+        "interest": 0,
+        "penalty": 396,
+        "principal": 4360223
+      }
+    },
+    {
+      "ledger": {
+        "interest": 17506,
+        "penalty": 582,
+        "principal": 9303980
+      },
+      "loan_id": "0fdebadd-3785-5467-962c-d9893e95742a",
+      "operational": {
+        "interest": 17506,
+        "penalty": 582,
+        "principal": 9303980
+      }
+    },
+    {
+      "ledger": {
+        "interest": 65590,
+        "penalty": 1712,
+        "principal": 11260500
+      },
+      "loan_id": "10075de6-000f-50d1-90f4-ecd329b79586",
+      "operational": {
+        "interest": 65590,
+        "penalty": 1712,
+        "principal": 11260500
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 138,
+        "principal": 5370579
+      },
+      "loan_id": "1142a626-388f-5823-ae8d-6567856302a7",
+      "operational": {
+        "interest": 0,
+        "penalty": 138,
+        "principal": 5370579
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 24,
+        "principal": 2848244
+      },
+      "loan_id": "1183b26c-6125-5519-aff2-1ad069e7b65b",
+      "operational": {
+        "interest": 0,
+        "penalty": 24,
+        "principal": 2848244
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 576,
+        "principal": 5354336
+      },
+      "loan_id": "12410884-9b0e-55ca-86f5-f9bf618f23d9",
+      "operational": {
+        "interest": 0,
+        "penalty": 576,
+        "principal": 5354336
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 372,
+        "principal": 5834755
+      },
+      "loan_id": "12ba7e74-af64-5868-a948-417194fed240",
+      "operational": {
+        "interest": 0,
+        "penalty": 372,
+        "principal": 5834755
+      }
+    },
+    {
+      "ledger": {
+        "interest": 2059,
+        "penalty": 782,
+        "principal": 11786508
+      },
+      "loan_id": "1319a0ac-c218-51f0-b8b2-3ceb1a15c894",
+      "operational": {
+        "interest": 2059,
+        "penalty": 782,
+        "principal": 11786508
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 262,
+        "principal": 5900350
+      },
+      "loan_id": "13da872a-29c2-595b-90bc-bec60fedfb77",
+      "operational": {
+        "interest": 0,
+        "penalty": 262,
+        "principal": 5900350
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 744,
+        "principal": 12555846
+      },
+      "loan_id": "13fa4f8c-4a03-542d-a438-b96fe00ae43a",
+      "operational": {
+        "interest": 0,
+        "penalty": 744,
+        "principal": 12555846
+      }
+    },
+    {
+      "ledger": {
+        "interest": 6292,
+        "penalty": 678,
+        "principal": 9992685
+      },
+      "loan_id": "1406dfec-d8d4-565c-a45c-bee67944ae87",
+      "operational": {
+        "interest": 6292,
+        "penalty": 678,
+        "principal": 9992685
+      }
+    },
+    {
+      "ledger": {
+        "interest": 31909,
+        "penalty": 874,
+        "principal": 11296100
+      },
+      "loan_id": "14594fbe-5d51-5b0a-b49a-34913ec01b51",
+      "operational": {
+        "interest": 31909,
+        "penalty": 874,
+        "principal": 11296100
+      }
+    },
+    {
+      "ledger": {
+        "interest": 23393,
+        "penalty": 884,
+        "principal": 13190179
+      },
+      "loan_id": "145b0ea8-30b6-5103-913b-07c08831f6cb",
+      "operational": {
+        "interest": 23393,
+        "penalty": 884,
+        "principal": 13190179
+      }
+    },
+    {
+      "ledger": {
+        "interest": 21669,
+        "penalty": 1408,
+        "principal": 10951909
+      },
+      "loan_id": "147b7f75-5198-5d26-8f9f-2106c9e9ced8",
+      "operational": {
+        "interest": 21669,
+        "penalty": 1408,
+        "principal": 10951909
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 614,
+        "principal": 11343823
+      },
+      "loan_id": "15507b5b-2f92-5732-a72b-91f4c0633d91",
+      "operational": {
+        "interest": 0,
+        "penalty": 614,
+        "principal": 11343823
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 88,
+        "principal": 3413327
+      },
+      "loan_id": "16f0f64c-1ae0-55c1-b347-47f13ebad82d",
+      "operational": {
+        "interest": 0,
+        "penalty": 88,
+        "principal": 3413327
+      }
+    },
+    {
+      "ledger": {
+        "interest": 855,
+        "penalty": 561,
+        "principal": 9842400
+      },
+      "loan_id": "17349375-976b-5dc5-929f-6c26437e58cc",
+      "operational": {
+        "interest": 855,
+        "penalty": 561,
+        "principal": 9842400
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 346,
+        "principal": 5918817
+      },
+      "loan_id": "175e225f-8f98-5f19-82d7-ff597a8a44b1",
+      "operational": {
+        "interest": 0,
+        "penalty": 346,
+        "principal": 5918817
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 274,
+        "principal": 5819538
+      },
+      "loan_id": "18022fb9-43fb-5800-89b0-acc0945cd393",
+      "operational": {
+        "interest": 0,
+        "penalty": 274,
+        "principal": 5819538
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 782,
+        "principal": 10691850
+      },
+      "loan_id": "181ed741-233c-57d8-be56-cd0028f73083",
+      "operational": {
+        "interest": 0,
+        "penalty": 782,
+        "principal": 10691850
+      }
+    },
+    {
+      "ledger": {
+        "interest": 36735,
+        "penalty": 1748,
+        "principal": 11057600
+      },
+      "loan_id": "18786a94-0664-53a4-affe-92546f52f379",
+      "operational": {
+        "interest": 36735,
+        "penalty": 1748,
+        "principal": 11057600
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 760,
+        "principal": 10257630
+      },
+      "loan_id": "1908339b-ad47-55cf-aa39-e3a5cbe81dd1",
+      "operational": {
+        "interest": 0,
+        "penalty": 760,
+        "principal": 10257630
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 364,
+        "principal": 6538557
+      },
+      "loan_id": "19764e17-9830-55fb-bf95-4ad8f4c0fa47",
+      "operational": {
+        "interest": 0,
+        "penalty": 364,
+        "principal": 6538557
+      }
+    },
+    {
+      "ledger": {
+        "interest": 34537,
+        "penalty": 1496,
+        "principal": 11345093
+      },
+      "loan_id": "19902480-6936-59a9-87d8-5e9bb026f024",
+      "operational": {
+        "interest": 34537,
+        "penalty": 1496,
+        "principal": 11345093
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 504,
+        "principal": 7508216
+      },
+      "loan_id": "1bd781d6-15d3-53b6-8c98-2062c41a0c9b",
+      "operational": {
+        "interest": 0,
+        "penalty": 504,
+        "principal": 7508216
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 178,
+        "principal": 4129651
+      },
+      "loan_id": "1dd8c101-ed5d-5164-9ea2-22531c7c6977",
+      "operational": {
+        "interest": 0,
+        "penalty": 178,
+        "principal": 4129651
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 1000,
+        "principal": 6980830
+      },
+      "loan_id": "1e8e0410-8092-5e53-879c-28db78988638",
+      "operational": {
+        "interest": 0,
+        "penalty": 1000,
+        "principal": 6980830
+      }
+    },
+    {
+      "ledger": {
+        "interest": 33808,
+        "penalty": 1384,
+        "principal": 10264782
+      },
+      "loan_id": "1f9ad1b2-8a6a-5149-b54a-ac99f3dc8594",
+      "operational": {
+        "interest": 33808,
+        "penalty": 1384,
+        "principal": 10264782
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 174,
+        "principal": 4420454
+      },
+      "loan_id": "1fa7343c-3be5-5f40-98b6-d949ddbcddd6",
+      "operational": {
+        "interest": 0,
+        "penalty": 174,
+        "principal": 4420454
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 284,
+        "principal": 7254484
+      },
+      "loan_id": "2139adae-c225-5775-955c-0815ed265701",
+      "operational": {
+        "interest": 0,
+        "penalty": 284,
+        "principal": 7254484
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 365,
+        "principal": 7283766
+      },
+      "loan_id": "21829e72-b425-5029-933a-82ed85f01bf6",
+      "operational": {
+        "interest": 0,
+        "penalty": 365,
+        "principal": 7283766
+      }
+    },
+    {
+      "ledger": {
+        "interest": 46938,
+        "penalty": 2028,
+        "principal": 14657405
+      },
+      "loan_id": "21a037e3-822e-5e9e-9ede-115b5eda8a95",
+      "operational": {
+        "interest": 46938,
+        "penalty": 2028,
+        "principal": 14657405
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 230,
+        "principal": 3869890
+      },
+      "loan_id": "2229d304-ee10-5335-b816-3d286d316ad5",
+      "operational": {
+        "interest": 0,
+        "penalty": 230,
+        "principal": 3869890
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 354,
+        "principal": 6501940
+      },
+      "loan_id": "22afbb57-4cd3-5025-a4da-6c86eb9592b6",
+      "operational": {
+        "interest": 0,
+        "penalty": 354,
+        "principal": 6501940
+      }
+    },
+    {
+      "ledger": {
+        "interest": 7479,
+        "penalty": 808,
+        "principal": 13925446
+      },
+      "loan_id": "22cf9e0b-5c81-5db0-b4fb-d50aec473414",
+      "operational": {
+        "interest": 7479,
+        "penalty": 808,
+        "principal": 13925446
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 566,
+        "principal": 8101960
+      },
+      "loan_id": "23000724-be71-5fd4-ace1-efed23bf5239",
+      "operational": {
+        "interest": 0,
+        "penalty": 566,
+        "principal": 8101960
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 815,
+        "principal": 13951226
+      },
+      "loan_id": "2546cd11-5274-5ba8-badf-21efe1dc6905",
+      "operational": {
+        "interest": 0,
+        "penalty": 815,
+        "principal": 13951226
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 530,
+        "principal": 8571706
+      },
+      "loan_id": "25ff2dbb-0a59-5414-a9fc-e474ce5cc40b",
+      "operational": {
+        "interest": 0,
+        "penalty": 530,
+        "principal": 8571706
+      }
+    },
+    {
+      "ledger": {
+        "interest": 66175,
+        "penalty": 1740,
+        "principal": 11540900
+      },
+      "loan_id": "26f12fef-0f42-5fb6-b5c8-89a0396c6d29",
+      "operational": {
+        "interest": 66175,
+        "penalty": 1740,
+        "principal": 11540900
+      }
+    },
+    {
+      "ledger": {
+        "interest": 11357,
+        "penalty": 988,
+        "principal": 8127797
+      },
+      "loan_id": "279bcb09-2b6b-50cb-a9c6-7a454bee9ccd",
+      "operational": {
+        "interest": 11357,
+        "penalty": 988,
+        "principal": 8127797
+      }
+    },
+    {
+      "ledger": {
+        "interest": 28944,
+        "penalty": 2096,
+        "principal": 13934000
+      },
+      "loan_id": "282dbe0e-44d0-5b2c-9e9c-22ade7e72fbf",
+      "operational": {
+        "interest": 28944,
+        "penalty": 2096,
+        "principal": 13934000
+      }
+    },
+    {
+      "ledger": {
+        "interest": 2775,
+        "penalty": 636,
+        "principal": 9958878
+      },
+      "loan_id": "28b8c2c9-8a91-5d5a-89c8-e96605c8e27a",
+      "operational": {
+        "interest": 2775,
+        "penalty": 636,
+        "principal": 9958878
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 360,
+        "principal": 6403102
+      },
+      "loan_id": "28dca9bb-ca9c-5320-be5d-f42425ead442",
+      "operational": {
+        "interest": 0,
+        "penalty": 360,
+        "principal": 6403102
+      }
+    },
+    {
+      "ledger": {
+        "interest": 6236,
+        "penalty": 642,
+        "principal": 11355646
+      },
+      "loan_id": "295e3a80-50f2-56f3-888a-6c469504cf16",
+      "operational": {
+        "interest": 6236,
+        "penalty": 642,
+        "principal": 11355646
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 380,
+        "principal": 4151439
+      },
+      "loan_id": "29c3efab-4293-5808-91ae-d67ba8b766db",
+      "operational": {
+        "interest": 0,
+        "penalty": 380,
+        "principal": 4151439
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 1046,
+        "principal": 14246853
+      },
+      "loan_id": "2a516b87-a64b-5ccc-96e6-709729ea784a",
+      "operational": {
+        "interest": 0,
+        "penalty": 1046,
+        "principal": 14246853
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 326,
+        "principal": 6325114
+      },
+      "loan_id": "2b05a4e2-b2f8-510b-b32f-3b5ac1108c08",
+      "operational": {
+        "interest": 0,
+        "penalty": 326,
+        "principal": 6325114
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 218,
+        "principal": 4880188
+      },
+      "loan_id": "2c7b9b3a-dd54-5997-bd0a-38b309706e62",
+      "operational": {
+        "interest": 0,
+        "penalty": 218,
+        "principal": 4880188
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 266,
+        "principal": 4840375
+      },
+      "loan_id": "2cac31c3-4cc8-569e-9265-501c1f6785fe",
+      "operational": {
+        "interest": 0,
+        "penalty": 266,
+        "principal": 4840375
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 572,
+        "principal": 5231749
+      },
+      "loan_id": "2e6a45fd-edb3-5109-baf4-455d876e36dd",
+      "operational": {
+        "interest": 0,
+        "penalty": 572,
+        "principal": 5231749
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 814,
+        "principal": 11996448
+      },
+      "loan_id": "2f679e9a-66e4-5b35-916c-9330ace6410b",
+      "operational": {
+        "interest": 0,
+        "penalty": 814,
+        "principal": 11996448
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 364,
+        "principal": 6092432
+      },
+      "loan_id": "2f7e53fc-f5ea-5d1c-8f16-760777c402c6",
+      "operational": {
+        "interest": 0,
+        "penalty": 364,
+        "principal": 6092432
+      }
+    },
+    {
+      "ledger": {
+        "interest": 19223,
+        "penalty": 932,
+        "principal": 7573849
+      },
+      "loan_id": "3052c65e-45f6-5446-8845-b2e9e1dc1b32",
+      "operational": {
+        "interest": 19223,
+        "penalty": 932,
+        "principal": 7573849
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 1736,
+        "principal": 11930252
+      },
+      "loan_id": "30f661d0-d1e6-5258-839f-0dd3dbdb9f16",
+      "operational": {
+        "interest": 0,
+        "penalty": 1736,
+        "principal": 11930252
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 144,
+        "principal": 5408795
+      },
+      "loan_id": "31dc7e89-1372-58a0-b3ab-b4be6a8dc012",
+      "operational": {
+        "interest": 0,
+        "penalty": 144,
+        "principal": 5408795
+      }
+    },
+    {
+      "ledger": {
+        "interest": 12787,
+        "penalty": 628,
+        "principal": 11685904
+      },
+      "loan_id": "3212eb56-1adc-548e-a6f1-9dd6ecfbc7d6",
+      "operational": {
+        "interest": 12787,
+        "penalty": 628,
+        "principal": 11685904
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 604,
+        "principal": 8857067
+      },
+      "loan_id": "324ff1e7-0cdc-53b3-a2db-11217dee8e75",
+      "operational": {
+        "interest": 0,
+        "penalty": 604,
+        "principal": 8857067
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 388,
+        "principal": 3971113
+      },
+      "loan_id": "32bc673a-db66-5819-9563-069a07c1f235",
+      "operational": {
+        "interest": 0,
+        "penalty": 388,
+        "principal": 3971113
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 492,
+        "principal": 4878825
+      },
+      "loan_id": "32fcd280-4576-5be1-87fc-38645c64252e",
+      "operational": {
+        "interest": 0,
+        "penalty": 492,
+        "principal": 4878825
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 424,
+        "principal": 7586722
+      },
+      "loan_id": "34146369-564b-579a-8f9e-50f41961c27f",
+      "operational": {
+        "interest": 0,
+        "penalty": 424,
+        "principal": 7586722
+      }
+    },
+    {
+      "ledger": {
+        "interest": 25109,
+        "penalty": 1316,
+        "principal": 10073642
+      },
+      "loan_id": "34a27b23-5aff-5b50-9edf-06fb2fe36f8c",
+      "operational": {
+        "interest": 25109,
+        "penalty": 1316,
+        "principal": 10073642
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 44,
+        "principal": 2464443
+      },
+      "loan_id": "35a15db5-d7f2-5e09-9296-ab52d2bfcf72",
+      "operational": {
+        "interest": 0,
+        "penalty": 44,
+        "principal": 2464443
+      }
+    },
+    {
+      "ledger": {
+        "interest": 7527,
+        "penalty": 924,
+        "principal": 7671446
+      },
+      "loan_id": "35de3dc1-6b9c-58df-83f2-0d109b274542",
+      "operational": {
+        "interest": 7527,
+        "penalty": 924,
+        "principal": 7671446
+      }
+    },
+    {
+      "ledger": {
+        "interest": 28041,
+        "penalty": 858,
+        "principal": 12275375
+      },
+      "loan_id": "3643d1af-6795-5c08-a60d-dcbd8cb86226",
+      "operational": {
+        "interest": 28041,
+        "penalty": 858,
+        "principal": 12275375
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 180,
+        "principal": 3237297
+      },
+      "loan_id": "36767d44-bcd3-50d1-88f5-71bb183efca2",
+      "operational": {
+        "interest": 0,
+        "penalty": 180,
+        "principal": 3237297
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 714,
+        "principal": 11043731
+      },
+      "loan_id": "36cc79fd-4e10-5d7f-a5f8-62167dbd4789",
+      "operational": {
+        "interest": 0,
+        "penalty": 714,
+        "principal": 11043731
+      }
+    },
+    {
+      "ledger": {
+        "interest": 3082,
+        "penalty": 1988,
+        "principal": 13364100
+      },
+      "loan_id": "37f708e0-e73b-5f96-b080-546dd1f15df6",
+      "operational": {
+        "interest": 3082,
+        "penalty": 1988,
+        "principal": 13364100
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 65,
+        "principal": 3824041
+      },
+      "loan_id": "388dc453-e959-5810-98fd-7f57e537271d",
+      "operational": {
+        "interest": 0,
+        "penalty": 65,
+        "principal": 3824041
+      }
+    },
+    {
+      "ledger": {
+        "interest": 45127,
+        "penalty": 2092,
+        "principal": 14863486
+      },
+      "loan_id": "38beb9ca-b3a4-5065-a7b9-7cf71c4273bf",
+      "operational": {
+        "interest": 45127,
+        "penalty": 2092,
+        "principal": 14863486
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 544,
+        "principal": 8501894
+      },
+      "loan_id": "395a4552-b6cd-5845-a70d-287aab7dfeb7",
+      "operational": {
+        "interest": 0,
+        "penalty": 544,
+        "principal": 8501894
+      }
+    },
+    {
+      "ledger": {
+        "interest": 61380,
+        "penalty": 1824,
+        "principal": 11930000
+      },
+      "loan_id": "3a71801c-b650-5a1e-811e-3ea34ab22d79",
+      "operational": {
+        "interest": 61380,
+        "penalty": 1824,
+        "principal": 11930000
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 406,
+        "principal": 6565101
+      },
+      "loan_id": "3b77e754-5e19-5a53-a932-3ed69ff57397",
+      "operational": {
+        "interest": 0,
+        "penalty": 406,
+        "principal": 6565101
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 620,
+        "principal": 8421402
+      },
+      "loan_id": "3ba4939f-647a-5816-97e2-634b9ddb33c4",
+      "operational": {
+        "interest": 0,
+        "penalty": 620,
+        "principal": 8421402
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 292,
+        "principal": 3545940
+      },
+      "loan_id": "3c219bae-b4b2-5f7d-a414-c3820b028354",
+      "operational": {
+        "interest": 0,
+        "penalty": 292,
+        "principal": 3545940
+      }
+    },
+    {
+      "ledger": {
+        "interest": 17540,
+        "penalty": 2160,
+        "principal": 14465100
+      },
+      "loan_id": "3f298a58-c880-5ebe-a1fb-bd8523da45c2",
+      "operational": {
+        "interest": 17540,
+        "penalty": 2160,
+        "principal": 14465100
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 272,
+        "principal": 5356140
+      },
+      "loan_id": "3fce8b93-0f5c-5263-a655-dd17e668ff0b",
+      "operational": {
+        "interest": 0,
+        "penalty": 272,
+        "principal": 5356140
+      }
+    },
+    {
+      "ledger": {
+        "interest": 22900,
+        "penalty": 1320,
+        "principal": 8881700
+      },
+      "loan_id": "3fd47509-c987-558d-9652-f8390906c65c",
+      "operational": {
+        "interest": 22900,
+        "penalty": 1320,
+        "principal": 8881700
+      }
+    },
+    {
+      "ledger": {
+        "interest": 36252,
+        "penalty": 1728,
+        "principal": 12817759
+      },
+      "loan_id": "3fddd5b8-4b30-5af3-8d97-9434180570f6",
+      "operational": {
+        "interest": 36252,
+        "penalty": 1728,
+        "principal": 12817759
+      }
+    },
+    {
+      "ledger": {
+        "interest": 24394,
+        "penalty": 1172,
+        "principal": 9382947
+      },
+      "loan_id": "3fe22656-7265-57be-be74-3f40394f503d",
+      "operational": {
+        "interest": 24394,
+        "penalty": 1172,
+        "principal": 9382947
+      }
+    },
+    {
+      "ledger": {
+        "interest": 36378,
+        "penalty": 1328,
+        "principal": 10272739
+      },
+      "loan_id": "40c14a6e-561e-58a9-af36-b0a5cd6c76fa",
+      "operational": {
+        "interest": 36378,
+        "penalty": 1328,
+        "principal": 10272739
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 267,
+        "principal": 6172203
+      },
+      "loan_id": "4114bbd7-1fc5-5778-9336-b5d04278ec42",
+      "operational": {
+        "interest": 0,
+        "penalty": 267,
+        "principal": 6172203
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 734,
+        "principal": 11063713
+      },
+      "loan_id": "411f6652-40e3-5f79-898b-828d81cf459c",
+      "operational": {
+        "interest": 0,
+        "penalty": 734,
+        "principal": 11063713
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 706,
+        "principal": 10406462
+      },
+      "loan_id": "4163625e-df7e-5544-a6b6-8c48a1d57461",
+      "operational": {
+        "interest": 0,
+        "penalty": 706,
+        "principal": 10406462
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 830,
+        "principal": 11708069
+      },
+      "loan_id": "42a102d3-121f-5fd8-99a7-fb4da92d287c",
+      "operational": {
+        "interest": 0,
+        "penalty": 830,
+        "principal": 11708069
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 1096,
+        "principal": 14857532
+      },
+      "loan_id": "42d500c0-f07c-53cd-8413-f1c8e40c1854",
+      "operational": {
+        "interest": 0,
+        "penalty": 1096,
+        "principal": 14857532
+      }
+    },
+    {
+      "ledger": {
+        "interest": 44145,
+        "penalty": 1556,
+        "principal": 11734543
+      },
+      "loan_id": "4302ef69-dd74-5bbb-9b09-9e9212f2d429",
+      "operational": {
+        "interest": 44145,
+        "penalty": 1556,
+        "principal": 11734543
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 658,
+        "principal": 9943864
+      },
+      "loan_id": "43094d7e-afd4-56a8-9aed-cb53e31b4723",
+      "operational": {
+        "interest": 0,
+        "penalty": 658,
+        "principal": 9943864
+      }
+    },
+    {
+      "ledger": {
+        "interest": 39226,
+        "penalty": 836,
+        "principal": 10920000
+      },
+      "loan_id": "43ef3989-8961-5d70-8da7-325824ad17a4",
+      "operational": {
+        "interest": 39226,
+        "penalty": 836,
+        "principal": 10920000
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 80,
+        "principal": 3014018
+      },
+      "loan_id": "443a8dc3-fd3d-5594-a8e8-e80f8b7b79d0",
+      "operational": {
+        "interest": 0,
+        "penalty": 80,
+        "principal": 3014018
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 528,
+        "principal": 8318527
+      },
+      "loan_id": "4533ebf0-631b-5562-a798-312ab9341dd7",
+      "operational": {
+        "interest": 0,
+        "penalty": 528,
+        "principal": 8318527
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 154,
+        "principal": 3710618
+      },
+      "loan_id": "45581c90-05b6-5fb5-b30c-db490180e123",
+      "operational": {
+        "interest": 0,
+        "penalty": 154,
+        "principal": 3710618
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 896,
+        "principal": 12779287
+      },
+      "loan_id": "45734164-e0b6-5f72-abe3-3a3d2af0c7f0",
+      "operational": {
+        "interest": 0,
+        "penalty": 896,
+        "principal": 12779287
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 196,
+        "principal": 4847896
+      },
+      "loan_id": "45f035f2-57f7-5df6-86eb-18dee5d37923",
+      "operational": {
+        "interest": 0,
+        "penalty": 196,
+        "principal": 4847896
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 272,
+        "principal": 3160934
+      },
+      "loan_id": "467cd38c-a235-5625-9d55-9fdff90ce7aa",
+      "operational": {
+        "interest": 0,
+        "penalty": 272,
+        "principal": 3160934
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 702,
+        "principal": 9831385
+      },
+      "loan_id": "478715ad-64c8-5182-8b34-a0e1e1da107d",
+      "operational": {
+        "interest": 0,
+        "penalty": 702,
+        "principal": 9831385
+      }
+    },
+    {
+      "ledger": {
+        "interest": 4252,
+        "penalty": 1768,
+        "principal": 11781500
+      },
+      "loan_id": "484e8c11-2e02-5e04-8afe-62de94f07b45",
+      "operational": {
+        "interest": 4252,
+        "penalty": 1768,
+        "principal": 11781500
+      }
+    },
+    {
+      "ledger": {
+        "interest": 32370,
+        "penalty": 1456,
+        "principal": 9611300
+      },
+      "loan_id": "48f48dd8-1095-5906-be49-d10e83c8f9be",
+      "operational": {
+        "interest": 32370,
+        "penalty": 1456,
+        "principal": 9611300
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 400,
+        "principal": 7142521
+      },
+      "loan_id": "4928a75e-04f4-5ea2-880c-7e731deb6391",
+      "operational": {
+        "interest": 0,
+        "penalty": 400,
+        "principal": 7142521
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 1208,
+        "principal": 8673907
+      },
+      "loan_id": "493bd7da-1b0d-5dd4-a1fa-9ffcf35d2b3d",
+      "operational": {
+        "interest": 0,
+        "penalty": 1208,
+        "principal": 8673907
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 478,
+        "principal": 8370385
+      },
+      "loan_id": "4b80a937-7f1c-541f-be43-4d01b3f1fbbd",
+      "operational": {
+        "interest": 0,
+        "penalty": 478,
+        "principal": 8370385
+      }
+    },
+    {
+      "ledger": {
+        "interest": 63105,
+        "penalty": 1644,
+        "principal": 10878400
+      },
+      "loan_id": "4cba1026-2f47-5826-b2e1-b43e42c4db90",
+      "operational": {
+        "interest": 63105,
+        "penalty": 1644,
+        "principal": 10878400
+      }
+    },
+    {
+      "ledger": {
+        "interest": 29485,
+        "penalty": 1000,
+        "principal": 8420541
+      },
+      "loan_id": "4ceb5379-fa3d-5cf6-8b36-790305e630b9",
+      "operational": {
+        "interest": 29485,
+        "penalty": 1000,
+        "principal": 8420541
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 444,
+        "principal": 4633693
+      },
+      "loan_id": "4dedcfb5-3c41-5158-9f6e-3e53490edc07",
+      "operational": {
+        "interest": 0,
+        "penalty": 444,
+        "principal": 4633693
+      }
+    },
+    {
+      "ledger": {
+        "interest": 29518,
+        "penalty": 948,
+        "principal": 12295500
+      },
+      "loan_id": "50f9fe09-2d70-5c63-a7ba-f382868431c4",
+      "operational": {
+        "interest": 29518,
+        "penalty": 948,
+        "principal": 12295500
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 1924,
+        "principal": 13102172
+      },
+      "loan_id": "5135f3c3-5b9a-5f4f-a419-f0e12e357f15",
+      "operational": {
+        "interest": 0,
+        "penalty": 1924,
+        "principal": 13102172
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 814,
+        "principal": 12472510
+      },
+      "loan_id": "52671510-c1bf-51e2-9fbb-14768626a97b",
+      "operational": {
+        "interest": 0,
+        "penalty": 814,
+        "principal": 12472510
+      }
+    },
+    {
+      "ledger": {
+        "interest": 8159,
+        "penalty": 674,
+        "principal": 8997200
+      },
+      "loan_id": "526e2e55-df27-520e-a484-b1a780ca79d0",
+      "operational": {
+        "interest": 8159,
+        "penalty": 674,
+        "principal": 8997200
+      }
+    },
+    {
+      "ledger": {
+        "interest": 114455,
+        "penalty": 2324,
+        "principal": 14865300
+      },
+      "loan_id": "52de0150-237e-5651-ac2e-b78a291d78c9",
+      "operational": {
+        "interest": 114455,
+        "penalty": 2324,
+        "principal": 14865300
+      }
+    },
+    {
+      "ledger": {
+        "interest": 38206,
+        "penalty": 1016,
+        "principal": 12923700
+      },
+      "loan_id": "535ca10d-24b1-5e6d-ba89-b09268bf5880",
+      "operational": {
+        "interest": 38206,
+        "penalty": 1016,
+        "principal": 12923700
+      }
+    },
+    {
+      "ledger": {
+        "interest": 8735,
+        "penalty": 908,
+        "principal": 7404489
+      },
+      "loan_id": "53c67bcb-f413-5320-8c42-1f34f12fb1a6",
+      "operational": {
+        "interest": 8735,
+        "penalty": 908,
+        "principal": 7404489
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 380,
+        "principal": 4593199
+      },
+      "loan_id": "53ed0e89-fc38-54b3-beb6-e897a481dd88",
+      "operational": {
+        "interest": 0,
+        "penalty": 380,
+        "principal": 4593199
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 966,
+        "principal": 13992074
+      },
+      "loan_id": "54e5f73c-82de-5ecf-92c9-22537c79aecf",
+      "operational": {
+        "interest": 0,
+        "penalty": 966,
+        "principal": 13992074
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 522,
+        "principal": 8609846
+      },
+      "loan_id": "5512c572-6113-5bb4-b38b-8ebb89901b16",
+      "operational": {
+        "interest": 0,
+        "penalty": 522,
+        "principal": 8609846
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 796,
+        "principal": 5797108
+      },
+      "loan_id": "555994c8-bbdb-53da-9b84-13a74de164de",
+      "operational": {
+        "interest": 0,
+        "penalty": 796,
+        "principal": 5797108
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 278,
+        "principal": 5583166
+      },
+      "loan_id": "57253f51-32b9-5fbb-862b-b5edeadf6eea",
+      "operational": {
+        "interest": 0,
+        "penalty": 278,
+        "principal": 5583166
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 147,
+        "principal": 5926230
+      },
+      "loan_id": "58d49f6f-e2df-54af-ab48-cb0869e56e53",
+      "operational": {
+        "interest": 0,
+        "penalty": 147,
+        "principal": 5926230
+      }
+    },
+    {
+      "ledger": {
+        "interest": 52449,
+        "penalty": 1980,
+        "principal": 14236391
+      },
+      "loan_id": "5946bdf2-35f0-5810-9f16-74aab7395fb4",
+      "operational": {
+        "interest": 52449,
+        "penalty": 1980,
+        "principal": 14236391
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 484,
+        "principal": 4894718
+      },
+      "loan_id": "597a1c30-d2ed-5965-a49f-a167106316dd",
+      "operational": {
+        "interest": 0,
+        "penalty": 484,
+        "principal": 4894718
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 325,
+        "principal": 8289486
+      },
+      "loan_id": "5995912b-4fca-5ed0-8dcb-62baf059829a",
+      "operational": {
+        "interest": 0,
+        "penalty": 325,
+        "principal": 8289486
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 520,
+        "principal": 7871399
+      },
+      "loan_id": "5a1a0663-49b0-5f63-856d-e35333838eca",
+      "operational": {
+        "interest": 0,
+        "penalty": 520,
+        "principal": 7871399
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 0,
+        "principal": 2509737
+      },
+      "loan_id": "5a1b39dd-c877-57ab-ae5c-2abfacdb9dd5",
+      "operational": {
+        "interest": 0,
+        "penalty": 0,
+        "principal": 2509737
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 538,
+        "principal": 8569503
+      },
+      "loan_id": "5a45b741-4442-5c0d-9817-5354068c340e",
+      "operational": {
+        "interest": 0,
+        "penalty": 538,
+        "principal": 8569503
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 484,
+        "principal": 7935282
+      },
+      "loan_id": "5b5110ef-8462-544f-a8ee-70ba90c15c86",
+      "operational": {
+        "interest": 0,
+        "penalty": 484,
+        "principal": 7935282
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 320,
+        "principal": 3634972
+      },
+      "loan_id": "5ee02a7c-c064-5346-be60-b384def8f86d",
+      "operational": {
+        "interest": 0,
+        "penalty": 320,
+        "principal": 3634972
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 234,
+        "principal": 5447754
+      },
+      "loan_id": "605fd86f-17de-56e9-b8da-2a2d0fbf6fa2",
+      "operational": {
+        "interest": 0,
+        "penalty": 234,
+        "principal": 5447754
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 836,
+        "principal": 12332289
+      },
+      "loan_id": "610d1c9c-9892-5bac-a62e-87d3ce462575",
+      "operational": {
+        "interest": 0,
+        "penalty": 836,
+        "principal": 12332289
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 500,
+        "principal": 8918779
+      },
+      "loan_id": "61841ed5-e488-51c1-8db6-24e12f401967",
+      "operational": {
+        "interest": 0,
+        "penalty": 500,
+        "principal": 8918779
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 608,
+        "principal": 4749394
+      },
+      "loan_id": "622d0751-1fc6-5b5a-a98b-e1b1b5c1ce5c",
+      "operational": {
+        "interest": 0,
+        "penalty": 608,
+        "principal": 4749394
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 592,
+        "principal": 9619919
+      },
+      "loan_id": "62866b40-8db9-5ef2-8b22-496e0e7cfafc",
+      "operational": {
+        "interest": 0,
+        "penalty": 592,
+        "principal": 9619919
+      }
+    },
+    {
+      "ledger": {
+        "interest": 15750,
+        "penalty": 870,
+        "principal": 12779100
+      },
+      "loan_id": "62e4031e-4a92-5c3e-ad57-d21b9371788a",
+      "operational": {
+        "interest": 15750,
+        "penalty": 870,
+        "principal": 12779100
+      }
+    },
+    {
+      "ledger": {
+        "interest": 21448,
+        "penalty": 962,
+        "principal": 13977714
+      },
+      "loan_id": "630378da-e135-5971-b24f-aebdd3bfb226",
+      "operational": {
+        "interest": 21448,
+        "penalty": 962,
+        "principal": 13977714
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 0,
+        "principal": 2287842
+      },
+      "loan_id": "643430eb-3ee4-5c40-90cb-bcabbc98c6c4",
+      "operational": {
+        "interest": 0,
+        "penalty": 0,
+        "principal": 2287842
+      }
+    },
+    {
+      "ledger": {
+        "interest": 67910,
+        "penalty": 1808,
+        "principal": 11528400
+      },
+      "loan_id": "6626c526-5013-5fa1-8b3a-44d397ebaa14",
+      "operational": {
+        "interest": 67910,
+        "penalty": 1808,
+        "principal": 11528400
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 298,
+        "principal": 6871330
+      },
+      "loan_id": "665c6b70-201c-551b-b399-42315c70cd77",
+      "operational": {
+        "interest": 0,
+        "penalty": 298,
+        "principal": 6871330
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 48,
+        "principal": 3613444
+      },
+      "loan_id": "66f0ea31-865b-59bb-8981-4312f323f374",
+      "operational": {
+        "interest": 0,
+        "penalty": 48,
+        "principal": 3613444
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 292,
+        "principal": 6195759
+      },
+      "loan_id": "66f91ac5-a58a-5fbc-a1e1-e8039a011971",
+      "operational": {
+        "interest": 0,
+        "penalty": 292,
+        "principal": 6195759
+      }
+    },
+    {
+      "ledger": {
+        "interest": 10077,
+        "penalty": 1022,
+        "principal": 14747672
+      },
+      "loan_id": "67cca6b4-6be1-5b51-b26c-77c21c384700",
+      "operational": {
+        "interest": 10077,
+        "penalty": 1022,
+        "principal": 14747672
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 691,
+        "principal": 11014697
+      },
+      "loan_id": "681692d6-45ea-5db3-8a91-bbea5ea911c8",
+      "operational": {
+        "interest": 0,
+        "penalty": 691,
+        "principal": 11014697
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 451,
+        "principal": 9645810
+      },
+      "loan_id": "6943769e-19c8-5530-8dc5-4baa3b9a301e",
+      "operational": {
+        "interest": 0,
+        "penalty": 451,
+        "principal": 9645810
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 96,
+        "principal": 4622530
+      },
+      "loan_id": "6a035210-d408-59a3-bc84-6fccbd5420d9",
+      "operational": {
+        "interest": 0,
+        "penalty": 96,
+        "principal": 4622530
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 816,
+        "principal": 11602607
+      },
+      "loan_id": "6a46fe47-6266-5e1a-8a75-697becc96717",
+      "operational": {
+        "interest": 0,
+        "penalty": 816,
+        "principal": 11602607
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 94,
+        "principal": 3238289
+      },
+      "loan_id": "6a496db9-0a88-534f-a213-eb3f3555a068",
+      "operational": {
+        "interest": 0,
+        "penalty": 94,
+        "principal": 3238289
+      }
+    },
+    {
+      "ledger": {
+        "interest": 1530,
+        "penalty": 232,
+        "principal": 3522551
+      },
+      "loan_id": "6b277849-ab62-5cf7-a5ff-ad62871dfa89",
+      "operational": {
+        "interest": 1530,
+        "penalty": 232,
+        "principal": 3522551
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 914,
+        "principal": 14444885
+      },
+      "loan_id": "6b3e0ef4-9e8b-52a4-8269-ab3d71eef31f",
+      "operational": {
+        "interest": 0,
+        "penalty": 914,
+        "principal": 14444885
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 1076,
+        "principal": 14801422
+      },
+      "loan_id": "6d15ee04-b31e-5514-82a5-f97a2b070ccd",
+      "operational": {
+        "interest": 0,
+        "penalty": 1076,
+        "principal": 14801422
+      }
+    },
+    {
+      "ledger": {
+        "interest": 19664,
+        "penalty": 776,
+        "principal": 6969973
+      },
+      "loan_id": "6d6836c3-3018-523d-a831-ff794cf75b12",
+      "operational": {
+        "interest": 19664,
+        "penalty": 776,
+        "principal": 6969973
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 432,
+        "principal": 6537424
+      },
+      "loan_id": "6db1cea3-8f59-5ea7-9cb7-2c50775a9fa0",
+      "operational": {
+        "interest": 0,
+        "penalty": 432,
+        "principal": 6537424
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 878,
+        "principal": 12979078
+      },
+      "loan_id": "6dd58853-8c27-53e1-8d52-b1d312804a76",
+      "operational": {
+        "interest": 0,
+        "penalty": 878,
+        "principal": 12979078
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 116,
+        "principal": 3801560
+      },
+      "loan_id": "70644768-3446-5274-ab35-54ee33b8a683",
+      "operational": {
+        "interest": 0,
+        "penalty": 116,
+        "principal": 3801560
+      }
+    },
+    {
+      "ledger": {
+        "interest": 17406,
+        "penalty": 674,
+        "principal": 10559900
+      },
+      "loan_id": "713c6a19-2758-5a65-81cd-b4a5615a88f1",
+      "operational": {
+        "interest": 17406,
+        "penalty": 674,
+        "principal": 10559900
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 464,
+        "principal": 4137865
+      },
+      "loan_id": "7169e4ba-9272-5aad-a874-63bfb27968b5",
+      "operational": {
+        "interest": 0,
+        "penalty": 464,
+        "principal": 4137865
+      }
+    },
+    {
+      "ledger": {
+        "interest": 31065,
+        "penalty": 1572,
+        "principal": 10246100
+      },
+      "loan_id": "718ff16b-ee4c-5b30-823f-fec0ad0f0644",
+      "operational": {
+        "interest": 31065,
+        "penalty": 1572,
+        "principal": 10246100
+      }
+    },
+    {
+      "ledger": {
+        "interest": 24740,
+        "penalty": 912,
+        "principal": 7628345
+      },
+      "loan_id": "71eb1bcd-a792-55a6-be71-f4969eb0d2ac",
+      "operational": {
+        "interest": 24740,
+        "penalty": 912,
+        "principal": 7628345
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 10,
+        "principal": 2686076
+      },
+      "loan_id": "723985a2-f77b-572e-8fe6-d386d68ff92b",
+      "operational": {
+        "interest": 0,
+        "penalty": 10,
+        "principal": 2686076
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 182,
+        "principal": 5469412
+      },
+      "loan_id": "727ac142-583c-516c-ae82-c97742aac09a",
+      "operational": {
+        "interest": 0,
+        "penalty": 182,
+        "principal": 5469412
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 600,
+        "principal": 5753405
+      },
+      "loan_id": "7295e12a-c4fd-56d6-bd24-6248a3f9f7ba",
+      "operational": {
+        "interest": 0,
+        "penalty": 600,
+        "principal": 5753405
+      }
+    },
+    {
+      "ledger": {
+        "interest": 27209,
+        "penalty": 820,
+        "principal": 12284800
+      },
+      "loan_id": "730eefdb-54a8-5371-86e4-ef61eace6908",
+      "operational": {
+        "interest": 27209,
+        "penalty": 820,
+        "principal": 12284800
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 105,
+        "principal": 5157198
+      },
+      "loan_id": "731dde6b-ace8-54f9-8d0a-a9726bdb339f",
+      "operational": {
+        "interest": 0,
+        "penalty": 105,
+        "principal": 5157198
+      }
+    },
+    {
+      "ledger": {
+        "interest": 20095,
+        "penalty": 870,
+        "principal": 11419900
+      },
+      "loan_id": "73d85134-094a-51a6-9d1e-21ccf1b3c89b",
+      "operational": {
+        "interest": 20095,
+        "penalty": 870,
+        "principal": 11419900
+      }
+    },
+    {
+      "ledger": {
+        "interest": 16753,
+        "penalty": 958,
+        "principal": 12637000
+      },
+      "loan_id": "745e2a73-909d-580d-a4a0-7a3bad824e19",
+      "operational": {
+        "interest": 16753,
+        "penalty": 958,
+        "principal": 12637000
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 228,
+        "principal": 3346557
+      },
+      "loan_id": "74a0507e-6f18-5a76-8a17-a04346d67bce",
+      "operational": {
+        "interest": 0,
+        "penalty": 228,
+        "principal": 3346557
+      }
+    },
+    {
+      "ledger": {
+        "interest": 28625,
+        "penalty": 1024,
+        "principal": 8237101
+      },
+      "loan_id": "74d62138-1c38-5e35-89a1-15fb0ccbeb78",
+      "operational": {
+        "interest": 28625,
+        "penalty": 1024,
+        "principal": 8237101
+      }
+    },
+    {
+      "ledger": {
+        "interest": 52586,
+        "penalty": 896,
+        "principal": 11428700
+      },
+      "loan_id": "7584cb1d-0fb5-50ab-b423-46aa579b7deb",
+      "operational": {
+        "interest": 52586,
+        "penalty": 896,
+        "principal": 11428700
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 1030,
+        "principal": 14608615
+      },
+      "loan_id": "75e3c7c4-1cc2-5079-b386-5489402c84da",
+      "operational": {
+        "interest": 0,
+        "penalty": 1030,
+        "principal": 14608615
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 188,
+        "principal": 4627333
+      },
+      "loan_id": "769b4286-7540-5447-9955-a02b0edb14e9",
+      "operational": {
+        "interest": 0,
+        "penalty": 188,
+        "principal": 4627333
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 718,
+        "principal": 9582226
+      },
+      "loan_id": "77224015-2ef2-5ba8-99c8-b68523d5ba34",
+      "operational": {
+        "interest": 0,
+        "penalty": 718,
+        "principal": 9582226
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 352,
+        "principal": 5905776
+      },
+      "loan_id": "7722f487-11d7-582e-b565-8e65e754c8d3",
+      "operational": {
+        "interest": 0,
+        "penalty": 352,
+        "principal": 5905776
+      }
+    },
+    {
+      "ledger": {
+        "interest": 35770,
+        "penalty": 1456,
+        "principal": 9684000
+      },
+      "loan_id": "78083f00-d745-52dd-aa32-53997223f6cb",
+      "operational": {
+        "interest": 35770,
+        "penalty": 1456,
+        "principal": 9684000
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 718,
+        "principal": 10767979
+      },
+      "loan_id": "788e933e-5541-5b6c-b843-a0907ea5c31f",
+      "operational": {
+        "interest": 0,
+        "penalty": 718,
+        "principal": 10767979
+      }
+    },
+    {
+      "ledger": {
+        "interest": 23133,
+        "penalty": 920,
+        "principal": 7650327
+      },
+      "loan_id": "793de71e-cb64-5743-853c-2b2b8460786b",
+      "operational": {
+        "interest": 23133,
+        "penalty": 920,
+        "principal": 7650327
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 988,
+        "principal": 13791674
+      },
+      "loan_id": "7aeafbfc-619d-59b4-b151-1d7fdcc5fccb",
+      "operational": {
+        "interest": 0,
+        "penalty": 988,
+        "principal": 13791674
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 252,
+        "principal": 6685014
+      },
+      "loan_id": "7cb397ef-8252-58e9-830f-ebf8b336a493",
+      "operational": {
+        "interest": 0,
+        "penalty": 252,
+        "principal": 6685014
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 140,
+        "principal": 5212166
+      },
+      "loan_id": "7d65301a-b675-580c-9180-742e3265134a",
+      "operational": {
+        "interest": 0,
+        "penalty": 140,
+        "principal": 5212166
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 28,
+        "principal": 2833470
+      },
+      "loan_id": "7dbf681c-b1ab-550c-a1e9-7cd7c6d5040e",
+      "operational": {
+        "interest": 0,
+        "penalty": 28,
+        "principal": 2833470
+      }
+    },
+    {
+      "ledger": {
+        "interest": 7720,
+        "penalty": 1016,
+        "principal": 6971400
+      },
+      "loan_id": "7e3860cb-5cc1-5afe-94b5-dea69a167c0a",
+      "operational": {
+        "interest": 7720,
+        "penalty": 1016,
+        "principal": 6971400
+      }
+    },
+    {
+      "ledger": {
+        "interest": 29843,
+        "penalty": 898,
+        "principal": 11568300
+      },
+      "loan_id": "7f3598dc-f0db-5f08-a111-dd60f9fcb93a",
+      "operational": {
+        "interest": 29843,
+        "penalty": 898,
+        "principal": 11568300
+      }
+    },
+    {
+      "ledger": {
+        "interest": 9914,
+        "penalty": 748,
+        "principal": 13176671
+      },
+      "loan_id": "8072695c-d7ee-5ae7-bdd9-57c46b30d315",
+      "operational": {
+        "interest": 9914,
+        "penalty": 748,
+        "principal": 13176671
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 820,
+        "principal": 6092375
+      },
+      "loan_id": "814d3443-6bbd-5001-badf-83cee788bece",
+      "operational": {
+        "interest": 0,
+        "penalty": 820,
+        "principal": 6092375
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 1068,
+        "principal": 7335255
+      },
+      "loan_id": "81b2e73c-8090-5864-a8bc-588234d30e02",
+      "operational": {
+        "interest": 0,
+        "penalty": 1068,
+        "principal": 7335255
+      }
+    },
+    {
+      "ledger": {
+        "interest": 8255,
+        "penalty": 680,
+        "principal": 10426875
+      },
+      "loan_id": "81b44942-572d-525f-bf3e-41123b9ac173",
+      "operational": {
+        "interest": 8255,
+        "penalty": 680,
+        "principal": 10426875
+      }
+    },
+    {
+      "ledger": {
+        "interest": 11116,
+        "penalty": 1944,
+        "principal": 13030500
+      },
+      "loan_id": "82833bf8-b098-5c90-86ee-2bcb8abed4f5",
+      "operational": {
+        "interest": 11116,
+        "penalty": 1944,
+        "principal": 13030500
+      }
+    },
+    {
+      "ledger": {
+        "interest": 24985,
+        "penalty": 810,
+        "principal": 10792800
+      },
+      "loan_id": "82b7b770-af99-5f43-a8b2-854e667570f5",
+      "operational": {
+        "interest": 24985,
+        "penalty": 810,
+        "principal": 10792800
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 112,
+        "principal": 3137822
+      },
+      "loan_id": "82e57c92-b325-5aad-8571-c58c7d3773ad",
+      "operational": {
+        "interest": 0,
+        "penalty": 112,
+        "principal": 3137822
+      }
+    },
+    {
+      "ledger": {
+        "interest": 26153,
+        "penalty": 1412,
+        "principal": 10646775
+      },
+      "loan_id": "84924691-f528-56e5-814a-b28738db1bae",
+      "operational": {
+        "interest": 26153,
+        "penalty": 1412,
+        "principal": 10646775
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 194,
+        "principal": 5972752
+      },
+      "loan_id": "84ed1ff6-b070-5e3d-87c5-7312a0792eaa",
+      "operational": {
+        "interest": 0,
+        "penalty": 194,
+        "principal": 5972752
+      }
+    },
+    {
+      "ledger": {
+        "interest": 29502,
+        "penalty": 872,
+        "principal": 11275400
+      },
+      "loan_id": "8734faf9-c0bd-5761-b385-ff1183e7e051",
+      "operational": {
+        "interest": 29502,
+        "penalty": 872,
+        "principal": 11275400
+      }
+    },
+    {
+      "ledger": {
+        "interest": 28331,
+        "penalty": 926,
+        "principal": 13285900
+      },
+      "loan_id": "879e2115-a4d6-5d86-9583-9d8cc1017255",
+      "operational": {
+        "interest": 28331,
+        "penalty": 926,
+        "principal": 13285900
+      }
+    },
+    {
+      "ledger": {
+        "interest": 83030,
+        "penalty": 1984,
+        "principal": 12845300
+      },
+      "loan_id": "8863607f-26fe-58ce-aff7-8dc605c3037d",
+      "operational": {
+        "interest": 83030,
+        "penalty": 1984,
+        "principal": 12845300
+      }
+    },
+    {
+      "ledger": {
+        "interest": 60337,
+        "penalty": 982,
+        "principal": 12751700
+      },
+      "loan_id": "8959ad94-3b09-5473-baa1-9b114aa0c0f0",
+      "operational": {
+        "interest": 60337,
+        "penalty": 982,
+        "principal": 12751700
+      }
+    },
+    {
+      "ledger": {
+        "interest": 14545,
+        "penalty": 974,
+        "principal": 14265412
+      },
+      "loan_id": "8998ea1a-9ccd-56ff-8052-0f4030af589b",
+      "operational": {
+        "interest": 14545,
+        "penalty": 974,
+        "principal": 14265412
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 162,
+        "principal": 4399821
+      },
+      "loan_id": "8a496af1-8375-50d9-9389-0cdebaa400a7",
+      "operational": {
+        "interest": 0,
+        "penalty": 162,
+        "principal": 4399821
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 128,
+        "principal": 5367879
+      },
+      "loan_id": "8b84754c-19e3-5476-9c8d-cfa984bc2434",
+      "operational": {
+        "interest": 0,
+        "penalty": 128,
+        "principal": 5367879
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 532,
+        "principal": 5129489
+      },
+      "loan_id": "8bda2ca6-fe77-5b42-a069-a071d8e8387a",
+      "operational": {
+        "interest": 0,
+        "penalty": 532,
+        "principal": 5129489
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 303,
+        "principal": 7198815
+      },
+      "loan_id": "8c5247ce-4de6-56a5-9416-6e7b30a2a513",
+      "operational": {
+        "interest": 0,
+        "penalty": 303,
+        "principal": 7198815
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 1832,
+        "principal": 12651724
+      },
+      "loan_id": "8d2e4f18-40e5-54f4-874a-ce8d3e53f3fc",
+      "operational": {
+        "interest": 0,
+        "penalty": 1832,
+        "principal": 12651724
+      }
+    },
+    {
+      "ledger": {
+        "interest": 7292,
+        "penalty": 818,
+        "principal": 12440442
+      },
+      "loan_id": "8d91c798-09bb-5b96-90ef-4e3a9ee67dbb",
+      "operational": {
+        "interest": 7292,
+        "penalty": 818,
+        "principal": 12440442
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 1540,
+        "principal": 10755952
+      },
+      "loan_id": "8ddca072-4aab-540e-bf92-3e8266356166",
+      "operational": {
+        "interest": 0,
+        "penalty": 1540,
+        "principal": 10755952
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 464,
+        "principal": 7968440
+      },
+      "loan_id": "8e50cad6-96ed-53f3-b161-5dafda236fdf",
+      "operational": {
+        "interest": 0,
+        "penalty": 464,
+        "principal": 7968440
+      }
+    },
+    {
+      "ledger": {
+        "interest": 47875,
+        "penalty": 714,
+        "principal": 11207800
+      },
+      "loan_id": "8e5faaac-5d33-5000-9761-e6290406cee6",
+      "operational": {
+        "interest": 47875,
+        "penalty": 714,
+        "principal": 11207800
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 1328,
+        "principal": 9525765
+      },
+      "loan_id": "8e6a13c0-7156-53ac-91e7-ae5f12559bf1",
+      "operational": {
+        "interest": 0,
+        "penalty": 1328,
+        "principal": 9525765
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 170,
+        "principal": 4546183
+      },
+      "loan_id": "8ec12844-1aa1-593f-9f39-edcfa3202e6e",
+      "operational": {
+        "interest": 0,
+        "penalty": 170,
+        "principal": 4546183
+      }
+    },
+    {
+      "ledger": {
+        "interest": 30678,
+        "penalty": 1384,
+        "principal": 10559265
+      },
+      "loan_id": "90395053-be4a-5a97-9e24-585dfffdd4fe",
+      "operational": {
+        "interest": 30678,
+        "penalty": 1384,
+        "principal": 10559265
+      }
+    },
+    {
+      "ledger": {
+        "interest": 59774,
+        "penalty": 1164,
+        "principal": 14675500
+      },
+      "loan_id": "904bb5fc-1cab-58b7-85d2-633c1976d4b8",
+      "operational": {
+        "interest": 59774,
+        "penalty": 1164,
+        "principal": 14675500
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 374,
+        "principal": 5965293
+      },
+      "loan_id": "9083e49d-885b-5109-b017-c2dce614bce9",
+      "operational": {
+        "interest": 0,
+        "penalty": 374,
+        "principal": 5965293
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 248,
+        "principal": 6848545
+      },
+      "loan_id": "90d8bcfa-860d-52c4-a19e-e4cd7d97cb1c",
+      "operational": {
+        "interest": 0,
+        "penalty": 248,
+        "principal": 6848545
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 238,
+        "principal": 5315059
+      },
+      "loan_id": "917bda97-ea14-5faf-a1b4-36d8fe67ba04",
+      "operational": {
+        "interest": 0,
+        "penalty": 238,
+        "principal": 5315059
+      }
+    },
+    {
+      "ledger": {
+        "interest": 33835,
+        "penalty": 1828,
+        "principal": 11849900
+      },
+      "loan_id": "922886cc-1ded-5c51-984a-a18e40e04bd5",
+      "operational": {
+        "interest": 33835,
+        "penalty": 1828,
+        "principal": 11849900
+      }
+    },
+    {
+      "ledger": {
+        "interest": 93020,
+        "penalty": 2336,
+        "principal": 14881600
+      },
+      "loan_id": "923a7dc1-837f-5ad9-8199-395debd3cb62",
+      "operational": {
+        "interest": 93020,
+        "penalty": 2336,
+        "principal": 14881600
+      }
+    },
+    {
+      "ledger": {
+        "interest": 28530,
+        "penalty": 1080,
+        "principal": 13995600
+      },
+      "loan_id": "9360d854-3859-5ee3-9fd7-b948ad43b3ee",
+      "operational": {
+        "interest": 28530,
+        "penalty": 1080,
+        "principal": 13995600
+      }
+    },
+    {
+      "ledger": {
+        "interest": 1339,
+        "penalty": 356,
+        "principal": 4406030
+      },
+      "loan_id": "93ffd489-ae4b-59c9-878b-7e1c29eb860a",
+      "operational": {
+        "interest": 1339,
+        "penalty": 356,
+        "principal": 4406030
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 772,
+        "principal": 13427779
+      },
+      "loan_id": "941384e1-6f30-5560-9a91-05c1b1626bd4",
+      "operational": {
+        "interest": 0,
+        "penalty": 772,
+        "principal": 13427779
+      }
+    },
+    {
+      "ledger": {
+        "interest": 51210,
+        "penalty": 1888,
+        "principal": 12208900
+      },
+      "loan_id": "94322406-9450-5472-acb8-604076ace400",
+      "operational": {
+        "interest": 51210,
+        "penalty": 1888,
+        "principal": 12208900
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 148,
+        "principal": 2805956
+      },
+      "loan_id": "948ced97-2805-55bd-8276-70336c6cce63",
+      "operational": {
+        "interest": 0,
+        "penalty": 148,
+        "principal": 2805956
+      }
+    },
+    {
+      "ledger": {
+        "interest": 40428,
+        "penalty": 1784,
+        "principal": 13158763
+      },
+      "loan_id": "94e8aa13-8b3f-5cf3-b57a-bb6122bd276f",
+      "operational": {
+        "interest": 40428,
+        "penalty": 1784,
+        "principal": 13158763
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 1248,
+        "principal": 9347592
+      },
+      "loan_id": "9784997e-53c5-5fd8-b7af-e39e95819913",
+      "operational": {
+        "interest": 0,
+        "penalty": 1248,
+        "principal": 9347592
+      }
+    },
+    {
+      "ledger": {
+        "interest": 11499,
+        "penalty": 648,
+        "principal": 10073712
+      },
+      "loan_id": "97c1ab92-a48a-5ce7-9982-d6edb09f5a6a",
+      "operational": {
+        "interest": 11499,
+        "penalty": 648,
+        "principal": 10073712
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 276,
+        "principal": 3942622
+      },
+      "loan_id": "98ebf08d-fc4d-5029-b850-d34795df03f3",
+      "operational": {
+        "interest": 0,
+        "penalty": 276,
+        "principal": 3942622
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 1028,
+        "principal": 14227843
+      },
+      "loan_id": "994d48f7-c4ae-59fa-94a4-ac69881a90f1",
+      "operational": {
+        "interest": 0,
+        "penalty": 1028,
+        "principal": 14227843
+      }
+    },
+    {
+      "ledger": {
+        "interest": 1130,
+        "penalty": 364,
+        "principal": 4206939
+      },
+      "loan_id": "9993cd83-45e0-51cc-b8b5-a58535aa7626",
+      "operational": {
+        "interest": 1130,
+        "penalty": 364,
+        "principal": 4206939
+      }
+    },
+    {
+      "ledger": {
+        "interest": 20218,
+        "penalty": 748,
+        "principal": 9804800
+      },
+      "loan_id": "9c24e6cb-4784-5878-816f-ce347a53570d",
+      "operational": {
+        "interest": 20218,
+        "penalty": 748,
+        "principal": 9804800
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 458,
+        "principal": 6773747
+      },
+      "loan_id": "9c445988-1f93-5b43-b9a5-f44f87bcfca8",
+      "operational": {
+        "interest": 0,
+        "penalty": 458,
+        "principal": 6773747
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 1796,
+        "principal": 12182329
+      },
+      "loan_id": "9c9829fe-82ce-509e-b4be-9f9e2103d171",
+      "operational": {
+        "interest": 0,
+        "penalty": 1796,
+        "principal": 12182329
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 352,
+        "principal": 6404765
+      },
+      "loan_id": "9cbd90e7-cd4a-50a3-9c3f-acfc38b72153",
+      "operational": {
+        "interest": 0,
+        "penalty": 352,
+        "principal": 6404765
+      }
+    },
+    {
+      "ledger": {
+        "interest": 46044,
+        "penalty": 2088,
+        "principal": 14704591
+      },
+      "loan_id": "9cca26fc-2252-5723-bf97-d2c5b331412f",
+      "operational": {
+        "interest": 46044,
+        "penalty": 2088,
+        "principal": 14704591
+      }
+    },
+    {
+      "ledger": {
+        "interest": 27870,
+        "penalty": 920,
+        "principal": 11709300
+      },
+      "loan_id": "9d56bad7-f8fb-5b72-b4d5-b2619cc64404",
+      "operational": {
+        "interest": 27870,
+        "penalty": 920,
+        "principal": 11709300
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 56,
+        "principal": 2487536
+      },
+      "loan_id": "9d816142-19f2-5690-8bec-82a45fc64923",
+      "operational": {
+        "interest": 0,
+        "penalty": 56,
+        "principal": 2487536
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 521,
+        "principal": 10112166
+      },
+      "loan_id": "9ded9700-3913-5da3-869f-353e0cb5d7e1",
+      "operational": {
+        "interest": 0,
+        "penalty": 521,
+        "principal": 10112166
+      }
+    },
+    {
+      "ledger": {
+        "interest": 4965,
+        "penalty": 740,
+        "principal": 6471159
+      },
+      "loan_id": "9eea550b-8a91-5cfb-9017-02709fbc69c9",
+      "operational": {
+        "interest": 4965,
+        "penalty": 740,
+        "principal": 6471159
+      }
+    },
+    {
+      "ledger": {
+        "interest": 23310,
+        "penalty": 1448,
+        "principal": 9432000
+      },
+      "loan_id": "9f2ca905-c0fd-5db5-a18b-38384d2991a2",
+      "operational": {
+        "interest": 23310,
+        "penalty": 1448,
+        "principal": 9432000
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 2000,
+        "principal": 13591330
+      },
+      "loan_id": "9f92b37e-4f41-55cf-8421-c153e7ca1f7b",
+      "operational": {
+        "interest": 0,
+        "penalty": 2000,
+        "principal": 13591330
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 608,
+        "principal": 5489684
+      },
+      "loan_id": "a119107b-2bb8-56e0-9e89-e264952bc95b",
+      "operational": {
+        "interest": 0,
+        "penalty": 608,
+        "principal": 5489684
+      }
+    },
+    {
+      "ledger": {
+        "interest": 64730,
+        "penalty": 1744,
+        "principal": 11312700
+      },
+      "loan_id": "a1239b4d-f256-52ff-b8bd-3d8e07d3a99e",
+      "operational": {
+        "interest": 64730,
+        "penalty": 1744,
+        "principal": 11312700
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 712,
+        "principal": 11198590
+      },
+      "loan_id": "a12cf8a2-0534-53a7-9e6b-cf5f671d7595",
+      "operational": {
+        "interest": 0,
+        "penalty": 712,
+        "principal": 11198590
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 296,
+        "principal": 5659501
+      },
+      "loan_id": "a2b86203-e15a-5636-9f4f-43fd24d5f8e3",
+      "operational": {
+        "interest": 0,
+        "penalty": 296,
+        "principal": 5659501
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 508,
+        "principal": 4167476
+      },
+      "loan_id": "a3503fcf-2361-5a5b-a346-f3b9240ce07a",
+      "operational": {
+        "interest": 0,
+        "penalty": 508,
+        "principal": 4167476
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 40,
+        "principal": 2829925
+      },
+      "loan_id": "a3bfe498-bbb2-58bc-975e-5e75d0290295",
+      "operational": {
+        "interest": 0,
+        "penalty": 40,
+        "principal": 2829925
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 116,
+        "principal": 3479811
+      },
+      "loan_id": "a54b82f2-6776-50c7-8544-11b21cb6f683",
+      "operational": {
+        "interest": 0,
+        "penalty": 116,
+        "principal": 3479811
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 1504,
+        "principal": 10580022
+      },
+      "loan_id": "a6f1a1b5-fa93-5e41-be69-d1faa392a4df",
+      "operational": {
+        "interest": 0,
+        "penalty": 1504,
+        "principal": 10580022
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 286,
+        "principal": 5500639
+      },
+      "loan_id": "a7c0b1b7-c400-5b73-b788-e94cef7c171c",
+      "operational": {
+        "interest": 0,
+        "penalty": 286,
+        "principal": 5500639
+      }
+    },
+    {
+      "ledger": {
+        "interest": 26202,
+        "penalty": 1380,
+        "principal": 10503354
+      },
+      "loan_id": "a91578ae-6b46-5ca8-ba7d-46a001642e28",
+      "operational": {
+        "interest": 26202,
+        "penalty": 1380,
+        "principal": 10503354
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 36,
+        "principal": 2873717
+      },
+      "loan_id": "a93f0151-8825-5352-a65b-bdca3936e414",
+      "operational": {
+        "interest": 0,
+        "penalty": 36,
+        "principal": 2873717
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 718,
+        "principal": 10619812
+      },
+      "loan_id": "a9837c01-46b0-5e99-b5bf-ead1261cec46",
+      "operational": {
+        "interest": 0,
+        "penalty": 718,
+        "principal": 10619812
+      }
+    },
+    {
+      "ledger": {
+        "interest": 1794,
+        "penalty": 884,
+        "principal": 11499300
+      },
+      "loan_id": "aae8ef5d-7594-5fe8-94ba-4c379316f8ad",
+      "operational": {
+        "interest": 1794,
+        "penalty": 884,
+        "principal": 11499300
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 668,
+        "principal": 6082192
+      },
+      "loan_id": "ac0a046c-a5ae-58b0-b13c-86688d5f1569",
+      "operational": {
+        "interest": 0,
+        "penalty": 668,
+        "principal": 6082192
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 754,
+        "principal": 11043494
+      },
+      "loan_id": "ac3efcbb-7075-58d1-ad5f-33b48c6a0cee",
+      "operational": {
+        "interest": 0,
+        "penalty": 754,
+        "principal": 11043494
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 319,
+        "principal": 7891796
+      },
+      "loan_id": "ac7ed8ee-0b6d-5a70-9f04-0d3e51cbb9d7",
+      "operational": {
+        "interest": 0,
+        "penalty": 319,
+        "principal": 7891796
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 176,
+        "principal": 3724240
+      },
+      "loan_id": "ad2d45ae-2c73-5f7f-bd3f-3c37274828ae",
+      "operational": {
+        "interest": 0,
+        "penalty": 176,
+        "principal": 3724240
+      }
+    },
+    {
+      "ledger": {
+        "interest": 44262,
+        "penalty": 1884,
+        "principal": 13533071
+      },
+      "loan_id": "adc99fe1-14fd-5f78-93ae-926d9f79855b",
+      "operational": {
+        "interest": 44262,
+        "penalty": 1884,
+        "principal": 13533071
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 1168,
+        "principal": 8496430
+      },
+      "loan_id": "aedf62d5-138a-5d6e-8e30-4683eedd7758",
+      "operational": {
+        "interest": 0,
+        "penalty": 1168,
+        "principal": 8496430
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 144,
+        "principal": 5952306
+      },
+      "loan_id": "af15ed75-8ee2-5212-b099-8adfbeed777f",
+      "operational": {
+        "interest": 0,
+        "penalty": 144,
+        "principal": 5952306
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 932,
+        "principal": 7364519
+      },
+      "loan_id": "b027507d-963d-591b-8002-405599956285",
+      "operational": {
+        "interest": 0,
+        "penalty": 932,
+        "principal": 7364519
+      }
+    },
+    {
+      "ledger": {
+        "interest": 12484,
+        "penalty": 1040,
+        "principal": 8579078
+      },
+      "loan_id": "b190dfb9-f239-5c57-88cc-8c286441a2fa",
+      "operational": {
+        "interest": 12484,
+        "penalty": 1040,
+        "principal": 8579078
+      }
+    },
+    {
+      "ledger": {
+        "interest": 32867,
+        "penalty": 935,
+        "principal": 13740100
+      },
+      "loan_id": "b22a3442-1915-5a42-acaf-1e3df99f52ac",
+      "operational": {
+        "interest": 32867,
+        "penalty": 935,
+        "principal": 13740100
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 176,
+        "principal": 6282263
+      },
+      "loan_id": "b3eb54cf-1996-50b9-866b-36b55ff2fa29",
+      "operational": {
+        "interest": 0,
+        "penalty": 176,
+        "principal": 6282263
+      }
+    },
+    {
+      "ledger": {
+        "interest": 29765,
+        "penalty": 1552,
+        "principal": 11454962
+      },
+      "loan_id": "b4a4d655-839e-5482-80f6-27f184f714c8",
+      "operational": {
+        "interest": 29765,
+        "penalty": 1552,
+        "principal": 11454962
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 251,
+        "principal": 7741624
+      },
+      "loan_id": "b4d3bd21-1c5f-53e8-9753-14c9471afd9d",
+      "operational": {
+        "interest": 0,
+        "penalty": 251,
+        "principal": 7741624
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 368,
+        "principal": 5831022
+      },
+      "loan_id": "b5065665-9977-5699-8ad0-078e936b3839",
+      "operational": {
+        "interest": 0,
+        "penalty": 368,
+        "principal": 5831022
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 628,
+        "principal": 5758558
+      },
+      "loan_id": "b51a41ee-914e-5f2d-8cbc-dcb3767b27b2",
+      "operational": {
+        "interest": 0,
+        "penalty": 628,
+        "principal": 5758558
+      }
+    },
+    {
+      "ledger": {
+        "interest": 46485,
+        "penalty": 1588,
+        "principal": 10382000
+      },
+      "loan_id": "b5286f8c-8ada-52ab-9bb7-917f0bb1143b",
+      "operational": {
+        "interest": 46485,
+        "penalty": 1588,
+        "principal": 10382000
+      }
+    },
+    {
+      "ledger": {
+        "interest": 16425,
+        "penalty": 954,
+        "principal": 13765382
+      },
+      "loan_id": "b55c9948-86a8-5a74-919d-f3b03355c8ee",
+      "operational": {
+        "interest": 16425,
+        "penalty": 954,
+        "principal": 13765382
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 252,
+        "principal": 3660410
+      },
+      "loan_id": "b6f25403-3803-51f1-8e1f-6e787e10f333",
+      "operational": {
+        "interest": 0,
+        "penalty": 252,
+        "principal": 3660410
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 356,
+        "principal": 4139152
+      },
+      "loan_id": "b6f5e627-7703-528d-b690-0f760c3a0727",
+      "operational": {
+        "interest": 0,
+        "penalty": 356,
+        "principal": 4139152
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 40,
+        "principal": 2618212
+      },
+      "loan_id": "b7769df6-85b2-51bc-b0ef-08a2819bc4ef",
+      "operational": {
+        "interest": 0,
+        "penalty": 40,
+        "principal": 2618212
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 476,
+        "principal": 4603410
+      },
+      "loan_id": "b8261fa2-17de-5cdc-bd6c-5245327513ce",
+      "operational": {
+        "interest": 0,
+        "penalty": 476,
+        "principal": 4603410
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 450,
+        "principal": 6980786
+      },
+      "loan_id": "b879d3df-61b8-5ef9-8a7c-ee7738e353c2",
+      "operational": {
+        "interest": 0,
+        "penalty": 450,
+        "principal": 6980786
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 444,
+        "principal": 7324344
+      },
+      "loan_id": "b8ea9ed3-f6f2-5023-8f25-ec1019220b8f",
+      "operational": {
+        "interest": 0,
+        "penalty": 444,
+        "principal": 7324344
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 498,
+        "principal": 7216700
+      },
+      "loan_id": "b9ae4456-7bcf-5d5b-a50d-14fde08d4e97",
+      "operational": {
+        "interest": 0,
+        "penalty": 498,
+        "principal": 7216700
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 250,
+        "principal": 4873482
+      },
+      "loan_id": "b9baf9f5-177c-58b7-86ab-8687d7d8f693",
+      "operational": {
+        "interest": 0,
+        "penalty": 250,
+        "principal": 4873482
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 456,
+        "principal": 7613136
+      },
+      "loan_id": "ba9dd251-adad-5b5c-9810-bd2415e6706e",
+      "operational": {
+        "interest": 0,
+        "penalty": 456,
+        "principal": 7613136
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 868,
+        "principal": 11985760
+      },
+      "loan_id": "bb28f786-877e-54f0-9e76-146bbaabcd2b",
+      "operational": {
+        "interest": 0,
+        "penalty": 868,
+        "principal": 11985760
+      }
+    },
+    {
+      "ledger": {
+        "interest": 40971,
+        "penalty": 972,
+        "principal": 13968232
+      },
+      "loan_id": "bbbaef04-c519-5bfd-865a-fe472d53b895",
+      "operational": {
+        "interest": 40971,
+        "penalty": 972,
+        "principal": 13968232
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 518,
+        "principal": 8484899
+      },
+      "loan_id": "bbd56678-4c23-5bc7-b928-0d1868dce91e",
+      "operational": {
+        "interest": 0,
+        "penalty": 518,
+        "principal": 8484899
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 740,
+        "principal": 6459311
+      },
+      "loan_id": "bc1a9d8c-16e2-5c2d-83f2-367212074436",
+      "operational": {
+        "interest": 0,
+        "penalty": 740,
+        "principal": 6459311
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 682,
+        "principal": 10095817
+      },
+      "loan_id": "bcab2a43-7f22-591b-b04b-856535a5616c",
+      "operational": {
+        "interest": 0,
+        "penalty": 682,
+        "principal": 10095817
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 498,
+        "principal": 7811507
+      },
+      "loan_id": "bd9c55c9-ea66-51ff-9df8-bac305c6e31d",
+      "operational": {
+        "interest": 0,
+        "penalty": 498,
+        "principal": 7811507
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 146,
+        "principal": 6061771
+      },
+      "loan_id": "bf0ff17d-5d78-5572-bed9-e322792968ed",
+      "operational": {
+        "interest": 0,
+        "penalty": 146,
+        "principal": 6061771
+      }
+    },
+    {
+      "ledger": {
+        "interest": 86055,
+        "penalty": 2164,
+        "principal": 13814600
+      },
+      "loan_id": "c0e04f84-d68d-554c-9699-e366bdefe9dc",
+      "operational": {
+        "interest": 86055,
+        "penalty": 2164,
+        "principal": 13814600
+      }
+    },
+    {
+      "ledger": {
+        "interest": 21446,
+        "penalty": 948,
+        "principal": 7765334
+      },
+      "loan_id": "c1b7ad1b-88e9-58e5-8a7b-eb715d3b5689",
+      "operational": {
+        "interest": 21446,
+        "penalty": 948,
+        "principal": 7765334
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 624,
+        "principal": 4803944
+      },
+      "loan_id": "c2a58adb-78a9-5dbe-924d-ffbed60d3e4a",
+      "operational": {
+        "interest": 0,
+        "penalty": 624,
+        "principal": 4803944
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 28,
+        "principal": 2856612
+      },
+      "loan_id": "c42b5a43-cfdc-5279-aecc-eefb95c649a0",
+      "operational": {
+        "interest": 0,
+        "penalty": 28,
+        "principal": 2856612
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 218,
+        "principal": 5357758
+      },
+      "loan_id": "c4b7a506-f9a4-5ebd-b608-fb5128827a9f",
+      "operational": {
+        "interest": 0,
+        "penalty": 218,
+        "principal": 5357758
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 612,
+        "principal": 10988584
+      },
+      "loan_id": "c5c3b0b4-2875-598a-b182-343a21dc725e",
+      "operational": {
+        "interest": 0,
+        "penalty": 612,
+        "principal": 10988584
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 570,
+        "principal": 8702887
+      },
+      "loan_id": "c5faa172-44e9-5051-9123-c0fb20ea9dd9",
+      "operational": {
+        "interest": 0,
+        "penalty": 570,
+        "principal": 8702887
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 1200,
+        "principal": 9360076
+      },
+      "loan_id": "c63c1fe4-7132-5387-9bea-456908701fa1",
+      "operational": {
+        "interest": 0,
+        "penalty": 1200,
+        "principal": 9360076
+      }
+    },
+    {
+      "ledger": {
+        "interest": 49670,
+        "penalty": 1416,
+        "principal": 9489800
+      },
+      "loan_id": "c6714f66-4035-5141-9976-da181e3dd1f4",
+      "operational": {
+        "interest": 49670,
+        "penalty": 1416,
+        "principal": 9489800
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 476,
+        "principal": 4426464
+      },
+      "loan_id": "c6c8b968-eef9-5ac6-a0c5-60c1380b2222",
+      "operational": {
+        "interest": 0,
+        "penalty": 476,
+        "principal": 4426464
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 1316,
+        "principal": 9215540
+      },
+      "loan_id": "c6f47dbd-021b-5d9f-bccc-b93502ee8942",
+      "operational": {
+        "interest": 0,
+        "penalty": 1316,
+        "principal": 9215540
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 558,
+        "principal": 7762220
+      },
+      "loan_id": "c741f8c1-6c82-54cf-8b90-07bf3164e0aa",
+      "operational": {
+        "interest": 0,
+        "penalty": 558,
+        "principal": 7762220
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 860,
+        "principal": 12237139
+      },
+      "loan_id": "c85ae3fc-ca13-5782-8b36-3e7e6a4db21d",
+      "operational": {
+        "interest": 0,
+        "penalty": 860,
+        "principal": 12237139
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 244,
+        "principal": 5560901
+      },
+      "loan_id": "c86cc0df-c112-5aad-a7fb-e5483a0489a4",
+      "operational": {
+        "interest": 0,
+        "penalty": 244,
+        "principal": 5560901
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 276,
+        "principal": 5663958
+      },
+      "loan_id": "c87baad1-a068-518d-8042-c1b3ee153110",
+      "operational": {
+        "interest": 0,
+        "penalty": 276,
+        "principal": 5663958
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 791,
+        "principal": 12350828
+      },
+      "loan_id": "c8f6133c-c7b9-5ad3-a3ab-85cb0124cd98",
+      "operational": {
+        "interest": 0,
+        "penalty": 791,
+        "principal": 12350828
+      }
+    },
+    {
+      "ledger": {
+        "interest": 11654,
+        "penalty": 412,
+        "principal": 4775220
+      },
+      "loan_id": "c95fe89c-26de-57e2-96cb-c1d048907c6c",
+      "operational": {
+        "interest": 11654,
+        "penalty": 412,
+        "principal": 4775220
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 876,
+        "principal": 12814234
+      },
+      "loan_id": "c97943f9-0595-531f-9df5-cb3056ea9223",
+      "operational": {
+        "interest": 0,
+        "penalty": 876,
+        "principal": 12814234
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 596,
+        "principal": 8379446
+      },
+      "loan_id": "c9a859bf-9e6d-5c8f-bcdd-fb668ade1cec",
+      "operational": {
+        "interest": 0,
+        "penalty": 596,
+        "principal": 8379446
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 134,
+        "principal": 3791790
+      },
+      "loan_id": "c9e2e101-98a1-5873-a056-f4369a404314",
+      "operational": {
+        "interest": 0,
+        "penalty": 134,
+        "principal": 3791790
+      }
+    },
+    {
+      "ledger": {
+        "interest": 51986,
+        "penalty": 848,
+        "principal": 13096200
+      },
+      "loan_id": "cb2be9ed-632f-56ac-9fa8-0060dff4f166",
+      "operational": {
+        "interest": 51986,
+        "penalty": 848,
+        "principal": 13096200
+      }
+    },
+    {
+      "ledger": {
+        "interest": 8789,
+        "penalty": 852,
+        "principal": 12482917
+      },
+      "loan_id": "cbaa8dee-697a-584b-b3d7-28272d375b67",
+      "operational": {
+        "interest": 8789,
+        "penalty": 852,
+        "principal": 12482917
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 22,
+        "principal": 3034530
+      },
+      "loan_id": "cbf10b76-2a6c-572b-ad85-9faea447b4ea",
+      "operational": {
+        "interest": 0,
+        "penalty": 22,
+        "principal": 3034530
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 1396,
+        "principal": 9808170
+      },
+      "loan_id": "cce33017-1c1b-5936-a292-eb8a5674b2e3",
+      "operational": {
+        "interest": 0,
+        "penalty": 1396,
+        "principal": 9808170
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 468,
+        "principal": 7733539
+      },
+      "loan_id": "cd81cc86-a3d8-519f-8978-17c65f5f09e8",
+      "operational": {
+        "interest": 0,
+        "penalty": 468,
+        "principal": 7733539
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 740,
+        "principal": 6072774
+      },
+      "loan_id": "ce5a2d49-1ed9-5732-b779-f35cfeeaac5e",
+      "operational": {
+        "interest": 0,
+        "penalty": 740,
+        "principal": 6072774
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 44,
+        "principal": 2773238
+      },
+      "loan_id": "ce9ddebc-0b4d-5530-821a-c638558f47be",
+      "operational": {
+        "interest": 0,
+        "penalty": 44,
+        "principal": 2773238
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 714,
+        "principal": 9798115
+      },
+      "loan_id": "cfa07fb8-6ea8-57d5-b474-f3a13abe3b68",
+      "operational": {
+        "interest": 0,
+        "penalty": 714,
+        "principal": 9798115
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 844,
+        "principal": 12147236
+      },
+      "loan_id": "d05e2dca-fc94-5303-81db-2743729aee94",
+      "operational": {
+        "interest": 0,
+        "penalty": 844,
+        "principal": 12147236
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 848,
+        "principal": 6992166
+      },
+      "loan_id": "d25d5022-16ed-5245-841a-fc3af4bb9c52",
+      "operational": {
+        "interest": 0,
+        "penalty": 848,
+        "principal": 6992166
+      }
+    },
+    {
+      "ledger": {
+        "interest": 113730,
+        "penalty": 2264,
+        "principal": 14680000
+      },
+      "loan_id": "d336f62f-b5ca-5643-a47f-507a6a988934",
+      "operational": {
+        "interest": 113730,
+        "penalty": 2264,
+        "principal": 14680000
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 664,
+        "principal": 5822611
+      },
+      "loan_id": "d3a7249b-0410-5118-8174-8cde82743360",
+      "operational": {
+        "interest": 0,
+        "penalty": 664,
+        "principal": 5822611
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 652,
+        "principal": 5658867
+      },
+      "loan_id": "d3fcecd7-0000-5ae8-b4b5-2e45b8bb3da7",
+      "operational": {
+        "interest": 0,
+        "penalty": 652,
+        "principal": 5658867
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 520,
+        "principal": 9253150
+      },
+      "loan_id": "d4bbb475-a65e-50f6-ac6b-19c7b15643c7",
+      "operational": {
+        "interest": 0,
+        "penalty": 520,
+        "principal": 9253150
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 1608,
+        "principal": 11203166
+      },
+      "loan_id": "d5642c82-5033-5a23-8a8f-4a6cedfee2d0",
+      "operational": {
+        "interest": 0,
+        "penalty": 1608,
+        "principal": 11203166
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 802,
+        "principal": 10427482
+      },
+      "loan_id": "d565aaf3-5622-57f3-960a-b04c08be2404",
+      "operational": {
+        "interest": 0,
+        "penalty": 802,
+        "principal": 10427482
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 464,
+        "principal": 5068991
+      },
+      "loan_id": "d6f3f3cc-95ea-56f6-8d0d-b69d2c80b066",
+      "operational": {
+        "interest": 0,
+        "penalty": 464,
+        "principal": 5068991
+      }
+    },
+    {
+      "ledger": {
+        "interest": 5420,
+        "penalty": 1016,
+        "principal": 7081300
+      },
+      "loan_id": "d7b7f2ce-f22d-5a8e-907d-b4ca83e4c167",
+      "operational": {
+        "interest": 5420,
+        "penalty": 1016,
+        "principal": 7081300
+      }
+    },
+    {
+      "ledger": {
+        "interest": 20248,
+        "penalty": 884,
+        "principal": 13058595
+      },
+      "loan_id": "d86ca292-743f-5dff-98cc-858ffcdfc201",
+      "operational": {
+        "interest": 20248,
+        "penalty": 884,
+        "principal": 13058595
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 520,
+        "principal": 7963233
+      },
+      "loan_id": "d9e5e448-d22a-59c2-b003-c7d86383de32",
+      "operational": {
+        "interest": 0,
+        "penalty": 520,
+        "principal": 7963233
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 256,
+        "principal": 4738799
+      },
+      "loan_id": "da0db425-fd0b-5a9a-8d6d-7bbf55ccaa99",
+      "operational": {
+        "interest": 0,
+        "penalty": 256,
+        "principal": 4738799
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 738,
+        "principal": 10022923
+      },
+      "loan_id": "dad8dd77-d525-5643-bf27-f49f77432145",
+      "operational": {
+        "interest": 0,
+        "penalty": 738,
+        "principal": 10022923
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 368,
+        "principal": 6540244
+      },
+      "loan_id": "db92bd6d-f34b-5d75-9ff0-4439fed2b556",
+      "operational": {
+        "interest": 0,
+        "penalty": 368,
+        "principal": 6540244
+      }
+    },
+    {
+      "ledger": {
+        "interest": 23060,
+        "penalty": 1248,
+        "principal": 8562600
+      },
+      "loan_id": "dbd9653d-73ea-5aa2-89da-d2b3eeae1df3",
+      "operational": {
+        "interest": 23060,
+        "penalty": 1248,
+        "principal": 8562600
+      }
+    },
+    {
+      "ledger": {
+        "interest": 37053,
+        "penalty": 1532,
+        "principal": 11805026
+      },
+      "loan_id": "dda73407-522e-5f9f-aaad-2775bc707b72",
+      "operational": {
+        "interest": 37053,
+        "penalty": 1532,
+        "principal": 11805026
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 764,
+        "principal": 11361344
+      },
+      "loan_id": "ddadb5d1-caf6-5185-bf23-69f30ccb859d",
+      "operational": {
+        "interest": 0,
+        "penalty": 764,
+        "principal": 11361344
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 279,
+        "principal": 6986182
+      },
+      "loan_id": "de0d13a6-d84a-5781-894f-982ee4256e39",
+      "operational": {
+        "interest": 0,
+        "penalty": 279,
+        "principal": 6986182
+      }
+    },
+    {
+      "ledger": {
+        "interest": 15349,
+        "penalty": 876,
+        "principal": 7453411
+      },
+      "loan_id": "df5f5da1-0cbf-56df-b0f2-e676951c98d6",
+      "operational": {
+        "interest": 15349,
+        "penalty": 876,
+        "principal": 7453411
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 1120,
+        "principal": 7700765
+      },
+      "loan_id": "dfa4bb95-ef88-55b1-be05-f5fef7beb695",
+      "operational": {
+        "interest": 0,
+        "penalty": 1120,
+        "principal": 7700765
+      }
+    },
+    {
+      "ledger": {
+        "interest": 7495,
+        "penalty": 619,
+        "principal": 9955900
+      },
+      "loan_id": "dff51b87-31c2-5e81-b2da-5a2cfdace461",
+      "operational": {
+        "interest": 7495,
+        "penalty": 619,
+        "principal": 9955900
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 1340,
+        "principal": 9475302
+      },
+      "loan_id": "e04562cb-440e-5062-ac37-c3bdb92d14a2",
+      "operational": {
+        "interest": 0,
+        "penalty": 1340,
+        "principal": 9475302
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 1064,
+        "principal": 14153464
+      },
+      "loan_id": "e07da37d-967c-5311-b864-73ab3546153c",
+      "operational": {
+        "interest": 0,
+        "penalty": 1064,
+        "principal": 14153464
+      }
+    },
+    {
+      "ledger": {
+        "interest": 7872,
+        "penalty": 890,
+        "principal": 13149844
+      },
+      "loan_id": "e0dbe4f9-9b4b-5384-9518-30d323bfafb2",
+      "operational": {
+        "interest": 7872,
+        "penalty": 890,
+        "principal": 13149844
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 397,
+        "principal": 8143129
+      },
+      "loan_id": "e2a64fd6-93b4-5df7-a1ae-e913ca557c95",
+      "operational": {
+        "interest": 0,
+        "penalty": 397,
+        "principal": 8143129
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 110,
+        "principal": 3244527
+      },
+      "loan_id": "e2eef247-97e4-569b-971c-ba250079da5a",
+      "operational": {
+        "interest": 0,
+        "penalty": 110,
+        "principal": 3244527
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 616,
+        "principal": 5485398
+      },
+      "loan_id": "e309527d-26e2-593c-9136-f2a7f573dc2b",
+      "operational": {
+        "interest": 0,
+        "penalty": 616,
+        "principal": 5485398
+      }
+    },
+    {
+      "ledger": {
+        "interest": 72795,
+        "penalty": 1876,
+        "principal": 12131000
+      },
+      "loan_id": "e32eb22e-8922-5340-b973-2bb0bce1c465",
+      "operational": {
+        "interest": 72795,
+        "penalty": 1876,
+        "principal": 12131000
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 627,
+        "principal": 11736570
+      },
+      "loan_id": "e395306f-16ed-5164-b595-a7b0ad43960d",
+      "operational": {
+        "interest": 0,
+        "penalty": 627,
+        "principal": 11736570
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 555,
+        "principal": 10453180
+      },
+      "loan_id": "e3db3b4d-79fe-5674-98ff-87cbe4812dce",
+      "operational": {
+        "interest": 0,
+        "penalty": 555,
+        "principal": 10453180
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 976,
+        "principal": 13365604
+      },
+      "loan_id": "e4552134-a8b6-5275-b079-9b4d6e8e617a",
+      "operational": {
+        "interest": 0,
+        "penalty": 976,
+        "principal": 13365604
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 1352,
+        "principal": 9564137
+      },
+      "loan_id": "e485c5da-c6af-5c1c-a978-bfbbf30d7751",
+      "operational": {
+        "interest": 0,
+        "penalty": 1352,
+        "principal": 9564137
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 1212,
+        "principal": 8924956
+      },
+      "loan_id": "e5c9e82f-7107-54c6-a7cc-d89def12e400",
+      "operational": {
+        "interest": 0,
+        "penalty": 1212,
+        "principal": 8924956
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 436,
+        "principal": 7519648
+      },
+      "loan_id": "e7e808f8-a3d6-5ba5-afba-3b63ee973dc7",
+      "operational": {
+        "interest": 0,
+        "penalty": 436,
+        "principal": 7519648
+      }
+    },
+    {
+      "ledger": {
+        "interest": 38420,
+        "penalty": 1576,
+        "principal": 10313100
+      },
+      "loan_id": "e7fd100f-44a8-5052-b3fc-cc2fe10e998f",
+      "operational": {
+        "interest": 38420,
+        "penalty": 1576,
+        "principal": 10313100
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 146,
+        "principal": 5996153
+      },
+      "loan_id": "e83964f8-6e9b-505c-9a5c-fa95e6e2829d",
+      "operational": {
+        "interest": 0,
+        "penalty": 146,
+        "principal": 5996153
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 320,
+        "principal": 3817283
+      },
+      "loan_id": "e8a85b5c-ef9d-5eb3-8f9e-428b23ccb4c2",
+      "operational": {
+        "interest": 0,
+        "penalty": 320,
+        "principal": 3817283
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 432,
+        "principal": 4074790
+      },
+      "loan_id": "e8e0c86c-9fcc-52b4-bf26-81576d8df298",
+      "operational": {
+        "interest": 0,
+        "penalty": 432,
+        "principal": 4074790
+      }
+    },
+    {
+      "ledger": {
+        "interest": 22477,
+        "penalty": 890,
+        "principal": 14891374
+      },
+      "loan_id": "e94a4ea7-d241-5db3-90cb-d09cb2547732",
+      "operational": {
+        "interest": 22477,
+        "penalty": 890,
+        "principal": 14891374
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 70,
+        "principal": 3439028
+      },
+      "loan_id": "ea071fa6-6d5a-5fef-a0cf-3bf7bccf9b02",
+      "operational": {
+        "interest": 0,
+        "penalty": 70,
+        "principal": 3439028
+      }
+    },
+    {
+      "ledger": {
+        "interest": 1069,
+        "penalty": 84,
+        "principal": 2635902
+      },
+      "loan_id": "ea459a5e-fff0-52b4-ab75-05e4df285055",
+      "operational": {
+        "interest": 1069,
+        "penalty": 84,
+        "principal": 2635902
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 732,
+        "principal": 10320438
+      },
+      "loan_id": "eaffe09e-8c5e-5675-9336-ca825a0ef62d",
+      "operational": {
+        "interest": 0,
+        "penalty": 732,
+        "principal": 10320438
+      }
+    },
+    {
+      "ledger": {
+        "interest": 4218,
+        "penalty": 714,
+        "principal": 11007431
+      },
+      "loan_id": "ebb31391-ea0f-5cbc-81c0-e36ef5f1e94c",
+      "operational": {
+        "interest": 4218,
+        "penalty": 714,
+        "principal": 11007431
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 131,
+        "principal": 5468881
+      },
+      "loan_id": "ed27eba4-3d2f-5f73-9a0d-a6ff743232c7",
+      "operational": {
+        "interest": 0,
+        "penalty": 131,
+        "principal": 5468881
+      }
+    },
+    {
+      "ledger": {
+        "interest": 19775,
+        "penalty": 1296,
+        "principal": 10358818
+      },
+      "loan_id": "ed3bf934-3404-5e40-b60f-b97fcf8daef0",
+      "operational": {
+        "interest": 19775,
+        "penalty": 1296,
+        "principal": 10358818
+      }
+    },
+    {
+      "ledger": {
+        "interest": 47646,
+        "penalty": 2052,
+        "principal": 14548273
+      },
+      "loan_id": "eda1c77d-1524-5edd-8c20-9896edc2ec3a",
+      "operational": {
+        "interest": 47646,
+        "penalty": 2052,
+        "principal": 14548273
+      }
+    },
+    {
+      "ledger": {
+        "interest": 8562,
+        "penalty": 738,
+        "principal": 11353080
+      },
+      "loan_id": "edf0db5b-7158-585b-9894-55c9abc68914",
+      "operational": {
+        "interest": 8562,
+        "penalty": 738,
+        "principal": 11353080
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 464,
+        "principal": 7906993
+      },
+      "loan_id": "f032564c-924f-5d2a-b742-2ef1be1ea530",
+      "operational": {
+        "interest": 0,
+        "penalty": 464,
+        "principal": 7906993
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 41,
+        "principal": 3527768
+      },
+      "loan_id": "f053dc48-976b-5fef-9df7-f07778fc487f",
+      "operational": {
+        "interest": 0,
+        "penalty": 41,
+        "principal": 3527768
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 364,
+        "principal": 7010567
+      },
+      "loan_id": "f13d5a86-018b-592d-b99e-53d70e7100ea",
+      "operational": {
+        "interest": 0,
+        "penalty": 364,
+        "principal": 7010567
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 240,
+        "principal": 4392824
+      },
+      "loan_id": "f1ed95d3-9b03-52fd-9606-7571e7138c01",
+      "operational": {
+        "interest": 0,
+        "penalty": 240,
+        "principal": 4392824
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 762,
+        "principal": 11226366
+      },
+      "loan_id": "f1fae977-28d4-53b8-b33a-5752fdc3ebba",
+      "operational": {
+        "interest": 0,
+        "penalty": 762,
+        "principal": 11226366
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 976,
+        "principal": 7432557
+      },
+      "loan_id": "f254a275-17b6-5f3e-9764-428ed93db58c",
+      "operational": {
+        "interest": 0,
+        "penalty": 976,
+        "principal": 7432557
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 574,
+        "principal": 9039030
+      },
+      "loan_id": "f2ec01bb-363b-525f-8bc3-27edbda4dd32",
+      "operational": {
+        "interest": 0,
+        "penalty": 574,
+        "principal": 9039030
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 1232,
+        "principal": 8878644
+      },
+      "loan_id": "f31c055d-7d9e-52ae-be2c-c87136150fa8",
+      "operational": {
+        "interest": 0,
+        "penalty": 1232,
+        "principal": 8878644
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 672,
+        "principal": 9207099
+      },
+      "loan_id": "f3d5a72a-83fb-5d15-96f7-9cde865072c5",
+      "operational": {
+        "interest": 0,
+        "penalty": 672,
+        "principal": 9207099
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 238,
+        "principal": 5730762
+      },
+      "loan_id": "f440209e-2375-58d6-9de3-57f4b815957e",
+      "operational": {
+        "interest": 0,
+        "penalty": 238,
+        "principal": 5730762
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 616,
+        "principal": 4707048
+      },
+      "loan_id": "f4aeebeb-3d93-59ea-a55b-2b7ae08703d2",
+      "operational": {
+        "interest": 0,
+        "penalty": 616,
+        "principal": 4707048
+      }
+    },
+    {
+      "ledger": {
+        "interest": 81110,
+        "penalty": 1968,
+        "principal": 12744900
+      },
+      "loan_id": "f4dc178c-9ed0-5bb8-86df-83143e545eed",
+      "operational": {
+        "interest": 81110,
+        "penalty": 1968,
+        "principal": 12744900
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 560,
+        "principal": 10078648
+      },
+      "loan_id": "f54eb0ea-d6f1-5511-b3ea-719c21878f76",
+      "operational": {
+        "interest": 0,
+        "penalty": 560,
+        "principal": 10078648
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 628,
+        "principal": 9849527
+      },
+      "loan_id": "f62cd99b-d3d2-5751-a5b6-f3a3a0ec4828",
+      "operational": {
+        "interest": 0,
+        "penalty": 628,
+        "principal": 9849527
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 1428,
+        "principal": 9990103
+      },
+      "loan_id": "f79bd208-8f11-5bdc-b08f-d43ce7004b78",
+      "operational": {
+        "interest": 0,
+        "penalty": 1428,
+        "principal": 9990103
+      }
+    },
+    {
+      "ledger": {
+        "interest": 81200,
+        "penalty": 2080,
+        "principal": 13525900
+      },
+      "loan_id": "f8b79a11-77eb-50ee-b7f0-179bc87b9799",
+      "operational": {
+        "interest": 81200,
+        "penalty": 2080,
+        "principal": 13525900
+      }
+    },
+    {
+      "ledger": {
+        "interest": 34929,
+        "penalty": 1664,
+        "principal": 12341509
+      },
+      "loan_id": "f932484d-247d-5eef-9e1e-13ef119a4ca8",
+      "operational": {
+        "interest": 34929,
+        "penalty": 1664,
+        "principal": 12341509
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 196,
+        "principal": 4589172
+      },
+      "loan_id": "f944b6dd-f715-5c8b-a588-ab395e83511a",
+      "operational": {
+        "interest": 0,
+        "penalty": 196,
+        "principal": 4589172
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 750,
+        "principal": 10044239
+      },
+      "loan_id": "fbb27dcd-f74b-5bcc-91dd-51b7e00fb848",
+      "operational": {
+        "interest": 0,
+        "penalty": 750,
+        "principal": 10044239
+      }
+    },
+    {
+      "ledger": {
+        "interest": 31745,
+        "penalty": 970,
+        "principal": 12399900
+      },
+      "loan_id": "fc3c852a-b677-5498-b98d-1373744659b3",
+      "operational": {
+        "interest": 31745,
+        "penalty": 970,
+        "principal": 12399900
+      }
+    },
+    {
+      "ledger": {
+        "interest": 8553,
+        "penalty": 858,
+        "principal": 11372100
+      },
+      "loan_id": "fd393031-5900-595c-b65d-47b91c436aa5",
+      "operational": {
+        "interest": 8553,
+        "penalty": 858,
+        "principal": 11372100
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 180,
+        "principal": 4305415
+      },
+      "loan_id": "fdaaa21b-ead4-5945-acd4-f00619059651",
+      "operational": {
+        "interest": 0,
+        "penalty": 180,
+        "principal": 4305415
+      }
+    },
+    {
+      "ledger": {
+        "interest": 21702,
+        "penalty": 980,
+        "principal": 14161377
+      },
+      "loan_id": "fea3bf34-29c7-5ff3-9075-67b62ff29dea",
+      "operational": {
+        "interest": 21702,
+        "penalty": 980,
+        "principal": 14161377
+      }
+    },
+    {
+      "ledger": {
+        "interest": 32905,
+        "penalty": 1644,
+        "principal": 10640000
+      },
+      "loan_id": "fea5745b-63c7-5d05-8b6d-fe54d0418b5d",
+      "operational": {
+        "interest": 32905,
+        "penalty": 1644,
+        "principal": 10640000
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 648,
+        "principal": 9998580
+      },
+      "loan_id": "ff3d2f8f-e52b-5f05-903a-ade969f152a9",
+      "operational": {
+        "interest": 0,
+        "penalty": 648,
+        "principal": 9998580
+      }
+    },
+    {
+      "ledger": {
+        "interest": 0,
+        "penalty": 304,
+        "principal": 3377924
+      },
+      "loan_id": "ff9fca6d-a922-538a-af26-c978acef4f96",
+      "operational": {
+        "interest": 0,
+        "penalty": 304,
+        "principal": 3377924
+      }
+    }
+  ],
+  "posted_journals": 9903,
+  "principal_differences": [],
+  "total_credit_paise": 3641480368,
+  "total_debit_paise": 3641480368,
+  "unbalanced_journal_count": 0,
+  "zero_charge_days": 78
+}

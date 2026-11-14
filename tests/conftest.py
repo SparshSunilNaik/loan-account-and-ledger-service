@@ -86,3 +86,41 @@ def client(db):
     with TestClient(app, headers={"X-Demo-User": "demo-officer"}) as test_client:
         yield test_client
     app.dependency_overrides.clear()
+
+
+@pytest.fixture
+def parallel_env(pg_engine, monkeypatch):
+    """Committed requests need their own database, isolated from rollback-based tests."""
+    name = "ledgercore_parallel_" + uuid4().hex
+    admin = create_engine(
+        pg_engine.url.set(database="postgres"), isolation_level="AUTOCOMMIT"
+    )
+    with admin.connect() as conn:
+        conn.execute(text(f'CREATE DATABASE "{name}"'))
+    url = pg_engine.url.set(database=name)
+    engine = create_engine(
+        url,
+        pool_size=25,
+        max_overflow=5,
+        connect_args={
+            "options": "-c timezone=UTC",
+            "application_name": "ledgercore_parallel",
+        },
+    )
+    monkeypatch.setenv("DATABASE_URL", url.render_as_string(hide_password=False))
+    command.upgrade(Config("alembic.ini"), "head")
+
+    def dependency():
+        with Session(engine, expire_on_commit=False) as session:
+            yield session
+
+    app.dependency_overrides[get_session] = dependency
+    try:
+        with TestClient(app, headers={"X-Demo-User": "demo-officer"}) as client:
+            yield client, engine
+    finally:
+        app.dependency_overrides.clear()
+        engine.dispose()
+        with admin.connect() as conn:
+            conn.execute(text(f'DROP DATABASE "{name}" WITH (FORCE)'))
+        admin.dispose()

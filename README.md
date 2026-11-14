@@ -1,15 +1,16 @@
 # LedgerCore — Loan Account & Ledger Service
 
-Phase 2: a local financial backend with borrower registration, loan origination,
+Phase 3: a local financial backend with borrower registration, loan origination,
 deterministic schedules, disbursement, scheduled interest recognition, repayments,
-ledger-derived receivables, idempotency, PostgreSQL locking and controlled repayment reversal.
+ledger-derived receivables, idempotency, PostgreSQL locking, controlled repayment reversal,
+daily overdue penalties and deterministic 5,000-delivery HTTP replay.
 Python 3.12+, FastAPI/Pydantic v2, SQLAlchemy 2.x, PostgreSQL 16+, psycopg 3 and Alembic.
 INR amounts are integer paise; financial calculations use Decimal.
 
 **Development only.** `X-Demo-User` selects a database-backed demo identity; it is not
 proof of identity. Authentication is disabled unless `DEMO_AUTH_ENABLED=true`. Keep the
-service on loopback. No production authentication, synthetic replay, scheduled overdue
-accrual, penalty generator, automatic interest rebate or re-amortization is included.
+service on loopback. There is no production authentication, frontend, automatic interest
+rebate or re-amortization. Accrual runs explicitly; no resident scheduler is required.
 
 ## Start locally
 
@@ -150,4 +151,112 @@ safe to downgrade in place to a version without its reversal and allocation sema
 
 See [architecture](docs/architecture.md), [financial policy](docs/financial_rules.md),
 [phase plan](docs/implementation_plan.md), [Phase 1 validation](docs/phase1_report.md)
-and [Phase 2 validation](docs/phase2_report.md).
+[Phase 2 validation](docs/phase2_report.md) and [Phase 3 validation](docs/phase3_report.md).
+
+
+## Daily overdue accrual
+
+From the repository root, with DATABASE_URL configured in `.env`:
+
+```sh
+uv run ledgercore-accrue --business-date 2026-11-14 --catch-up
+# Scope a local demo to one already-disbursed loan:
+uv run ledgercore-accrue --business-date 2026-11-14 --catch-up --loan-id LOAN_UUID
+# Or use the composition's database configuration (Docker execution is environment-dependent):
+docker compose run --rm api /app/.venv/bin/ledgercore-accrue --business-date 2026-11-14 --catch-up
+```
+
+The job recognizes due contractual interest exactly once through the existing service.
+For each UTC day **after** a schedule's due date and after disbursement, it charges
+`ROUND_HALF_UP(opening_unpaid_scheduled_principal_paise × 0.0005)`. Repayments processed on
+D reduce the basis from D+1. Interest and penalties never form the penalty basis. A daily
+zero charge retains an immutable evaluation identity without a journal. Catch-up derives
+historical principal from processing-day allocations and reversals, including delayed
+receipts; it never uses today's balance for every past day.
+
+With `--catch-up`, every missing eligible day is evaluated. Without it, only the explicit
+business date is evaluated. The default horizon is 3,660 days; a larger history requires
+an explicit `--max-days` bound. There is one transaction and loan-row lock per loan.
+Failures roll back that entire loan, return in `failures`, and cause exit status 1; other
+loans may commit. Rerunning resumes missing work and does not duplicate charges. No job
+changes old receipts or reallocates historical payments. Penalties are collected once
+recognized; run the job before daily repayment processing when a fixed order is desired.
+
+A cron-compatible example (replace repository and uv paths, configure `.env`):
+
+```cron
+5 0 * * * cd /absolute/path/to/repository && /absolute/path/to/uv run ledgercore-accrue --business-date "$(date -u +\%F)" --catch-up >> /tmp/ledgercore-accrual.log 2>&1
+```
+
+`date -u` supplies the explicit UTC day. This is a documented invocation, not an installed
+cron task. CLI calls use the active database manager job identity. Production service
+identity and least-privilege permissions remain outside this local demo.
+
+## Deterministic data and real HTTP replay
+
+The data is invented: 250 borrowers, 400 loans, the existing three products and exactly
+5,000 delivery events, seed **20261114**, simulation November 1–14, 2026 UTC. Weekly first
+periods begin October 27; monthly periods begin October 4/5, with first due dates November
+3/4/5. Amounts range from INR 25,000 to INR 150,000. There are no real names, phones or emails.
+
+```sh
+# Optional: inspect deterministic inputs and independent expectations without a DB.
+uv run ledgercore-generate --output /tmp/ledgercore-generated-inputs
+# Requires a local PostgreSQL role with CREATE DATABASE; output must be fresh/empty.
+REPLAY_ADMIN_DATABASE_URL=postgresql+psycopg://ledgercore:ledgercore_local@localhost:5432/postgres \
+  uv run ledgercore-replay --output artifacts/local-run-001
+```
+
+The runner creates a randomly named isolated database, migrates it, starts Uvicorn on a
+free loopback port, initializes borrowers/loans/disbursements through HTTP, invokes the
+accrual service before each simulation day's deliveries and sends every repayment through
+HTTP. It reads PostgreSQL for reconciliation, then stops its server and drops only its own
+database. It never clears a developer database or directly inserts repayment rows.
+Unexpected outcomes produce a nonzero exit with observed artifacts retained.
+
+| Required category | Count | Subtypes |
+| --- | --- | --- |
+| Ordinary | 4,200 | New valid deliveries |
+| Exact duplicates | 300 | Same original financial payload and key, later delivery time |
+| Out of order | 250 | Older economic timestamps after newer accepted events on the same loan |
+| Partial/overpayment | 150 | 60 new partials, 60 excessive amounts, 30 separately identified source duplicates of partials |
+| Invalid/unauthorized | 100 | 25 zero, 25 negative, 25 auditor mutations, 25 idempotency collisions |
+
+`artifacts/phase3/` contains an **executed** validation run. See its reports for observed
+outcomes; generated expectations alone are not evidence of successful posting. Outputs:
+
+- `borrowers.json`, `loans.json`, `products.json`, `events.jsonl`: reproducible invented inputs.
+- `scenario_manifest.json`: separate independent Decimal reference expectations, including
+  per-delivery allocations and final per-loan principal, interest and penalty totals.
+- `identity_map.json`: stable source UUIDv5 IDs mapped to actual API-assigned UUIDs.
+- `replay_outcomes.jsonl`: every attempted delivery, status and actual response, including rejections.
+- `replay_report.json`: observed counts, timing, environment, hashes and validation results.
+- `reconciliation_report.json`: every journal/receipt check, historical daily bases and
+  per-loan ledger/operational/reference comparisons.
+- `reproducibility_check.json`: comparison of independent executed runs.
+
+The simulation clock is expressed by explicit business dates and input arrival timestamps.
+The API retains real server `received_at` and audit timestamps; those are not forged.
+Exact retries preserve their original business date, while new delayed deliveries use the
+simulated receipt date and retain their old `occurred_at`. Source logical IDs and input
+ordering are stable. API-generated UUIDs, real wall-clock timestamps and runtimes vary;
+normalized financial hashes exclude those fields. Input files are byte-reproducible.
+
+## Full Phase 3 verification
+
+```sh
+TEST_DATABASE_URL=postgresql+psycopg://ledgercore:ledgercore_local@localhost:5432/postgres \
+  uv run pytest -q
+uv run ruff check .
+uv run ruff format --check .
+uv lock --check
+uv run alembic check
+```
+
+The full suite includes the existing Phase 1/2 tests, accrual rollback/concurrency tests,
+generator/reference checks and an actual 5,000-request TCP HTTP replay in its own database.
+Allow roughly one to two minutes locally. Without TEST_DATABASE_URL, all real-database
+cases explicitly skip. By default replay test artifacts live in pytest's temporary folder;
+set `REPLAY_TEST_OUTPUT` to a fresh directory to retain that particular test run. The
+checked-in `artifacts/phase3` was retained this way. Database files and server logs are
+not committed; retained files contain invented inputs and reviewable observed results only.

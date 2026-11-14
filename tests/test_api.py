@@ -201,7 +201,7 @@ def test_fresh_migration_schema(db):
         "users",
         "audit_events",
     }
-    assert db.scalar(text("SELECT version_num FROM alembic_version")) == "0004"
+    assert db.scalar(text("SELECT version_num FROM alembic_version")) == "0005"
 
 
 def test_unavailable_database_is_503(client, monkeypatch):

@@ -1,0 +1,177 @@
+{
+  "accepted_new_repayments": 4510,
+  "accrual_runs": [
+    {
+      "business_date": "2026-11-01",
+      "charged_days": 0,
+      "evaluated_days": 0,
+      "penalty_paise": 0
+    },
+    {
+      "business_date": "2026-11-02",
+      "charged_days": 0,
+      "evaluated_days": 0,
+      "penalty_paise": 0
+    },
+    {
+      "business_date": "2026-11-03",
+      "charged_days": 0,
+      "evaluated_days": 0,
+      "penalty_paise": 0
+    },
+    {
+      "business_date": "2026-11-04",
+      "charged_days": 134,
+      "evaluated_days": 134,
+      "penalty_paise": 21051
+    },
+    {
+      "business_date": "2026-11-05",
+      "charged_days": 267,
+      "evaluated_days": 267,
+      "penalty_paise": 61185
+    },
+    {
+      "business_date": "2026-11-06",
+      "charged_days": 398,
+      "evaluated_days": 400,
+      "penalty_paise": 102757
+    },
+    {
+      "business_date": "2026-11-07",
+      "charged_days": 398,
+      "evaluated_days": 400,
+      "penalty_paise": 101282
+    },
+    {
+      "business_date": "2026-11-08",
+      "charged_days": 396,
+      "evaluated_days": 400,
+      "penalty_paise": 99322
+    },
+    {
+      "business_date": "2026-11-09",
+      "charged_days": 391,
+      "evaluated_days": 400,
+      "penalty_paise": 97010
+    },
+    {
+      "business_date": "2026-11-10",
+      "charged_days": 391,
+      "evaluated_days": 400,
+      "penalty_paise": 94552
+    },
+    {
+      "business_date": "2026-11-11",
+      "charged_days": 524,
+      "evaluated_days": 534,
+      "penalty_paise": 116532
+    },
+    {
+      "business_date": "2026-11-12",
+      "charged_days": 522,
+      "evaluated_days": 534,
+      "penalty_paise": 115373
+    },
+    {
+      "business_date": "2026-11-13",
+      "charged_days": 519,
+      "evaluated_days": 534,
+      "penalty_paise": 113657
+    },
+    {
+      "business_date": "2026-11-14",
+      "charged_days": 519,
+      "evaluated_days": 534,
+      "penalty_paise": 113657
+    }
+  ],
+  "api_balance_mismatches": [],
+  "completed": true,
+  "database_counts": {
+    "accepted_receipts": 4510,
+    "borrowers": 250,
+    "loans": 400,
+    "products": 3
+  },
+  "duplicate_deliveries_detected": 330,
+  "economic_inversions_all_attempts": 550,
+  "exact_retry_deliveries": 300,
+  "expectation_mismatches": [],
+  "finished_at": "2026-11-14T06:27:28.343926+00:00",
+  "generated_counts": {
+    "borrowers": 250,
+    "categories": {
+      "duplicate": 300,
+      "invalid_unauthorized": 100,
+      "ordinary": 4200,
+      "out_of_order": 250,
+      "partial_overpayment": 150
+    },
+    "deliveries": 5000,
+    "loans": 400,
+    "products": 3
+  },
+  "http_status_counts": {
+    "201": 4840,
+    "400": 60,
+    "403": 25,
+    "409": 25,
+    "422": 50
+  },
+  "idempotency_collisions": 25,
+  "interest_difference_count": 0,
+  "observed_behavior_counts": {
+    "accepted_new": 4510,
+    "authorization_denied": 25,
+    "duplicate": 330,
+    "idempotency_collision": 25,
+    "invalid_amount": 50,
+    "overpayment_rejected": 60
+  },
+  "out_of_order_unique_accepted": 250,
+  "penalty_difference_count": 0,
+  "posted_journals": 9903,
+  "principal_difference_count": 0,
+  "rejected_by_reason": {
+    "Demo user is missing, inactive, unknown, or not permitted": 25,
+    "Idempotency key was used with a different request": 25,
+    "Repayment exceeds collectible outstanding receivables": 60,
+    "validation_error": 50
+  },
+  "repeated_accrual_no_mutation": true,
+  "reproducibility": {
+    "clock_end": "2026-11-14",
+    "clock_start": "2026-11-01",
+    "dependencies": {
+      "fastapi": "0.115.14",
+      "httpx": "0.28.1",
+      "psycopg": "3.3.9",
+      "sqlalchemy": "2.1.8"
+    },
+    "events_sha256": "49112a862c4a874a5ab7705fe425de6dd1375132128f88ab7f8307ef0d47caa5",
+    "financial_sha256": "008882bef2d72b367effa6cfa6bd77fa7171c8e6074d16c07fa6145822c0b282",
+    "nondeterministic_fields": [
+      "API-generated UUIDs",
+      "server receipt/audit times",
+      "runtime",
+      "attempted_at"
+    ],
+    "platform": "Darwin",
+    "postgresql": "17.11 (Homebrew)",
+    "python": "3.12.13",
+    "seed": 20261114,
+    "source_base_commit": "2fb90c1275e0ddf0138ae611018aeea0a748689e",
+    "source_sha256": "c5911285b7b80d19f5cb29314fb744c4334d4cc9d54bc62d39f2e97b1d65dd14",
+    "transport": "real TCP loopback HTTP / Uvicorn"
+  },
+  "runtime_seconds": 80.354,
+  "seed": 20261114,
+  "source_duplicate_deliveries": 30,
+  "started_at": "2026-11-14T06:26:07.990686+00:00",
+  "submitted": 5000,
+  "total_credit_paise": 3641480368,
+  "total_debit_paise": 3641480368,
+  "unbalanced_journal_count": 0,
+  "validation_passed": true
+}

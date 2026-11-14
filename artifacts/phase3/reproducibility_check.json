@@ -1,0 +1,44 @@
+{
+  "comparison": "Identical stable delivery inputs and normalized observed financial outcomes across separate fresh PostgreSQL databases. Later runs refine disbursement dates before any due date and add fail-closed checks for inconsistent history. Healthy dataset monetary outcomes remain identical; final source digest matches retained execution.",
+  "independent_executed_replays": 4,
+  "passed": true,
+  "runs": [
+    {
+      "accepted_new": 4510,
+      "duplicate_responses": 330,
+      "events_sha256": "49112a862c4a874a5ab7705fe425de6dd1375132128f88ab7f8307ef0d47caa5",
+      "financial_sha256": "008882bef2d72b367effa6cfa6bd77fa7171c8e6074d16c07fa6145822c0b282",
+      "runtime_seconds": 87.598,
+      "submitted": 5000,
+      "validation_passed": true
+    },
+    {
+      "accepted_new": 4510,
+      "duplicate_responses": 330,
+      "events_sha256": "49112a862c4a874a5ab7705fe425de6dd1375132128f88ab7f8307ef0d47caa5",
+      "financial_sha256": "008882bef2d72b367effa6cfa6bd77fa7171c8e6074d16c07fa6145822c0b282",
+      "runtime_seconds": 72.643,
+      "submitted": 5000,
+      "validation_passed": true
+    },
+    {
+      "accepted_new": 4510,
+      "duplicate_responses": 330,
+      "events_sha256": "49112a862c4a874a5ab7705fe425de6dd1375132128f88ab7f8307ef0d47caa5",
+      "financial_sha256": "008882bef2d72b367effa6cfa6bd77fa7171c8e6074d16c07fa6145822c0b282",
+      "runtime_seconds": 73.86,
+      "submitted": 5000,
+      "validation_passed": true
+    },
+    {
+      "accepted_new": 4510,
+      "duplicate_responses": 330,
+      "events_sha256": "49112a862c4a874a5ab7705fe425de6dd1375132128f88ab7f8307ef0d47caa5",
+      "financial_sha256": "008882bef2d72b367effa6cfa6bd77fa7171c8e6074d16c07fa6145822c0b282",
+      "runtime_seconds": 80.354,
+      "submitted": 5000,
+      "validation_passed": true
+    }
+  ],
+  "source_matches_retained_run": true
+}

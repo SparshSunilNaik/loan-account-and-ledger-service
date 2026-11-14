@@ -1,7 +1,11 @@
-# No scheduled execution in Phase 2
+# Explicit dated jobs (Phase 3)
 
-The independently callable `recognize_scheduled_interest` service accepts an explicit
-UTC business date and caller-owned Session, locks the loan, and recognizes due contractual
-interest once. Repayment invokes it before allocation. No scheduler, overdue accrual,
-penalty generation, replay, or synthetic data generator runs. Future jobs must use this
-service contract, per-loan locking, and unique schedule/kind/period identities.
+`uv run ledgercore-accrue --business-date YYYY-MM-DD --catch-up` recognizes contractual
+interest once and evaluates every missing eligible overdue day. It charges 0.0005 of
+historical opening unpaid scheduled principal, rounds daily half-up, and persists zero
+identities without journals. Each loan owns one atomic transaction and the same row lock
+as financial APIs. Failures roll back that loan and cause a nonzero CLI exit; rerun resumes.
+
+No resident scheduler is required. README provides a cron-compatible command and full
+local replay/demo commands. The independent HTTP replay fixes job-before-delivery ordering;
+late jobs never retroactively rewrite existing receipt allocations. No future phase runs.

@@ -71,6 +71,12 @@ def check_date(session, loan_id, business_date):
             LedgerJournal.loan_id == loan_id, LedgerJournal.status == "posted"
         )
     )
+    evaluated = session.scalar(
+        select(func.max(AccrualRecord.period_start)).where(
+            AccrualRecord.loan_id == loan_id, AccrualRecord.kind == "overdue_penalty"
+        )
+    )
+    last = max([d for d in (last, evaluated) if d is not None], default=None)
     if last is not None and business_date < last:
         raise FinancialError(
             409, "Business date cannot precede an already posted operation"
@@ -322,8 +328,15 @@ def recognized_lots(session, loan_id, component):
     rows = session.execute(
         select(LedgerEntry, LedgerJournal.effective_at)
         .join(LedgerJournal, LedgerJournal.id == LedgerEntry.journal_id)
+        .outerjoin(RepaymentSchedule, RepaymentSchedule.id == LedgerEntry.schedule_id)
         .where(LedgerEntry.id.in_(ids))
-        .order_by(LedgerJournal.effective_at, LedgerJournal.created_at, LedgerEntry.id)
+        .order_by(
+            LedgerJournal.effective_at,
+            RepaymentSchedule.due_date,
+            RepaymentSchedule.instalment_number,
+            LedgerJournal.created_at,
+            LedgerEntry.id,
+        )
     ).all()
     lots = []
     for entry, _ in rows:
