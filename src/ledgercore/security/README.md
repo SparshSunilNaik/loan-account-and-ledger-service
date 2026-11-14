@@ -1,0 +1,1 @@
+Users and roles are schema preparation only. There is no authentication or authorization middleware in Phase 1. Run on loopback in development. No default users, password storage, header-based identity, or fake tokens are provided. Phase 2 must define demo authentication and enforce role permissions before exposing financial mutations.

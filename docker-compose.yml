@@ -1,0 +1,35 @@
+services:
+  db:
+    image: postgres:16.13
+    environment:
+      POSTGRES_USER: ledgercore
+      POSTGRES_PASSWORD: ledgercore_local
+      POSTGRES_DB: ledgercore
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ledgercore -d ledgercore"]
+      interval: 2s
+      timeout: 3s
+      retries: 20
+  migrate:
+    build: .
+    environment:
+      DATABASE_URL: postgresql+psycopg://ledgercore:ledgercore_local@db:5432/ledgercore
+    depends_on:
+      db:
+        condition: service_healthy
+    command: ["/app/.venv/bin/alembic", "upgrade", "head"]
+  api:
+    build: .
+    environment:
+      DATABASE_URL: postgresql+psycopg://ledgercore:ledgercore_local@db:5432/ledgercore
+    ports:
+      - "127.0.0.1:8000:8000"
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+volumes:
+  postgres_data:

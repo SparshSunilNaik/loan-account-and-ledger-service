@@ -1,0 +1,1 @@
+No scheduler runs in Phase 1. A future accrual job must call the posting contract in an atomic transaction, serialize each loan's mutations, and use unique schedule/kind/period identifiers. Scheduled recognition and overdue accrual must use distinct receivable policies to avoid recognizing the same interest twice.
