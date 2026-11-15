@@ -17,7 +17,7 @@ for (const theme of ["light", "dark"])
       "Local FastAPI backend is unavailable",
     );
     await page.screenshot({
-      path: `${process.env.STUDIO_CAPTURE_ROOT ?? "docs/product-ux/after"}/backend-offline-${theme}.png`,
+      path: `${process.env.STUDIO_CAPTURE_ROOT ?? "test-results/screenshots"}/backend-offline-${theme}.png`,
       animations: "disabled",
       fullPage: true,
     });

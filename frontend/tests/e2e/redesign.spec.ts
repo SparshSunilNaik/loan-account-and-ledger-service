@@ -6,7 +6,7 @@ for (const width of [1440, 1024, 390])
     request,
   }) => {
     await page.setViewportSize({ width, height: 1000 });
-    const folder = `${process.env.STUDIO_CAPTURE_ROOT ?? "docs/product-ux/after"}/${width}`;
+    const folder = `${process.env.STUDIO_CAPTURE_ROOT ?? "test-results/screenshots"}/${width}`;
     const errors: string[] = [];
     page.on("pageerror", (e) => errors.push(e.message));
     const shot = (name: string) => capture(page, folder, name);

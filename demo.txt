@@ -13,7 +13,7 @@ PREPARATION — OFF CAMERA
 
 2. On this Mac, open Terminal at the repository root:
 
-   cd /Users/sparshsunilnaik/Documents/dvara
+   cd /path/to/loan-account-and-ledger-service
    export PATH="$HOME/.local/share/vite-plus/bin:$HOME/.local/bin:/opt/homebrew/opt/postgresql@16/bin:$PATH"
    pg_isready -h 127.0.0.1 -p 5432
    uv sync --frozen --python 3.12
@@ -45,7 +45,7 @@ PREPARATION — OFF CAMERA
 
 5. In a second Terminal (stop only your own existing Next.js process if using port 3000):
 
-   cd /Users/sparshsunilnaik/Documents/dvara/frontend
+   cd /path/to/loan-account-and-ledger-service/frontend
    export PATH="$HOME/.local/share/vite-plus/bin:$HOME/.local/bin:$PATH"
    npm ci
    BACKEND_URL=http://127.0.0.1:8000 npm run build

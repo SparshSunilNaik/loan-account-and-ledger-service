@@ -13,7 +13,7 @@ for (const width of [1440, 1024, 390])
     request,
   }) => {
     await page.setViewportSize({ width, height: width === 390 ? 844 : 900 });
-    const folder = `docs/workbench/screens/${width}`;
+    const folder = `${process.env.STUDIO_CAPTURE_ROOT ?? "test-results/screenshots"}/${width}`;
     await page.goto("/loans");
     await page
       .getByLabel("Appearance", { exact: true })
@@ -342,7 +342,11 @@ test("long actual schedules scroll inside the workbench without moving the docum
   expect(
     await page.evaluate(() => document.documentElement.scrollHeight),
   ).toBeLessThanOrEqual(900);
-  await capture(page, "docs/workbench/screens/1440", "long-schedule");
+  await capture(
+    page,
+    `${process.env.STUDIO_CAPTURE_ROOT ?? "test-results/screenshots"}/1440`,
+    "long-schedule",
+  );
 });
 
 test("header loan selector opens a known account directly from discovery", async ({

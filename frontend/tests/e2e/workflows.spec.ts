@@ -41,7 +41,7 @@ test("guided demo posts once, verifies retry, and keeps the account selected", a
   expect(await getJSON(request, `/loans/${id}/repayments`)).toHaveLength(1);
   await capture(
     page,
-    process.env.STUDIO_CAPTURE_ROOT ?? "docs/product-ux/after",
+    process.env.STUDIO_CAPTURE_ROOT ?? "test-results/screenshots",
     "guided-demo",
   );
 });

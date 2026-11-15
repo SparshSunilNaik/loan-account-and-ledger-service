@@ -3,7 +3,7 @@ import { makeLoanUI, disburseUI, recordUI, capture, getJSON } from "./helpers";
 const key = "ledgercore-studio-theme";
 const evidence = process.env.STUDIO_CAPTURE_ROOT
   ? `${process.env.STUDIO_CAPTURE_ROOT}/themes`
-  : "docs/precision-finance/after";
+  : "test-results/screenshots/themes";
 for (const theme of ["light", "dark"] as const)
   for (const width of [1440, 1024, 390])
     test(`${theme}: actual servicing workflow and all layouts at ${width}px`, async ({

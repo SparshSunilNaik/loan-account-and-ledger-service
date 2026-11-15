@@ -115,7 +115,7 @@
         "principal_due_paise": 5025
       }
     ],
-    "screenshots": "frontend/docs/demo-validation/ (GitHub only; excluded from backend ZIP)",
+    "screenshots": "Generated during verification under ignored frontend/test-results/; not committed.",
     "synthetic_loan_id": "f700749c-0972-4785-8ed6-d4cde7bb6b15",
     "target_duration_seconds": 375
   },
