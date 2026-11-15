@@ -7,9 +7,9 @@ an unobserved success or replace it with a screenshot/mock response.
 
 PREPARATION — OFF CAMERA
 
-1. Use the full GitHub repository for the optional Studio frontend. The backend-only
-   submission ZIP deliberately excludes frontend/. Its API, Postman and curl demo work
-   independently. Do not put passwords, .env contents or unrelated personal data on screen.
+1. Use the full GitHub repository, including the optional Studio frontend. The FastAPI
+   backend also runs independently. Do not put passwords, .env contents or unrelated
+   personal data on screen.
 
 2. On this Mac, open Terminal at the repository root:
 
@@ -66,7 +66,8 @@ PREPARATION — OFF CAMERA
    identity. System follows OS preferences; theme choice is independent of the actor.
 
 7. Pre-open these editor tabs and browser tab; do not edit the files:
-   - docs/architecture.md
+   - README.md (Architecture section)
+   - writeup/technical_writeup.tex
    - src/ledgercore/models/entities.py
    - migrations/versions/ (five revision files)
    - artifacts/phase3/replay_report.json and reconciliation_report.json
@@ -104,14 +105,14 @@ local; the header identities are explicitly for development."
 
 2. ARCHITECTURE — 00:30–01:15 (45 seconds)
 
-SHOW: Editor docs/architecture.md, its Data model table, then models/entities.py and the
-migration directory. Briefly switch to Swagger at http://127.0.0.1:8000/docs.
+SHOW: The README Architecture section, then models/entities.py and the migration directory.
+Briefly switch to Swagger at http://127.0.0.1:8000/docs.
 DO: Point to borrowers, loans, repayment_schedules, repayments/allocations and ledger
 journals/entries. In the third Terminal, execute from repository root:
 
    uv run alembic heads
 
-EXPECT: 0005 (head). The architecture documents 13 business tables and five revisions.
+EXPECT: 0005 (head). The implementation contains 13 business tables and five revisions.
 Swagger lists the real API; do not create additional records from Swagger in this take.
 
 SAY:
@@ -299,11 +300,11 @@ penalties use opening unpaid scheduled principal, never interest-on-interest."
 7. CONCLUSION — 05:45–06:15 (30 seconds)
 
 SHOW: Return to Studio with the same loan and its audit or ledger inspector. Optionally
-point to docs/technical_writeup.pdf and the backend-only package file inventory in editor.
+point to writeup/technical_writeup.tex and the repository structure in README.md.
 DO: Make no further financial mutation. Keep the chosen account visible.
-EXPECT: The live example still has one receipt and ₹91.00 principal receivable. The backend
-ZIP contains source, migrations, tests, replay artifacts, API assets, documentation and this
-script; Studio source is on GitHub but remains outside that backend ZIP.
+EXPECT: The live example still has one receipt and ₹91.00 principal receivable. The repository
+contains backend and Studio source, migrations, tests, replay evidence, API assets, the LaTeX
+write-up and this script.
 
 SAY:
 "LedgerCore's strengths are exact monetary arithmetic, database-backed transaction
@@ -312,7 +313,7 @@ explicit: demo identity is not production authentication, there is no tenant own
 filtering, and only repayment reversals are supported. Docker execution has not been
 validated here; native PostgreSQL has. My next improvement would be real identity with
 tenant-scoped authorization. Studio makes those backend decisions easy to inspect, while
-the backend submission remains independently runnable."
+the backend remains independently runnable."
 
 RECORDING RECOVERY NOTES — NOT NARRATION
 - Do not disburse the same loan twice; a duplicate must conflict. Start a fresh application

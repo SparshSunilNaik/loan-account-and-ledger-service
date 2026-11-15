@@ -110,7 +110,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
           <p>
             Development-only identities.
             <br />
-            Outside the verified submission.
+            Local testing environment.
           </p>
           <a href="http://127.0.0.1:8000/docs" target="_blank" rel="noreferrer">
             API documentation

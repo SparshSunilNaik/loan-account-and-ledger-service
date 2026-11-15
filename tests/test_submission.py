@@ -30,10 +30,10 @@ def test_revision_metadata_without_git_executable(monkeypatch):
 
 
 def test_export_matches_app_and_collection_covers_all_operations():
-    spec = json.loads((ROOT / "docs/openapi.json").read_text())
+    spec = json.loads((ROOT / "openapi/openapi.json").read_text())
     assert spec == app.openapi()
     collection = json.loads(
-        (ROOT / "docs/postman/ledgercore.postman_collection.json").read_text()
+        (ROOT / "postman/ledgercore.postman_collection.json").read_text()
     )
     assert script("verify_submission").coverage(spec, collection) == 14
     assert len(collection["item"]) == 33

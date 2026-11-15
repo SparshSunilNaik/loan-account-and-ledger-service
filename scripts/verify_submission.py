@@ -187,13 +187,11 @@ def main():
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
     spec, collection = (
-        read(ROOT / "docs/openapi.json"),
-        read(ROOT / "docs/postman/ledgercore.postman_collection.json"),
+        read(ROOT / "openapi/openapi.json"),
+        read(ROOT / "postman/ledgercore.postman_collection.json"),
     )
     validate(spec)
-    Draft4Validator(read(ROOT / "docs/postman/collection.schema.json")).validate(
-        collection
-    )
+    Draft4Validator(read(ROOT / "postman/collection.schema.json")).validate(collection)
     operation_count = coverage(spec, collection)
     if args.base_url:
         response = httpx.get(args.base_url.rstrip("/") + "/openapi.json")

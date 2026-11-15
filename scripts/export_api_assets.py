@@ -346,7 +346,7 @@ pm.test("Receipt has actor, correlation and journal audit", () => pm.expect(pm.r
     return {
         "info": {
             "_postman_id": "74dd4d99-f235-48bc-aab4-50967571875e",
-            "name": "LedgerCore final submission — local demo only",
+            "name": "LedgerCore local API verification",
             "description": "Run all requests in order on a fresh/disposable local demo database. Header identities are NOT production authentication. Expected 400/403/409/422 responses are deliberate tests. First request resets run IDs. Audit page defaults to first 500 events; use a fresh demo DB or adjust auditOffset. No accrual job is run inside this API collection.",
             "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
         },
@@ -396,9 +396,9 @@ def main():
     args = parser.parse_args()
     response = httpx.get(args.base_url.rstrip("/") + "/openapi.json", timeout=10)
     response.raise_for_status()
-    save(ROOT / "docs/openapi.json", response.json())
-    save(ROOT / "docs/postman/ledgercore.postman_collection.json", collection())
-    save(ROOT / "docs/postman/local.postman_environment.json", environment())
+    save(ROOT / "openapi/openapi.json", response.json())
+    save(ROOT / "postman/ledgercore.postman_collection.json", collection())
+    save(ROOT / "postman/local.postman_environment.json", environment())
     print("Exported running OpenAPI and Postman collection/environment")
 
 

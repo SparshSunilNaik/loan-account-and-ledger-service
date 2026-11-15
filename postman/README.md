@@ -17,10 +17,11 @@ Regenerate from a running application:
 
 ```sh
 uv run python scripts/export_api_assets.py --base-url http://127.0.0.1:8000
-uv run --with openapi-spec-validator==0.7.2 python scripts/verify_submission.py --base-url http://127.0.0.1:8000
+uv run --with openapi-spec-validator==0.7.2 --with jsonschema==4.25.1 \
+  python scripts/verify_submission.py --base-url http://127.0.0.1:8000
 ```
 
-`docs/openapi.json` is the running endpoint's JSON, not a hand-edited approximation. It is
+`openapi/openapi.json` is the running endpoint's JSON, not a hand-edited approximation. It is
 OpenAPI 3.1.0. Some financial responses retain generic response schemas; the collection
 provides executable examples and assertions without claiming tighter schemas than the app.
 

@@ -7,7 +7,7 @@ import { Shell } from "@/components/shell";
 export const metadata: Metadata = {
   title: { default: "LedgerCore Studio", template: "%s · LedgerCore Studio" },
   description:
-    "Local financial operations and testing dashboard. Development only; outside the original submission.",
+    "Local financial operations and testing dashboard for LedgerCore.",
 };
 export default function RootLayout({
   children,

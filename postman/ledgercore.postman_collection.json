@@ -5,7 +5,7 @@
   "info": {
     "_postman_id": "74dd4d99-f235-48bc-aab4-50967571875e",
     "description": "Run all requests in order on a fresh/disposable local demo database. Header identities are NOT production authentication. Expected 400/403/409/422 responses are deliberate tests. First request resets run IDs. Audit page defaults to first 500 events; use a fresh demo DB or adjust auditOffset. No accrual job is run inside this API collection.",
-    "name": "LedgerCore final submission \u2014 local demo only",
+    "name": "LedgerCore local API verification",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [

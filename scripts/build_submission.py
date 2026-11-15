@@ -24,7 +24,16 @@ ROOT_FILES = {
     "pyproject.toml",
     "uv.lock",
 }
-TREES = ("src", "migrations", "tests", "scripts", "docs", "artifacts/phase3")
+TREES = (
+    "src",
+    "migrations",
+    "tests",
+    "scripts",
+    "openapi",
+    "postman",
+    "writeup",
+    "artifacts/phase3",
+)
 EXCLUDED = {
     ".git",
     ".venv",
@@ -84,6 +93,7 @@ def backup_existing(root):
         archive.name,
         "ledgercore-submission.manifest.json",
         "ledgercore-submission.files.sha256",
+        "ledgercore-submission.included-files.txt",
         "SHA256SUMS",
         "zip_validation.json",
         "archive_security_check.json",
@@ -91,9 +101,6 @@ def backup_existing(root):
         path = output / name
         if path.is_file():
             shutil.copy2(path, backup / name)
-    inventory = root / "docs/submission/included_files.txt"
-    if inventory.exists():
-        shutil.copy2(inventory, backup / "included_files.txt")
     assert hashlib.sha256((backup / archive.name).read_bytes()).hexdigest() == digest
     (backup / "backup_verification.json").write_text(
         json.dumps(
@@ -111,13 +118,12 @@ def backup_existing(root):
 
 def build(root=ROOT):
     previous_backup = backup_existing(root)
-    included = root / "docs/submission/included_files.txt"
-    included.parent.mkdir(parents=True, exist_ok=True)
+    output = root / "dist"
+    output.mkdir(exist_ok=True)
+    included = output / "ledgercore-submission.included-files.txt"
     included.touch(exist_ok=True)
     paths = source_files(root)
     included.write_text("\n".join(paths) + "\n")
-    output = root / "dist"
-    output.mkdir(exist_ok=True)
     archive = output / "ledgercore-submission.zip"
     members = []
     with zipfile.ZipFile(
@@ -179,7 +185,7 @@ def build(root=ROOT):
         "dist/ledgercore-submission.zip",
         "dist/ledgercore-submission.manifest.json",
         "dist/ledgercore-submission.files.sha256",
-        "docs/submission/included_files.txt",
+        "dist/ledgercore-submission.included-files.txt",
     ]
     (output / "SHA256SUMS").write_text(
         "".join(

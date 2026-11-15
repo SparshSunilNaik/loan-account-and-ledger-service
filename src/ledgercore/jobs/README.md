@@ -1,4 +1,4 @@
-# Explicit dated jobs (Phase 3)
+# Explicit dated accrual jobs
 
 `uv run ledgercore-accrue --business-date YYYY-MM-DD --catch-up` recognizes contractual
 interest once and evaluates every missing eligible overdue day. It charges 0.0005 of
@@ -8,4 +8,4 @@ as financial APIs. Failures roll back that loan and cause a nonzero CLI exit; re
 
 No resident scheduler is required. README provides a cron-compatible command and full
 local replay/demo commands. The independent HTTP replay fixes job-before-delivery ordering;
-late jobs never retroactively rewrite existing receipt allocations. No future phase runs.
+late jobs never retroactively rewrite existing receipt allocations.
