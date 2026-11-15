@@ -48,9 +48,6 @@ users, and audit events. Loans snapshot their financial terms at origination. Fi
 mutations lock the loan row and commit recognition, receipt, allocations, journal entries,
 idempotency response and audit as one transaction. No mutable balance column is authoritative.
 
-The [technical write-up](writeup/technical_writeup.tex) summarizes the calculations,
-accounting model, concurrency controls, and replay evidence.
-
 ## Repository structure
 
 ```text
@@ -58,10 +55,9 @@ src/ledgercore/       API, schemas, services, accounting, jobs and simulation
 migrations/           Alembic environment and five schema revisions
 tests/                Unit, PostgreSQL integration, concurrency and replay tests
 frontend/             Optional LedgerCore Studio source and browser tests
-artifacts/phase3/      Deterministic replay inputs, outcomes and reconciliation evidence
+artifacts/             Deterministic replay inputs, outcomes and reconciliation evidence
 openapi/               Committed OpenAPI 3.1 specification
 postman/               Collection, environment, schema, license and instructions
-writeup/               Overleaf-ready LaTeX technical write-up
 scripts/               Local setup, verification, smoke and demonstration utilities
 demo.txt               Recording script using the real Studio and API
 ```
@@ -130,7 +126,7 @@ With the API running, Swagger is available at <http://127.0.0.1:8000/docs> and R
 
 ## Synthetic dataset and replay
 
-The retained evidence under `artifacts/phase3/` contains 250 invented borrowers, 400 loans,
+The retained evidence under `artifacts/` contains 250 invented borrowers, 400 loans,
 three products and exactly 5,000 repayment delivery attempts generated with seed `20261114`.
 The observed run recorded 4,510 new repayments, 330 duplicate responses, 160 rejected
 deliveries, 250 accepted out-of-order events and 9,903 posted journals. Total debits and

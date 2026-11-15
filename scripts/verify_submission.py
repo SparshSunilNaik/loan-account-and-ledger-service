@@ -93,7 +93,7 @@ def committed_source_review():
 
 
 def verify_evidence():
-    directory = ROOT / "artifacts/phase3"
+    directory = ROOT / "artifacts"
     manifest, report, rec = [
         read(directory / name)
         for name in (

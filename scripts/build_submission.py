@@ -31,8 +31,7 @@ TREES = (
     "scripts",
     "openapi",
     "postman",
-    "writeup",
-    "artifacts/phase3",
+    "artifacts",
 )
 EXCLUDED = {
     ".git",

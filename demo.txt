@@ -67,10 +67,9 @@ PREPARATION — OFF CAMERA
 
 7. Pre-open these editor tabs and browser tab; do not edit the files:
    - README.md (Architecture section)
-   - writeup/technical_writeup.tex
    - src/ledgercore/models/entities.py
    - migrations/versions/ (five revision files)
-   - artifacts/phase3/replay_report.json and reconciliation_report.json
+   - artifacts/replay_report.json and reconciliation_report.json
    - Swagger: http://127.0.0.1:8000/docs
    Keep the replay-summary command in section 6 ready to paste.
 
@@ -243,7 +242,7 @@ SHOW: Third Terminal at repository root. Paste and execute this read-only summar
 uv run python - <<'PY'
 import json
 from pathlib import Path
-p = Path("artifacts/phase3")
+p = Path("artifacts")
 r = json.loads((p / "replay_report.json").read_text())
 q = json.loads((p / "reconciliation_report.json").read_text())
 print("Input borrowers:", len(json.loads((p / "borrowers.json").read_text())))
@@ -283,7 +282,7 @@ uses seed 20261114 and a fixed simulation clock. Do not rerun all 5,000 events d
    REPLAY_ADMIN_DATABASE_URL=postgresql+psycopg://127.0.0.1:5432/postgres uv run ledgercore-replay --output /tmp/ledgercore-recording-replay-01
 
 Choose a new, empty output path for each run. The replay creates its own isolated DB/server;
-never overwrite artifacts/phase3. Its financial fingerprint can be compared with retained
+never overwrite artifacts/. Its financial fingerprint can be compared with retained
 evidence using scripts/verify_submission.py --fresh-replay PATH_TO_NEW/replay_report.json.
 
 SAY:
@@ -300,11 +299,11 @@ penalties use opening unpaid scheduled principal, never interest-on-interest."
 7. CONCLUSION — 05:45–06:15 (30 seconds)
 
 SHOW: Return to Studio with the same loan and its audit or ledger inspector. Optionally
-point to writeup/technical_writeup.tex and the repository structure in README.md.
+point to the repository structure and replay section in README.md.
 DO: Make no further financial mutation. Keep the chosen account visible.
 EXPECT: The live example still has one receipt and ₹91.00 principal receivable. The repository
-contains backend and Studio source, migrations, tests, replay evidence, API assets, the LaTeX
-write-up and this script.
+contains backend and Studio source, migrations, tests, replay evidence, API assets and this
+script.
 
 SAY:
 "LedgerCore's strengths are exact monetary arithmetic, database-backed transaction
