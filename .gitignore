@@ -1,5 +1,6 @@
 .venv/
 /docs/
+/demo.txt
 .env
 .env.*
 !.env.example
